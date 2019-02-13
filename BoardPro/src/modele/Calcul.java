@@ -8,13 +8,13 @@ import exception.MathException;
  * 
  */
 public class Calcul {
-	public static final double chargeE = 1.602 *  Math.pow(10, -19);
-	public static final double masseElectron = 9.109 *  Math.pow(10, -31);
-	public static final double masseProton = 1.672 *  Math.pow(10, -27);
+	public static final double chargeE = 1.602 * Math.pow(10, -19);
+	public static final double masseElectron = 9.109 * Math.pow(10, -31);
+	public static final double masseProton = 1.672 * Math.pow(10, -27);
 	public static final double k = 9 * Math.pow(10, 9);
 	public static final double epsilon = 8.854 * Math.pow(10, -12);
-	
-	
+
+	// Calcul de fréquence
 	public float frequenceTofrequenceAngulaire(float frequence) {
 		return (float) (2 * Math.PI * frequence);
 	}
@@ -22,48 +22,79 @@ public class Calcul {
 	public float frequenceAngulaireTofrequence(float frequenceAngulaire) {
 		return (float) (frequenceAngulaire / (2 * Math.PI));
 	}
-	
-	
+
+	// Calcul de condensateur
 	public float capaciteCondensateur(float ddp, float q) throws MathException {
 		float c = 0;
 		if (ddp != 0) {
-			c = q/ddp;
+			c = q / ddp;
 		} else {
 			throw new MathException("Charge du condensateur null!");
 		}
 		return c;
 	}
-	
+
 	public float chargeCondensateur(float ddp, float c) {
-		return ddp*c;
+		return ddp * c;
 	}
-	
+
 	public float ddpCondensateur(float c, float q) throws MathException {
 		float ddp = 0;
-		if (c !=0) {
-			ddp = q/c;
+		if (c != 0) {
+			ddp = q / c;
 		} else {
 			throw new MathException("Charge du condensateur = 0!");
-		} return ddp;
+		}
+		return ddp;
 	}
-	
-	
+
+	public float capaciteCondensateurPlan(float aire, float distance) throws MathException {
+		float capacite = 0;
+		if (distance != 0) {
+			capacite = (float) (Calcul.epsilon * aire / distance);
+		} else {
+			throw new MathException("distance entre 2 armatures de condensateur null!");
+		}
+		return capacite;
+	}
+
+	public float capaciteCondensateurCylindrique(float longueur, float rayonA, float rayonB) throws MathException {
+		float capacite = 0;
+		if ((rayonA > 0 && rayonB > 0) || (rayonB < 0 && rayonB < 0)) {
+			capacite = (float) (longueur / (2 * Calcul.k * Math.log(rayonB / rayonA)));
+		} else {
+			throw new MathException("Rayon du condensateur cylindrique invalide");
+		}
+		return capacite;
+	}
+
+	public float capaciteCondensateurSpherique(float rayonA, float rayonB) throws MathException {
+		float capacite = 0;
+		if (rayonB > rayonA) {
+			capacite = (float) (4 * Math.PI * Calcul.epsilon * rayonA * rayonB / (rayonB - rayonA));
+		} else {
+			throw new MathException("Rayon du condensateur cylindrique invalide");
+		}
+		return capacite;
+	}
+
+	// Calcul de resistance
 	public float calculResistance(float p, float l, float a) throws MathException {
 		float r = 0;
 		if (a != 0) {
-			r = (p*l)/a;
+			r = (p * l) / a;
 		} else {
 			throw new MathException("L'aire du fil (resistance) est égale à 0");
 		}
 		return r;
-		
+
 	}
-	
-	public float resistiviteEtTemperature(float pi,float ti, float tf, float coefThermique) {
+
+	public float resistiviteEtTemperature(float pi, float ti, float tf, float coefThermique) {
 		float deltaT = tf - ti;
-		return pi *(1+coefThermique*deltaT);
+		return pi * (1 + coefThermique * deltaT);
 	}
-	
+
 	public float loiOhmR(float ddp, float i) throws MathException {
 		float retour;
 
@@ -90,8 +121,32 @@ public class Calcul {
 		return retour;
 	}
 
-	
-	
+	// Calcul de circuit RC
+	public float ChargeCondensateurDecharge(float ChargeMax, float t, float R, float C) {
+		return (float) (ChargeMax * Math.exp((-t) / (R * C)));
+	}
+
+	public float ddpCondesateurDecharge(float ddpMax, float t, float R, float C) {
+		return (float) (ddpMax * Math.exp((-t) / (R * C)));
+	}
+
+	public float courantCondensateurDecharge(float courantMax, float t, float R, float C) {
+		return (float) (courantMax * Math.exp((-t) / (R * C)));
+	}
+
+	public float ChargeCondensateurCharge(float ChargeMax, float t, float R, float C) {
+		return (float) (ChargeMax * (1 - Math.exp((-t) / (R * C))));
+	}
+
+	public float ddpCondesateurCharge(float ddpMax, float t, float R, float C) {
+		return (float) (ddpMax * (1 - Math.exp((-t) / (R * C))));
+	}
+
+	public float courantCondensateurCharge(float courantMax, float t, float R, float C) {
+		return (float) (courantMax * (1 - Math.exp((-t) / (R * C))));
+	}
+
+	// Calcul de circuit RLC
 	public float impedanceCircuitRLC(float resistance, float inductance, float capacite, float frequence) {
 
 		return 0;
