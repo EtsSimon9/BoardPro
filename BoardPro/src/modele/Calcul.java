@@ -5,7 +5,7 @@ import exception.MathException;
 /**
  * 
  * @author Simon Beaulieu
- *
+ * aa
  */
 public class Calcul {
 
