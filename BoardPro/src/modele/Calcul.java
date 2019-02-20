@@ -15,16 +15,16 @@ public class Calcul {
 	public static final double epsilon = 8.854 * Math.pow(10, -12);
 
 	// Calcul de fréquence
-	public float frequenceTofrequenceAngulaire(float frequence) {
+	public static float frequenceTofrequenceAngulaire(float frequence) {
 		return (float) (2 * Math.PI * frequence);
 	}
 
-	public float frequenceAngulaireTofrequence(float frequenceAngulaire) {
+	public static float frequenceAngulaireTofrequence(float frequenceAngulaire) {
 		return (float) (frequenceAngulaire / (2 * Math.PI));
 	}
 
 	// Calcul de condensateur
-	public float capaciteCondensateur(float ddp, float q) throws MathException {
+	public static float capaciteCondensateur(float ddp, float q) throws MathException {
 		float c = 0;
 		if (ddp != 0) {
 			c = q / ddp;
@@ -34,11 +34,11 @@ public class Calcul {
 		return c;
 	}
 
-	public float chargeCondensateur(float ddp, float c) {
+	public static float chargeCondensateur(float ddp, float c) {
 		return ddp * c;
 	}
 
-	public float ddpCondensateur(float c, float q) throws MathException {
+	public static float ddpCondensateur(float c, float q) throws MathException {
 		float ddp = 0;
 		if (c != 0) {
 			ddp = q / c;
@@ -48,7 +48,7 @@ public class Calcul {
 		return ddp;
 	}
 
-	public float capaciteCondensateurPlan(float aire, float distance) throws MathException {
+	public static float capaciteCondensateurPlan(float aire, float distance) throws MathException {
 		float capacite = 0;
 		if (distance != 0) {
 			capacite = (float) (Calcul.epsilon * aire / distance);
@@ -58,7 +58,7 @@ public class Calcul {
 		return capacite;
 	}
 
-	public float capaciteCondensateurCylindrique(float longueur, float rayonA, float rayonB) throws MathException {
+	public static float capaciteCondensateurCylindrique(float longueur, float rayonA, float rayonB) throws MathException {
 		float capacite = 0;
 		if ((rayonA > 0 && rayonB > 0) || (rayonB < 0 && rayonB < 0)) {
 			capacite = (float) (longueur / (2 * Calcul.k * Math.log(rayonB / rayonA)));
@@ -68,7 +68,7 @@ public class Calcul {
 		return capacite;
 	}
 
-	public float capaciteCondensateurSpherique(float rayonA, float rayonB) throws MathException {
+	public static float capaciteCondensateurSpherique(float rayonA, float rayonB) throws MathException {
 		float capacite = 0;
 		if (rayonB > rayonA) {
 			capacite = (float) (4 * Math.PI * Calcul.epsilon * rayonA * rayonB / (rayonB - rayonA));
@@ -79,7 +79,7 @@ public class Calcul {
 	}
 
 	// Calcul de resistance
-	public float calculResistance(float p, float l, float a) throws MathException {
+	public static float calculResistance(float p, float l, float a) throws MathException {
 		float r = 0;
 		if (a != 0) {
 			r = (p * l) / a;
@@ -90,12 +90,12 @@ public class Calcul {
 
 	}
 
-	public float resistiviteEtTemperature(float pi, float ti, float tf, float coefThermique) {
+	public static float resistiviteEtTemperature(float pi, float ti, float tf, float coefThermique) {
 		float deltaT = tf - ti;
 		return pi * (1 + coefThermique * deltaT);
 	}
 
-	public float loiOhmR(float ddp, float i) throws MathException {
+	public static float loiOhmR(float ddp, float i) throws MathException {
 		float retour;
 
 		if (i != 0) {
@@ -106,11 +106,11 @@ public class Calcul {
 		return retour;
 	}
 
-	public float loiOhmDDP(float r, float i) {
+	public static float loiOhmDDP(float r, float i) {
 		return r * i;
 	}
 
-	public float loiOhmI(float r, float ddp) throws MathException {
+	public static float loiOhmI(float r, float ddp) throws MathException {
 		float retour;
 
 		if (r != 0) {
@@ -122,34 +122,64 @@ public class Calcul {
 	}
 
 	// Calcul de circuit RC
-	public float ChargeCondensateurDecharge(float ChargeMax, float t, float R, float C) {
+	public static float ChargeCondensateurDecharge(float ChargeMax, float t, float R, float C) {
 		return (float) (ChargeMax * Math.exp((-t) / (R * C)));
 	}
 
-	public float ddpCondesateurDecharge(float ddpMax, float t, float R, float C) {
+	public static float ddpCondesateurDecharge(float ddpMax, float t, float R, float C) {
 		return (float) (ddpMax * Math.exp((-t) / (R * C)));
 	}
 
-	public float courantCondensateurDecharge(float courantMax, float t, float R, float C) {
+	public static float courantCondensateurDecharge(float courantMax, float t, float R, float C) {
 		return (float) (courantMax * Math.exp((-t) / (R * C)));
 	}
 
-	public float ChargeCondensateurCharge(float ChargeMax, float t, float R, float C) {
+	public static float ChargeCondensateurCharge(float ChargeMax, float t, float R, float C) {
 		return (float) (ChargeMax * (1 - Math.exp((-t) / (R * C))));
 	}
 
-	public float ddpCondesateurCharge(float ddpMax, float t, float R, float C) {
+	public static float ddpCondesateurCharge(float ddpMax, float t, float R, float C) {
 		return (float) (ddpMax * (1 - Math.exp((-t) / (R * C))));
 	}
 
-	public float courantCondensateurCharge(float courantMax, float t, float R, float C) {
+	public static float courantCondensateurCharge(float courantMax, float t, float R, float C) {
 		return (float) (courantMax * (1 - Math.exp((-t) / (R * C))));
 	}
 
+	// Calcul de circuit RL
+	public static float CourantDeplug(float CourantMax, float t, float R, float L) {
+		return (float) (CourantMax * Math.exp((-t*R) / L));
+	}
+	
+	public static float CourantPlug(float CourantMax, float t, float R, float L) {
+		return (float) (1 - (CourantMax * Math.exp((-t*R) / L)));
+	}
+	
+	
 	// Calcul de circuit RLC
-	public float impedanceCircuitRLC(float resistance, float inductance, float capacite, float frequence) {
-
+	public static float impedanceCircuitRLC(float resistance, float inductance, float capacite, float frequence) {
+		
 		return 0;
 	}
 
+	public static float impedanceCondensateur(float frequence,float capacite) throws MathException {
+		float impedanceCondensateur = 0;
+		if (frequence != 0 && capacite != 0) {
+			float freqangulaire = Calcul.frequenceTofrequenceAngulaire(frequence);
+			impedanceCondensateur = 1/(freqangulaire*capacite);
+		} else {
+			throw new MathException("frequence ou capacite nul!");
+		}
+		return impedanceCondensateur;
+		
+	}
+	
+	public static float impedanceBobine(float frequence,float inductance)  {
+		float impedanceBobine = 0;
+		
+			float freqangulaire = Calcul.frequenceTofrequenceAngulaire(frequence);
+			impedanceBobine = freqangulaire*inductance;
+		return impedanceBobine;
+		
+	}
 }
