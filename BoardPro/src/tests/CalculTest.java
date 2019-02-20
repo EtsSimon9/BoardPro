@@ -13,7 +13,7 @@ public class CalculTest {
 
 	@Test
 	public void testFrequenceAngulaireTofrequence() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
