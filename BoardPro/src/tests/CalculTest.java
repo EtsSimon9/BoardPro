@@ -8,7 +8,7 @@ public class CalculTest {
 
 	@Test
 	public void testFrequenceTofrequenceAngulaire() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
