@@ -5,17 +5,17 @@ import exception.ComposanteException;
 public abstract class ComposanteElectrique {
 	float impedence;
 	float ddp;
-	float tensionCourant;
+	float Courant;
 	int positionX;
 	int positionY;
 	static final float IMPEDENCE_DEFAUT = 20;
 	static final float DDP_DEFAUT = 40;
-	static final float TENSIONCOURANT_DEFAUT = 2;
+	static final float COURANT_DEFAUT = 2;
 
 	public ComposanteElectrique(int positionX, int positionY) throws ComposanteException {
 		this.setImpedence(IMPEDENCE_DEFAUT);
 		this.setDdp(DDP_DEFAUT);
-		this.setTensionCourant(TENSIONCOURANT_DEFAUT);
+		this.setCourant(COURANT_DEFAUT);
 		this.setPositionX(positionX);
 		this.setPositionY(positionY);
 	}
@@ -23,7 +23,7 @@ public abstract class ComposanteElectrique {
 	public ComposanteElectrique(float impedence, float ddp, float tensionCourant, int positionX, int positionY) throws ComposanteException {
 		this.setImpedence(impedence);
 		this.setDdp(ddp);
-		this.setTensionCourant(tensionCourant);
+		this.setCourant(tensionCourant);
 		this.setPositionX(positionX);
 		this.setPositionY(positionY);
 
@@ -45,12 +45,12 @@ public abstract class ComposanteElectrique {
 		this.ddp = ddp;
 	}
 
-	public float getTensionCourant() {
-		return tensionCourant;
+	public float getCourant() {
+		return Courant;
 	}
 
-	public void setTensionCourant(float tensionCourant) {
-		this.tensionCourant = tensionCourant;
+	public void setCourant(float tensionCourant) {
+		this.Courant = tensionCourant;
 	}
 
 	public int getPositionX() {
