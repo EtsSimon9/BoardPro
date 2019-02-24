@@ -14,7 +14,7 @@ public class Calcul {
 	public static final double k = 9 * Math.pow(10, 9);
 	public static final double epsilon = 8.854 * Math.pow(10, -12);
 
-	// Calcul de fréquence
+	// Calculs de fréquence
 	public static float frequenceTofrequenceAngulaire(float frequence) {
 		return (float) (2 * Math.PI * frequence);
 	}
@@ -23,7 +23,7 @@ public class Calcul {
 		return (float) (frequenceAngulaire / (2 * Math.PI));
 	}
 
-	// Calcul de condensateur
+	// Calculs de condensateur
 	public static float capaciteCondensateur(float ddp, float q) throws MathException {
 		float c = 0;
 		if (ddp != 0) {
