@@ -1,7 +1,11 @@
 package modele;
 
 import exception.ComposanteException;
-
+/**
+ * 
+ * @author Simon Beaulieu
+ *
+ */
 public abstract class ComposanteElectrique {
 	float impedence;
 	float ddp;

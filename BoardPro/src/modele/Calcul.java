@@ -79,15 +79,14 @@ public class Calcul {
 	}
 
 	// Calcul de resistance
-	public static float calculResistance(float p, float l, float a) throws MathException {
+	public static float calculResistance(float p, float l, float rayon) throws MathException {
 		float r = 0;
-		if (a != 0) {
-			r = (p * l) / a;
+		if (rayon != 0) {
+			r = (float) ((p * l) / (Math.PI*rayon*rayon));
 		} else {
-			throw new MathException("L'aire du fil (resistance) est égale à 0");
+			throw new MathException("Le rayon du la résistance est égale à 0");
 		}
 		return r;
-
 	}
 
 	public static float resistiviteEtTemperature(float pi, float ti, float tf, float coefThermique) {
