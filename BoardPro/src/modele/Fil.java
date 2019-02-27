@@ -24,8 +24,9 @@ public class Fil extends ComposanteElectrique {
 	 * on créera ce fil automatiquement avec cette classe.
 	 * @throws ComposanteException
 	 */
+	private static final float RESISTANCE_DEFAUT = 2;
 	public Fil() throws ComposanteException {
-		super();
+		super(RESISTANCE_DEFAUT);
 		this.setResistance(this.getImpedence());
 	}
 

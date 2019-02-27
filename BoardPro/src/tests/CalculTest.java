@@ -4,26 +4,44 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import exception.MathException;
+import modele.Calcul;
+
 public class CalculTest {
 
 	@Test
 	public void testFrequenceTofrequenceAngulaire() {
-		
+		float f = 20;
+		assertTrue(Calcul.frequenceTofrequenceAngulaire(f) == (float) (f*2*Math.PI));
 	}
 
 	@Test
 	public void testFrequenceAngulaireTofrequence() {
-		
+		float fa = 20;
+		assertTrue(Calcul.frequenceAngulaireTofrequence(fa)== (float) (fa/(2*Math.PI)));
 	}
 
 	@Test
 	public void testCapaciteCondensateur() {
-		fail("Not yet implemented");
+		float ddp = 20;
+		float q = 40;
+		try {
+			assertTrue(Calcul.capaciteCondensateur(ddp, q) == 2);
+		} catch (MathException e) {
+			fail();
+		}
+		
+		try {
+			Calcul.capaciteCondensateur(0, q);
+			fail();
+		} catch (MathException e) {
+			
+		}
 	}
 
 	@Test
 	public void testChargeCondensateur() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
