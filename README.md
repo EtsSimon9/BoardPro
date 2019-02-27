@@ -21,4 +21,4 @@ Chaque fois qu'on rajoute une composante, on regarde dans la liste ComposanteApr
   
   On continue avec le deuxième élément jusqu'à ce qu'on reviennet au première élément (on détecte ce moment avec les listesAprès). On revient avec le deuxième élément de l'ArrayList à la fin.
   
-Une fois ArrayList<ArrayList<Composante>> terminé, nous devons finir chaque ArrayList de cette double ArrayList, c'est à dire finir les parties parralele. Pour le faire, on prend le deuxièmee élément, on regarde ce qu'il y a après, si c'est un fil, on compare ce fil au autre fil du circuit, si on trouve qu'il est identique à un autre, le travail est fini. Sinon, nous cherchons le prochain et fil et continuons le procéssus.
+Une fois ArrayList<ArrayList<Composante>> terminé, nous devons finir chaque ArrayList de cette double ArrayList, c'est à dire finir les parties parralele. Pour le faire, on prend le deuxièmee élément, on regarde ce qu'il y a après, on compare ce "après" au autre fil du circuit, si ce "après est un fil bien sur". Si on trouve qu'il est identique à un autre, le travail est fini. Sinon, nous cherchons le prochain fil et nous continuons le procéssus.
