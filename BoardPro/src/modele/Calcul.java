@@ -277,7 +277,7 @@ public class Calcul {
 	 * Calcul trouvant la différence de potentielle d'un condensateur qui est en charge, cette charge
 	 * varie dans le temps selon un exponentielle. Ce calcul à besoin de la DDP
 	 * maximal du condensateur, du temps écoulé depuis le début de la charge, de la
-	 * résistance du résistor dans le circuit et de la capacité du condensateur
+	 * résistance du résistor dans le circuit et de la capacité du condensateur.
 	 */
 	public static float ddpCondesateurCharge(float ddpMax, float t, float R, float C) {
 		return (float) (ddpMax * (1 - Math.exp((-t) / (R * C))));
