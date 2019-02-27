@@ -6,7 +6,7 @@ import exception.MathException;
  * Classe remplit de calcul utile en électricité, toutes les formules et quelque
  * constante utile vue lors de notre cours d'électricité y sont. Des
  * commentaires sépares les sections pour mieux s'y retrouver. Ajouter des
- * méthode de calculs au besoins!
+ * méthode de calculs au besoins.
  * 
  * @author Simon Beaulieu
  * 
