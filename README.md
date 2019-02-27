@@ -11,7 +11,7 @@ Si l'utilisateur veux considérer la résistance des fils, nous devront ramener 
 27 fev: Structure du circuit
 Nous entrerons chaque composante dans une ArrayList d'Arraylist de composante. 
 
-Idée 1: Chaque composante à une ArrayList<Composante> des composantes directement avant et une ArrayList<Composante> directement après.
+Idée 1: Chaque composante a une ArrayList<Composante> des composantes directement avant et une ArrayList<Composante> directement après.
 Chaque fois qu'on rajoute une composante, on regarde dans la liste ComposanteAprès, si il n'y a rien le circuit n'est pas fermé, s'il y a une composante on continue. On regarde sa liste ComposanteAprès et ainsi de suite. Si au final une composante après est la composante 1 que nous avons ajouter à cette étape, le circuit est fermé. Nous devons donc faire des compareTo
   
   Une fois que nous avons un circuit fermé, nous commencons à remplir un ArrayList<ArrayList<ComposanteElectrique>> où l'ordre dépend
