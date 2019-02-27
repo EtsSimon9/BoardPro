@@ -231,58 +231,67 @@ public class Calcul {
 	 * 
 	 */
 	/**
-	 * Calcul trouvant la charge d'un condensateur qui est en décharge, cette charge
-	 * varie dans le temps selon une exponentielle inverse. Ce calcul à besoin de la
-	 * charge maximale du condensateur, du temps écoulé depuis le début de la
-	 * décharge, de la résistance du résistor dans le circuit et de la capacité du
-	 * condensateur
+	 * Circuit RC Calcul trouvant la charge d'un condensateur qui est en décharge,
+	 * cette charge varie dans le temps selon une exponentielle inverse. Ce calcul à
+	 * besoin de la charge maximale du condensateur, du temps écoulé depuis le début
+	 * de la décharge, de la résistance du résistor dans le circuit et de la
+	 * capacité du condensateur
 	 */
 	public static float ChargeCondensateurDecharge(float ChargeMax, float t, float R, float C) {
 		return (float) (ChargeMax * Math.exp((-t) / (R * C)));
 	}
 
 	/**
-	 * Calcul trouvant la différence de potentielle d'un condensateur qui est en
-	 * décharge, cette DDP varie dans le temps selon une exponentielle inverse. Ce
-	 * calcul à besoin de la différence de potentielle maximale du condensateur, du
-	 * temps écoulé depuis le début de la décharge, de la résistance du résistor
-	 * dans le circuit et de la capacité du condensateur
+	 * Circuit RC Calcul trouvant la différence de potentielle d'un condensateur qui
+	 * est en décharge, cette DDP varie dans le temps selon une exponentielle
+	 * inverse. Ce calcul à besoin de la différence de potentielle maximale du
+	 * condensateur, du temps écoulé depuis le début de la décharge, de la
+	 * résistance du résistor dans le circuit et de la capacité du condensateur
 	 */
 	public static float ddpCondesateurDecharge(float ddpMax, float t, float R, float C) {
 		return (float) (ddpMax * Math.exp((-t) / (R * C)));
 	}
 
 	/**
-	 * Calcul trouvant le courant d'un condensateur qui est en décharge, ce courant
-	 * varie dans le temps selon une exponentielle inverse. Ce calcul à besoin du
-	 * courant maximal du condensateur, du temps écoulé depuis le début de la
-	 * décharge, de la résistance du résistor dans le circuit et de la capacité du
-	 * condensateur
+	 * Circuit RC Calcul trouvant le courant d'un condensateur qui est en décharge,
+	 * ce courant varie dans le temps selon une exponentielle inverse. Ce calcul à
+	 * besoin du courant maximal du condensateur, du temps écoulé depuis le début de
+	 * la décharge, de la résistance du résistor dans le circuit et de la capacité
+	 * du condensateur
 	 */
 	public static float courantCondensateurDecharge(float courantMax, float t, float R, float C) {
 		return (float) (courantMax * Math.exp((-t) / (R * C)));
 	}
 
 	/**
-	 * Calcul trouvant la charge d'un condensateur qui est en charge, cette charge
-	 * varie dans le temps selon un exponentielle. Ce calcul à besoin de la charge
-	 * maximal du condensateur, du temps écoulé depuis le début de la charge, de la
-	 * résistance du résistor dans le circuit et de la capacité du condensateur
+	 * Circuit RC Calcul trouvant la charge d'un condensateur qui est en charge,
+	 * cette charge varie dans le temps selon un exponentielle. Ce calcul à besoin
+	 * de la charge maximal du condensateur, du temps écoulé depuis le début de la
+	 * charge, de la résistance du résistor dans le circuit et de la capacité du
+	 * condensateur
 	 */
 	public static float ChargeCondensateurCharge(float ChargeMax, float t, float R, float C) {
 		return (float) (ChargeMax * (1 - Math.exp((-t) / (R * C))));
 	}
 
 	/**
-	 * Calcul trouvant la différence de potentielle d'un condensateur qui est en charge, cette charge
-	 * varie dans le temps selon un exponentielle. Ce calcul à besoin de la DDP
-	 * maximal du condensateur, du temps écoulé depuis le début de la charge, de la
-	 * résistance du résistor dans le circuit et de la capacité du condensateur.
+	 * Circuit RC Calcul trouvant la différence de potentielle d'un condensateur qui
+	 * est en charge, cette DDP varie dans le temps selon un exponentielle. Ce
+	 * calcul à besoin de la DDP maximal du condensateur, du temps écoulé depuis le
+	 * début de la charge, de la résistance du résistor dans le circuit et de la
+	 * capacité du condensateur.
 	 */
 	public static float ddpCondesateurCharge(float ddpMax, float t, float R, float C) {
 		return (float) (ddpMax * (1 - Math.exp((-t) / (R * C))));
 	}
 
+	/**
+	 * Circuit RC Calcul trouvant le courant dans un d'un condensateur qui est en
+	 * charge, ce courant varie dans le temps selon un exponentielle. Ce calcul à
+	 * besoin du courant maximal du condensateur, du temps écoulé depuis le début de
+	 * la charge, de la résistance du résistor dans le circuit et de la capacité du
+	 * condensateur.
+	 */
 	public static float courantCondensateurCharge(float courantMax, float t, float R, float C) {
 		return (float) (courantMax * (1 - Math.exp((-t) / (R * C))));
 	}
@@ -300,10 +309,20 @@ public class Calcul {
 	 * 
 	 * 
 	 */
+	/**
+	 * Circuit RL Calcul trouvant le courant dans le circuit RL suite à l'ouverture
+	 * du circuit, ce courant varie dans le temps selon une exponentiel inverser
+	 * (chute de courant amortie, max a min avec courbe)
+	 */
 	public static float CourantDeplug(float CourantMax, float t, float R, float L) {
 		return (float) (CourantMax * Math.exp((-t * R) / L));
 	}
 
+	/**
+	 * Circuit RL Calcul trouvant le courant dans le circuit RL suite à la fermeture
+	 * du circuit Le cournat varie dans le temps selon une exponentiel (augmentation
+	 * rapide de courant amortie)
+	 */
 	public static float CourantPlug(float CourantMax, float t, float R, float L) {
 		return (float) (1 - (CourantMax * Math.exp((-t * R) / L)));
 	}
@@ -320,11 +339,26 @@ public class Calcul {
 	 * 
 	 * 
 	 */
-	public static float impedanceCircuitRLC(float resistance, float inductance, float capacite, float frequence) {
-
-		return 0;
+	/**
+	 * Circuit RLC Trouve l'impedance/résistance d'un circuit RLC
+	 */
+	public static float impedanceCircuitRLC(float resistance, float inductance, float capacite, float frequence)
+			throws MathException {
+		float z = 0;
+		if (resistance >= 0 && capacite >= 0 && inductance >= 0) {
+			float freqAngulaire = Calcul.frequenceTofrequenceAngulaire(frequence);
+			float xc = Calcul.impedanceCondensateur(freqAngulaire, capacite);
+			float xl = Calcul.impedanceBobine(freqAngulaire, inductance);
+			z = (float) Math.sqrt(Math.pow(resistance, 2) + Math.pow(xl-xc, 2) );
+		} else {
+			throw new MathException("Resistance, inductance ou capacite négative dans le calcul d'impédence RLC");
+		}
+		return z;
 	}
 
+	/**
+	 * Calcul l'impedance d'un condensateur
+	 */
 	public static float impedanceCondensateur(float frequence, float capacite) throws MathException {
 		float impedanceCondensateur = 0;
 		if (frequence != 0 && capacite != 0) {
@@ -337,6 +371,9 @@ public class Calcul {
 
 	}
 
+	/**
+	 * Calcul l'impedance d'une bobine
+	 */
 	public static float impedanceBobine(float frequence, float inductance) {
 		float impedanceBobine = 0;
 
