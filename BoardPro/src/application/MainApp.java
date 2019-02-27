@@ -7,7 +7,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import vue.ControleurVue;
-
+/**
+ * 
+ * @author Aymeric Lamontagne
+ *
+ */
 public class MainApp extends Application {
 
 	private ControleurBoardPro controleur;
