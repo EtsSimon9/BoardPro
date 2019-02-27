@@ -13,7 +13,7 @@ public class FilTest {
 	@Before
 	public void creerFil() {
 		try {
-			f1 = new Fil();
+			f1 = new Fil((short) 10,(short) 10);
 		} catch (ComposanteException e) {
 			//Pas sensé se rendre ici avec val défaut
 			fail();

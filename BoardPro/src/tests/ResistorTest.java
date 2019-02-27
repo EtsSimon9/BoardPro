@@ -14,7 +14,7 @@ public class ResistorTest {
 	@Before
 	public void creerResistor() {
 		try {
-			r1 = new Resistor();
+			r1 = new Resistor((short) 10,(short) 10);
 		} catch (ComposanteException e) {
 			//Pas sensé se rendre ici
 			fail();

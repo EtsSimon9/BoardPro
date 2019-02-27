@@ -4,6 +4,7 @@ import exception.ComposanteException;
 
 /**
  * Classe des fils
+ * 
  * @author Simon Beaulieu
  *
  */
@@ -13,20 +14,23 @@ public class Fil extends ComposanteElectrique {
 	 */
 	private boolean neglige = true;
 	/**
-	 * Quand nous changerons la variable impédence d'un fil, nous devrons changer résistance aussi.
-	 * Résistance est seulement utile pour garder la valeur de la résistance car si l'on néglige 
-	 * le fil on met l'impédence à 0, si on ne néglige plus le fil on a encore la valeur de la résistance.
+	 * Quand nous changerons la variable impédence d'un fil, nous devrons changer
+	 * résistance aussi. Résistance est seulement utile pour garder la valeur de la
+	 * résistance car si l'on néglige le fil on met l'impédence à 0, si on ne
+	 * néglige plus le fil on a encore la valeur de la résistance.
 	 */
 	private float resistance;
-	
+
 	/**
-	 * Constructeur par défaut des fils, utile lorsque l'on place un fil dans la zone de dessin
-	 * on créera ce fil automatiquement avec cette classe.
+	 * Constructeur par défaut des fils, utile lorsque l'on place un fil dans la
+	 * zone de dessin on créera ce fil automatiquement avec cette classe.
+	 * 
 	 * @throws ComposanteException
 	 */
 	private static final float RESISTANCE_DEFAUT = 2;
-	public Fil() throws ComposanteException {
-		super(RESISTANCE_DEFAUT);
+
+	public Fil(short x, short y) throws ComposanteException {
+		super(RESISTANCE_DEFAUT,x,y);
 		this.setResistance(this.getImpedence());
 	}
 
@@ -35,10 +39,11 @@ public class Fil extends ComposanteElectrique {
 	}
 
 	/**
-	 * Le set s'occupe aussi de changer l'impedence du fil à 0 si l'on veut négliger les résistances
-	 * Puisque la classe stock la valeur de l'impédence avec la variable Resistance,
-	 * la classe est capable de reprendre l'impédence du fil sans en entrée une nouvelle lorsqu'on
-	 * remet négliger à false.
+	 * Le set s'occupe aussi de changer l'impedence du fil à 0 si l'on veut négliger
+	 * les résistances Puisque la classe stock la valeur de l'impédence avec la
+	 * variable Resistance, la classe est capable de reprendre l'impédence du fil
+	 * sans en entrée une nouvelle lorsqu'on remet négliger à false.
+	 * 
 	 * @param neglige
 	 */
 	public void setNeglige(boolean neglige) {
@@ -59,6 +64,4 @@ public class Fil extends ComposanteElectrique {
 		this.resistance = resistance;
 	}
 
-	
-	
 }

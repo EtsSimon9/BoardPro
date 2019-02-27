@@ -15,8 +15,8 @@ public class ComposanteElectriqueTest {
 	public void creerComposante() {
 		
 		try {
-			c1 = new Resistor();
-			c2 = new Resistor();
+			c1 = new Resistor((short) 10,(short) 10);
+			c2 = new Resistor((short) 10,(short) 10);
 		} catch (ComposanteException e) {
 		//Pas senser se rendre ici avec val defaut
 			fail();

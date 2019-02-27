@@ -32,8 +32,8 @@ public class Resistor extends ComposanteElectrique {
 	 * Constructeur par défaut des resistors, appele le constructeur défaut de composante électrique
 	 * @throws ComposanteException
 	 */
-	public Resistor() throws ComposanteException {
-		super();
+	public Resistor(short x, short y) throws ComposanteException {
+		super(x,y);
 
 	}
 	public float getLongueur() {
