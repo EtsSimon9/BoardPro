@@ -2,6 +2,7 @@ package map;
 
 import java.util.ArrayList;
 
+import exception.ComposanteException;
 import modele.ComposanteElectrique;
 
 public class Map {
@@ -9,13 +10,25 @@ public class Map {
 	private short borneX;
 	private short borneY;
 	private ArrayList<ComposanteElectrique> composantsActuels = new ArrayList<ComposanteElectrique>();
-
-	public Map(short borneX, short borneY) {
+/**
+ *
+ * @param borneX borne horizontale de la zone de contruction
+ * @param borneY borne verticale de la zone de contruction
+ * @throws ComposanteException 
+ */
+	public Map(short borneX, short borneY) throws ComposanteException {
+		if (validerBorne(borneY)&&validerBorne(borneX)) {
 		setBorneX(borneX);
 		setBorneY(borneY);
 		setMap(new ComposanteElectrique[borneX][borneY]);
+		}else {
+			throw new ComposanteException();
+		}
 	}
-
+/**
+ * ajoute une composante électrique a la liste de composantes du circuit
+ * @param comp composante electrique à ajouter
+ */
 	public void addComposant(ComposanteElectrique comp) {
 		if (respecteBornesMap(comp) && !estDansMap(comp)) {
 			Map[comp.getCoordonneX()][comp.getCoordonneY()] = comp;
@@ -92,6 +105,9 @@ public class Map {
 
 	public void setComposantsActuels(ArrayList<ComposanteElectrique> composantsActuels) {
 		this.composantsActuels = composantsActuels;
+	}
+	public boolean validerBorne(short b) {
+		return b>=0;
 	}
 
 }
