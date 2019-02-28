@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ CalculTest.class, ComposanteElectriqueTest.class, FilTest.class, ResistorTest.class, ResistorTest.class,
-		})
+		CalculdeCircuitTest.class, MapTest.class })
 public class AllTest {
 
 }

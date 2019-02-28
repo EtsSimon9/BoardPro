@@ -26,17 +26,10 @@ public class CalculdeCircuitTest {
 		} catch (Exception e) {
 		}
 	}
-	/* 
-	 * @Test public void testCalculdeCircuit() {
-	 * 
-	 * try { CalculdeCircuit crp = new CalculdeCircuit(null);
-	 * fail("Erreur,map nulle"); } catch (ComposanteException e) {
-	 * e.printStackTrace(); }
-	 * 
-	 * assertTrue(!cr.isCircuitFerme());
-	 * 
-	 * }
-	 * 
-	 */
+
+	@Test
+	public void testCalculdeCircuit() {
+		assertTrue(!cr.isCircuitFerme());
+	}
 
 }

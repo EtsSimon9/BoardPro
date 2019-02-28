@@ -1,5 +1,10 @@
 package modele;
 
+import static org.junit.Assert.fail;
+
+import java.util.ArrayList;
+
+import exception.ComposanteException;
 import map.Map;
 
 /**
@@ -10,16 +15,29 @@ import map.Map;
  *
  */
 public class CalculdeCircuit {
-	Map map;
+	Map map = new Map((short)30,(short)30);
 	boolean circuitFerme = false;
+	ArrayList<ComposanteElectrique> composantsActuels;
+
+	public boolean isCircuitFerme() {
+		return circuitFerme;
+	}
+
 
 	/**
 	 * construit un résolveur de circuit électrique
 	 *
 	 * @param prends une map contenant des element électroniques
+	 * @throws ComposanteException 
 	 */
-	public CalculdeCircuit(Map m) {
+	public CalculdeCircuit(Map m) throws ComposanteException {
+		if(map!= null) {
 		setMap(m);
+		composantsActuels = m.getComposantsActuels();
+		appliquerLoiDesMailles();
+		}else {
+			throw new ComposanteException();
+		}
 	}
 
 	/**
@@ -39,6 +57,15 @@ public class CalculdeCircuit {
 	 * méthode appliquant la loi des mailles au circuit de l'objet map
 	 */
 	private void appliquerLoiDesMailles() {
+		int i = 0;
+		if(composantsActuels!=null&& composantsActuels.size()>1) {
+			for (ComposanteElectrique composant : composantsActuels) {
+				if(map.estDansMap(composant)) {
+					i++;
+				}
+			}
+		}
+			circuitFerme=(i==composantsActuels.size());
 
 	}
 
@@ -47,8 +74,10 @@ public class CalculdeCircuit {
 	 * l'instant, fait juste appliquer la loi des mailles pour vérifier que le
 	 * circuit en série est fermé
 	 */
-	public void faireFonctionnerCircuit() {
+	private void faireFonctionnerCircuit() {
 		appliquerLoiDesMailles();
 	}
+	
+	
 
 }

@@ -49,37 +49,62 @@ public class MapTest {
 		}
 	}
 
-	/*
-	 * @Test public void testAddComposant() { try {
-	 * assertTrue(map1.getComposantsActuels().size()==0); map1.addComposant(res1);
-	 * assertTrue(map1.getComposantsActuels().size()==1); map1.addComposant(res2);
-	 * assertTrue(map1.getComposantsActuels().size()==1); map1.addComposant(res3);
-	 * assertTrue(map1.getComposantsActuels().size()==2); }catch(ComposanteException
-	 * e) { } try { map1.addComposant(res4);
-	 * fail("La composante est mauvaise pourtant"); }catch(ComposanteException e) {
-	 * } }
-	 *
-	 * @Test public void testAddComposantDerriere() { try {
-	 * assertTrue(map1.getComposantsActuels().size() == 0); map1.addComposant(res1);
-	 * assertTrue(map1.getComposantsActuels().size() == 1);
-	 * map1.addComposantDerriere(res2, res1);
-	 * assertTrue(map1.getComposantsActuels().get(0) == res2); } catch
-	 * (ComposanteException e) { } }
-	 *
-	 * @Test public void testAddComposantDevant() { try {
-	 * assertTrue(map1.getComposantsActuels().size() == 0); map1.addComposant(res1);
-	 * assertTrue(map1.getComposantsActuels().size() == 1);
-	 * map1.addComposantDevant(res2, res1);
-	 * assertTrue(map1.getComposantsActuels().get(1) == res1); } catch
-	 * (ComposanteException e) { } }
-	 *
-	 * @Test public void testAddComposantActuels() { try {
-	 * assertTrue(map1.getComposantsActuels().size() == 0); map1.addComposant(res1);
-	 * map1.addComposant(res3); assertTrue(map1.getComposantsActuels().size() == 2);
-	 * map1.addComposantActuels(res2, (short) 1);
-	 * assertTrue(map1.getComposantsActuels().get(1) == res2); } catch
-	 * (ComposanteException e) { } }
-	 */
+	@Test
+	public void testAddComposant() {
+		try {
+			assertTrue(map1.getComposantsActuels().size() == 0);
+			map1.addComposant(res1);
+			assertTrue(map1.getComposantsActuels().size() == 1);
+			map1.addComposant(res2);
+			assertTrue(map1.getComposantsActuels().size() == 1);
+			map1.addComposant(res3);
+			assertTrue(map1.getComposantsActuels().size() == 2);
+		} catch (ComposanteException e) {
+		}
+		try {
+			map1.addComposant(res4);
+			fail("La composante est mauvaise pourtant");
+		} catch (ComposanteException e) {
+		}
+	}
+
+	@Test
+	public void testAddComposantDerriere() {
+		try {
+			assertTrue(map1.getComposantsActuels().size() == 0);
+			map1.addComposant(res1);
+			assertTrue(map1.getComposantsActuels().size() == 1);
+			map1.addComposantDerriere(res2, res1);
+			assertTrue(map1.getComposantsActuels().get(0) == res2);
+		} catch (ComposanteException e) {
+		}
+	}
+
+	@Test
+	public void testAddComposantDevant() {
+		try {
+			assertTrue(map1.getComposantsActuels().size() == 0);
+			map1.addComposant(res1);
+			assertTrue(map1.getComposantsActuels().size() == 1);
+			map1.addComposantDevant(res2, res1);
+			assertTrue(map1.getComposantsActuels().get(1) == res1);
+		} catch (ComposanteException e) {
+		}
+	}
+
+	@Test
+	public void testAddComposantActuels() {
+		try {
+			assertTrue(map1.getComposantsActuels().size() == 0);
+			map1.addComposant(res1);
+			map1.addComposant(res3);
+			assertTrue(map1.getComposantsActuels().size() == 2);
+			map1.addComposantActuels(res2, (short) 1);
+			assertTrue(map1.getComposantsActuels().get(1) == res2);
+		} catch (ComposanteException e) {
+		}
+	}
+
 	@Test
 	public void testSetMap() {
 		try {
@@ -91,26 +116,4 @@ public class MapTest {
 		} catch (Exception e) {
 		}
 	}
-
-	@Test
-	public void testGetBorneX() {
-		assertTrue(map3.getBorneX() == map2.getBorneX());
-
-	}
-
-	@Test
-	public void testGetBorneY() {
-		assertTrue(map2.getBorneY() == map3.getBorneY());
-
-	}
-
-	@Test
-	public void testSetComposantsActuels() {
-		ArrayList<ComposanteElectrique> array = new ArrayList<ComposanteElectrique>();
-		array.add(res2);
-		map1.setComposantsActuels(array);
-		map1.setComposantsActuels(null);
-		assertTrue(map1.getComposantsActuels() == array);
-	}
-
 }
