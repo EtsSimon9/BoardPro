@@ -1,4 +1,4 @@
-package modele;
+package utilitaire;
 
 import static org.junit.Assert.fail;
 
