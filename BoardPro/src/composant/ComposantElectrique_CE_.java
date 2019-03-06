@@ -1,14 +1,8 @@
-package modele;
+package composant;
 
-import exception.ComposanteException;
-import map.Point;
+import map.ComposantMap;
 
-/**
- * 
- * @author Simon Beaulieu Classe mère de toute les composantes de circuit
- *         électrique.
- */
-public abstract class ComposanteElectrique implements Point {
+public abstract class ComposantElectrique_CE_ extends ComposantMap {
 	/**
 	 * Résistance/impédance de la composante
 	 */
@@ -20,10 +14,10 @@ public abstract class ComposanteElectrique implements Point {
 	/**
 	 * Courant électrique circulant dans la composante
 	 */
-	
+
 	private float Courant;
-	private short positionX;
-	private short positionY;
+	private short coordonnex;
+	private short coordonney;
 	static final float IMPEDENCE_DEFAUT = 20;
 	static final float DDP_DEFAUT = 0;
 	static final float COURANT_DEFAUT = 0;
@@ -34,17 +28,20 @@ public abstract class ComposanteElectrique implements Point {
 	 * pas vraiment choisir la DDP et le courant puisqu'ils dépendent de la totalité
 	 * du circuit.
 	 */
-	public ComposanteElectrique(short x, short y) {
+	public ComposantElectrique_CE_(short x, short y) {
+		super(x, y);
 		this.setImpedence(IMPEDENCE_DEFAUT);
 		this.setDdp(DDP_DEFAUT);
 		this.setCourant(COURANT_DEFAUT);
 	}
 
-	public ComposanteElectrique(float impedance, short x, short y) {
+	public ComposantElectrique_CE_(float impedance, short x, short y) {
+		super(x, y);
 		this.setImpedence(impedance);
 		this.setDdp(DDP_DEFAUT);
 		this.setCourant(COURANT_DEFAUT);
 	}
+
 	public float getImpedence() {
 		return impedence;
 	}
@@ -68,24 +65,5 @@ public abstract class ComposanteElectrique implements Point {
 	public void setCourant(float tensionCourant) {
 		this.Courant = tensionCourant;
 	}
-	
-	@Override
-	public short getCoordonneY() {
-		return 0;
-	}
 
-	@Override
-	public short getCoordonneX() {
-		return 0;
-	}
-
-	@Override
-	public void setCoordonneX(short a) {
-		
-	}
-
-	@Override
-	public void setCoordonneY(short a) {
-		
-	}
 }
