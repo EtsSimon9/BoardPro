@@ -1,6 +1,6 @@
 package composantesCircuit;
 
-import calcul.Calcul;
+import utilitaire.Calcul;
 import composant.ComposantElectrique_CE_;
 import exceptions.ComposantException;
 import exceptions.MathException;

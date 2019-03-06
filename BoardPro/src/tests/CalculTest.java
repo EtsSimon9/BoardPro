@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import calcul.Calcul;
+import utilitaire.Calcul;
 import exceptions.MathException;
 
 public class CalculTest {

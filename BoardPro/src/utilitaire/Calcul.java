@@ -1,15 +1,15 @@
 package utilitaire;
 
-import exception.MathException;
+import exceptions.MathException;
 
 /**
  * Classe remplit de calcul utile en électricité, toutes les formules et quelque
  * constante utile vue lors de notre cours d'électricité y sont. Des
  * commentaires sépares les sections pour mieux s'y retrouver. Ajouter des
  * méthode de calculs au besoins.
- * 
+ *
  * @author Simon Beaulieu
- * 
+ *
  */
 public class Calcul {
 	public static final double chargeE = 1.602 * Math.pow(10, -19);
@@ -20,15 +20,15 @@ public class Calcul {
 
 	/*
 	 * Section calcul de fréquence
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
 	 */
 	/**
 	 * Prend une fréquence (en Hz) et retourne la fréquence angulaire (en rad/s)
@@ -46,17 +46,17 @@ public class Calcul {
 
 	/*
 	 * Section Condensateur
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
 	 */
 	/**
 	 * Donne la capacité du condensateur, ce calcul à besoin de la différence de
@@ -143,16 +143,16 @@ public class Calcul {
 
 	/*
 	 * Section résistor
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
 	 */
 
 	/**
@@ -219,16 +219,16 @@ public class Calcul {
 
 	/*
 	 * Section circuit RC : résistance condensateur
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
 	 */
 	/**
 	 * Circuit RC Calcul trouvant la charge d'un condensateur qui est en décharge,
@@ -298,16 +298,16 @@ public class Calcul {
 
 	/*
 	 * Section circuit RL: résistance bobine d'inductance
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
 	 */
 	/**
 	 * Circuit RL Calcul trouvant le courant dans le circuit RL suite à l'ouverture
@@ -329,15 +329,15 @@ public class Calcul {
 
 	/*
 	 * Section circuit RLC: Résistance, bobine d'inductance et condensateur
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
+	 *
 	 */
 	/**
 	 * Circuit RLC Trouve l'impedance/résistance d'un circuit RLC

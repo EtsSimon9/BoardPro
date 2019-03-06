@@ -1,7 +1,7 @@
 package utilitaire;
 
 /**
- * 
+ *
  * @author Simon Beaulieu La résistivité est exposant 10^-8 et le coefficient
  *         thermique exposant 10^-3 Les méthodes get s'occupent de ces
  *         multiplications
@@ -17,7 +17,7 @@ public enum Materiaux {
 	private String nom;
 
 	/**
-	 * 
+	 *
 	 * @param p   résitivité du matériaux
 	 * @param a   coefficient thermique du matériaux
 	 * @param nom nom du matériaux
@@ -55,6 +55,7 @@ public enum Materiaux {
 	 */
 	@Override
 	public String toString() {
+		return nom;
 
 	}
 
