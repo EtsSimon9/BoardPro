@@ -10,6 +10,11 @@ import exception.ComposanteException;
 import map.Map;
 import modele.Resistor;
 
+/**
+ *
+ * @author Hanny HAAS Team
+ *
+ */
 public class CalculdeCircuitTest {
 	Map map1;
 	Resistor res1;
