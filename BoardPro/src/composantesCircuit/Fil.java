@@ -1,14 +1,15 @@
-package modele;
+package composantesCircuit;
 
-import exception.ComposanteException;
+import composant.ComposantElectrique_CE_;
+import exceptions.ComposantException;
 
 /**
  * Classe des fils
- * 
+ *
  * @author Simon Beaulieu
  *
  */
-public class Fil extends ComposanteElectrique {
+public class Fil extends ComposantElectrique_CE_ {
 	/**
 	 * TRUE si l'on néglige la résistance des fils
 	 */
@@ -24,12 +25,12 @@ public class Fil extends ComposanteElectrique {
 	/**
 	 * Constructeur par défaut des fils, utile lorsque l'on place un fil dans la
 	 * zone de dessin on créera ce fil automatiquement avec cette classe.
-	 * 
-	 * @throws ComposanteException
+	 *
+	 * @throws ComposantException
 	 */
 	private static final float RESISTANCE_DEFAUT = 2;
 
-	public Fil(short x, short y) throws ComposanteException {
+	public Fil(short x, short y) throws ComposantException {
 		super(RESISTANCE_DEFAUT,x,y);
 		this.setResistance(this.getImpedence());
 	}
@@ -43,7 +44,7 @@ public class Fil extends ComposanteElectrique {
 	 * les résistances Puisque la classe stock la valeur de l'impédence avec la
 	 * variable Resistance, la classe est capable de reprendre l'impédence du fil
 	 * sans en entrée une nouvelle lorsqu'on remet négliger à false.
-	 * 
+	 *
 	 * @param neglige
 	 */
 	public void setNeglige(boolean neglige) {

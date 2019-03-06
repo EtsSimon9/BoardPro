@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.ComposanteException;
-import modele.Fil;
+import composantesCircuit.Fil;
+import exceptions.ComposantException;
 
 public class FilTest {
 	Fil f1;
@@ -14,7 +14,7 @@ public class FilTest {
 	public void creerFil() {
 		try {
 			f1 = new Fil((short) 10,(short) 10);
-		} catch (ComposanteException e) {
+		} catch (ComposantException e) {
 			//Pas sensé se rendre ici avec val défaut
 			fail();
 		}

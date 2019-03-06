@@ -1,7 +1,9 @@
-package modele;
+package composantesCircuit;
 
-import exception.ComposanteException;
-import exception.MathException;
+import calcul.Calcul;
+import composant.ComposantElectrique_CE_;
+import exceptions.ComposantException;
+import exceptions.MathException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -14,7 +16,7 @@ import javafx.scene.control.ButtonType;
  * @author Simon Beaulieu
  *
  */
-public class Resistor extends ComposanteElectrique {
+public class Resistance extends ComposantElectrique_CE_ {
 	/**
 	 * Longueur de la résistance utile pour des resistors customs
 	 */
@@ -27,12 +29,12 @@ public class Resistor extends ComposanteElectrique {
 	 * Rayon de la résistance utile pour des resistors customs
 	 */
 	private float rayon;
-	
+
 	/**
 	 * Constructeur par défaut des resistors, appele le constructeur défaut de composante électrique
-	 * @throws ComposanteException
+	 * @throws ComposantException
 	 */
-	public Resistor(short x, short y) throws ComposanteException {
+	public Resistance(short x, short y) throws ComposantException {
 		super(x,y);
 
 	}
@@ -57,9 +59,9 @@ public class Resistor extends ComposanteElectrique {
 	public void setRayon(float rayon) {
 		this.rayon = rayon;
 	}
-	
+
 	/**
-	 * Dans la modification des résistances, un bouton Résistance personalisé appelerais cette 
+	 * Dans la modification des résistances, un bouton Résistance personalisé appelerais cette
 	 * méthode pour modifier la résistance du résistor selon sa longueur,rayon,résistivité
 	 */
 	public void changerResistance() {

@@ -5,17 +5,17 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.ComposanteException;
-import modele.Resistor;
+import composantesCircuit.Resistance;
+import exceptions.ComposantException;
 
-public class ResistorTest {
-	Resistor r1;
+public class ResistanceTest {
+	Resistance r1;
 
 	@Before
 	public void creerResistor() {
 		try {
-			r1 = new Resistor((short) 10,(short) 10);
-		} catch (ComposanteException e) {
+			r1 = new Resistance((short) 10,(short) 10);
+		} catch (ComposantException e) {
 			//Pas sensé se rendre ici
 			fail();
 		}

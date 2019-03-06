@@ -5,19 +5,19 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.ComposanteException;
-import modele.ComposanteElectrique;
-import modele.Resistor;
+import composant.ComposantElectrique_CE_;
+import composantesCircuit.Resistance;
+import exceptions.ComposantException;
 
 public class ComposanteElectriqueTest {
-	ComposanteElectrique c1,c2;
+	ComposantElectrique_CE_ c1,c2;
 	@Before
 	public void creerComposante() {
-		
+
 		try {
-			c1 = new Resistor((short) 10,(short) 10);
-			c2 = new Resistor((short) 10,(short) 10);
-		} catch (ComposanteException e) {
+			c1 = new Resistance((short) 10,(short) 10);
+			c2 = new Resistance((short) 10,(short) 10);
+		} catch (ComposantException e) {
 		//Pas senser se rendre ici avec val defaut
 			fail();
 		}

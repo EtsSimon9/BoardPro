@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import exception.MathException;
-import modele.Calcul;
+import calcul.Calcul;
+import exceptions.MathException;
 
 public class CalculTest {
 
@@ -30,23 +30,23 @@ public class CalculTest {
 		} catch (MathException e) {
 			fail();
 		}
-		
+
 		try {
 			Calcul.capaciteCondensateur(0, q);
 			fail();
 		} catch (MathException e) {
-			
+
 		}
 	}
 
 	@Test
 	public void testChargeCondensateur() {
-		
+
 	}
 
 	@Test
 	public void testDdpCondensateur() {
-		
+
 	}
 
 	@Test
