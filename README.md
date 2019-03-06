@@ -22,3 +22,9 @@ Chaque fois qu'on rajoute une composante, on regarde dans la liste ComposanteApr
   On continue avec le deuxième élément jusqu'à ce qu'on reviennet au première élément (on détecte ce moment avec les listesAprès). On revient avec le deuxième élément de l'ArrayList à la fin.
   
 Une fois ArrayList<ArrayList<Composante>> terminé, nous devons finir chaque ArrayList de cette double ArrayList, c'est à dire finir les parties parralele. Pour le faire, on prend le deuxièmee élément, on regarde ce qu'il y a après, on compare ce "après" au autre fil du circuit, si ce "après est un fil bien sur". Si on trouve qu'il est identique à un autre, le travail est fini. Sinon, nous cherchons le prochain fil et nous continuons le procéssus.
+  
+  Idée 2: parcourir les éléments du circuit en partant d'une composante et en trouvant les composantes à coté. des que plusieurs composantes peuvent etre prcourue apres une comnpsante définie C , alors le porgramme fera en sorte de générer une maille,circut en série) pour chacune des subudivisions (branches) apres la division; la maille partant du point de départ pour chacun des sous circuits. il y aura un enregistrement de la direction par lesquelles les composantes sont parcourues pour ne pas faire le chemin inverse et à chasque intersection  pouvant générer plusieurs circuits, une vérificatio de la premiere composante du circuit à générer sera faite pour ne pas parcourir dans le bon sens plus de 1 fois le meme circuit en bref la compsante apres l'intersection ne devra pas faire partie des composantes parcourues.
+  
+  Idée 3 (elle est bien meilleure que les précédentes): La librairie JGraphT sera utilisée en définissant les composantes comme les points d'un graph et les liaison de celles-ci comme les liaison dans un graph. Il y a des outils dans cette librairie pour detecter et obtenir les cycles(mailles) 
+  
+  
