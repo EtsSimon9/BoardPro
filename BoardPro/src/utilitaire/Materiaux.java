@@ -23,11 +23,13 @@ public enum Materiaux {
 	 * @param nom nom du matériaux
 	 */
 	private Materiaux(double p, double a, String nom) {
-
+		this.setResistivite(p);
+		this.setCoefThermique(a);
+		this.setNom(nom);
 	}
 
 	public double getResistivite() {
-		return resistivite;
+		return resistivite * Math.pow(10, -8);
 	}
 
 	private void setResistivite(double resistivite) {
@@ -35,7 +37,7 @@ public enum Materiaux {
 	}
 
 	public double getCoefThermique() {
-		return coefThermique;
+		return coefThermique * Math.pow(10, -3);
 	}
 
 	private void setCoefThermique(double coefThermique) {
@@ -55,8 +57,11 @@ public enum Materiaux {
 	 */
 	@Override
 	public String toString() {
-		return nom;
+		String s = "";
+		s += "Le matériaux est " + this.getNom() + ", sa résistivité est de " + this.getResistivite()
+				+ " et son coefficient thermique est de " + this.getCoefThermique() + ".";
 
+		return s;
 	}
 
 }
