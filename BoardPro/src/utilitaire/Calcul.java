@@ -160,13 +160,11 @@ public class Calcul {
 	 * résistivité du matériau p, de la longueur de la résistance et du rayon du
 	 * fil/résistor
 	 */
-	public static float calculResistance(float p, float l, float rayon) throws MathException {
+	public static float calculResistance(double p, float l, float rayon) {
 		float r = 0;
 		if (rayon != 0) {
 			r = (float) ((p * l) / (Math.PI * rayon * rayon));
-		} else {
-			throw new MathException("Le rayon du la résistance est égale à 0");
-		}
+		} 
 		return r;
 	}
 
@@ -177,9 +175,9 @@ public class Calcul {
 	 * coefficient thermique (le symbole est alpha) Voir p.199 du Lafrance pour +
 	 * d'info.
 	 */
-	public static float resistiviteEtTemperature(float pi, float ti, float tf, float coefThermique) {
+	public static double resistiviteEtTemperature(double d, float ti, float tf, double e) {
 		float deltaT = tf - ti;
-		return pi * (1 + coefThermique * deltaT);
+		return (d * (1 + (e * deltaT)));
 	}
 
 	/**

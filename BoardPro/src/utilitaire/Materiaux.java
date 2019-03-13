@@ -1,10 +1,11 @@
 package utilitaire;
 
 /**
- *
- * @author Simon Beaulieu La résistivité est exposant 10^-8 et le coefficient
- *         thermique exposant 10^-3 Les méthodes get s'occupent de ces
- *         multiplications
+ * La résistivité est exposant 10^-8 et le coefficient thermique exposant 10^-3
+ * Les méthodes get s'occupent de ces multiplications. Faite donc attention en vous servant
+ * de ces chiffres, DE SI PETIT NOMBRE PEUVENT SEULEMENT AVOIR DES DOUBLES COMME TYPE.
+ * 
+ * @author Simon Beaulieu
  */
 public enum Materiaux {
 
