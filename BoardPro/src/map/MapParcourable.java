@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  *
- * Comme le sang rouge des castors, cette classe est deja morte. Elle permet de créer une map parcourable
+ * Elle permet de créer une map parcourable
  * @author 1740969
  *
  */
@@ -77,8 +77,4 @@ public class MapParcourable extends Map {
 		return composante != null;
 	}
 
-
-public static void main(String[] args) {
-	System.out.println("yo");
-}
 }
