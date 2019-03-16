@@ -2,7 +2,6 @@ package composantesCircuit;
 
 import utilitaire.Calcul;
 import utilitaire.Materiaux;
-import composant.ComposantElectrique_CE_;
 import exceptions.ComposantException;
 import exceptions.MathException;
 import javafx.scene.control.Alert;
@@ -18,7 +17,7 @@ import javafx.scene.control.ButtonType;
  * @author Simon Beaulieu
  *
  */
-public class Resistance extends ComposantElectrique_CE_ {
+public class Resistance extends ComposanteElectrique {
 	/**
 	 * Longueur de la résistance utile pour des resistors customs
 	 */

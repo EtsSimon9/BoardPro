@@ -1,8 +1,8 @@
-package composant;
+package composantesCircuit;
 
 import map.ComposantMap;
 
-public abstract class ComposantElectrique_CE_ extends ComposantMap {
+public abstract class ComposanteElectrique extends ComposantMap {
 	/**
 	 * Résistance/impédance de la composante
 	 */
@@ -16,8 +16,6 @@ public abstract class ComposantElectrique_CE_ extends ComposantMap {
 	 */
 
 	private float Courant;
-	private short coordonnex;
-	private short coordonney;
 	static final float IMPEDENCE_DEFAUT = 20;
 	static final float DDP_DEFAUT = 0;
 	static final float COURANT_DEFAUT = 0;
@@ -28,14 +26,14 @@ public abstract class ComposantElectrique_CE_ extends ComposantMap {
 	 * pas vraiment choisir la DDP et le courant puisqu'ils dépendent de la totalité
 	 * du circuit.
 	 */
-	public ComposantElectrique_CE_(short x, short y) {
+	public ComposanteElectrique(short x, short y) {
 		super(x, y);
 		this.setImpedence(IMPEDENCE_DEFAUT);
 		this.setDdp(DDP_DEFAUT);
 		this.setCourant(COURANT_DEFAUT);
 	}
 
-	public ComposantElectrique_CE_(float impedance, short x, short y) {
+	public ComposanteElectrique(float impedance, short x, short y) {
 		super(x, y);
 		this.setImpedence(impedance);
 		this.setDdp(DDP_DEFAUT);

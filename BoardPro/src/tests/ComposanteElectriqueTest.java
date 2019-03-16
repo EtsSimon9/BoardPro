@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import composant.ComposantElectrique_CE_;
+import composantesCircuit.ComposanteElectrique;
 import composantesCircuit.Resistance;
 import exceptions.ComposantException;
 
 public class ComposanteElectriqueTest {
-	ComposantElectrique_CE_ c1,c2;
+	ComposanteElectrique c1,c2;
 	@Before
 	public void creerComposante() {
 
