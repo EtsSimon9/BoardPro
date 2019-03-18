@@ -9,7 +9,7 @@ import exceptions.ComposantException;
  * Cette classe permet de créer une aire de mise en place des composantes
  * éléctroniques(map) et de gérer les comosantes qui y sont présentes via une
  * liste de composantes(composantActuels). C'est une classe abstaite
- *
+ * 
  * @author HAAS Team
  *
  */
@@ -19,7 +19,7 @@ public abstract class Map {
 	/**
 	 * Construit une map c'est à dire une zone dans laquelle mettre les composantes
 	 * lorsqu'on lui donne la taille de celle-ci
-	 *
+	 * 
 	 * @param borneX borne horizontale de la zone de contruction
 	 * @param borneY borne verticale de la zone de contruction
 	 * @throws ComposanteException si les bornes données sont inférieures à zéro
@@ -31,7 +31,7 @@ public abstract class Map {
 	 * ajoute une composante électrique a la liste de composantes du circuit ci
 	 * celle-ci n'y es pas dèja présente. Attention, si la liste de composantes
 	 * composantsActuels est triée, alors il faut utiliser addCompsantAvecTri
-	 *
+	 * 
 	 * @param comp composante electrique à ajouter
 	 * @throws ComposanteException
 	 */
@@ -44,13 +44,15 @@ public abstract class Map {
 	}
 
 	/**
+	 *  A faire pour le 3eme sprint
+	 *  
 	 * ajoute une composante électrique a la liste ordonnée de composantes du
 	 * circuit de maniere ordonnée si celle-ci n'y es pas dèja présente
-	 *
+	 * 
 	 * @param comp composante electrique à ajouter
 	 * @throws ComposanteException
 	 */
-	public void addComposantAvecTri(ComposantMap comp) {
+	private void addComposantAvecTri(ComposantMap comp) {
 
 		for (int i = 0; i < composantsActuels.size()
 				&& !(comp.getCoordonneX() == composantsActuels.get(i).getCoordonneX()
@@ -65,9 +67,11 @@ public abstract class Map {
 	}
 
 	/**
-	 * trie la liste de composantsActuels en ordre croissant de leur x^2+y^2
+	 * A faire pour le 3eme sprint
+	 * trie au besoins (vraiment au besoin) la liste de composantsActuels en ordre croissant de leur x^2+y^2 A
+	 * 
 	 */
-	public void trier() {
+	private void trier() {
 		int compteur = composantsActuels.size();
 		int indicateurDeSortie = 0;
 		while (compteur > 0 && indicateurDeSortie != (composantsActuels.size() - 1)) {
@@ -85,12 +89,14 @@ public abstract class Map {
 	}
 
 	/**
+	 *  A faire pour le 3eme sprint
+	 *  
 	 * permute 2 objects qui sont dans la liste de composantes; ceux donnés en paramètre
-	 *
+	 * 
 	 * @param premier
 	 * @param dernier
 	 */
-	public void permuter(int premier, int dernier) {
+	private void permuter(int premier, int dernier) {
 		ComposantMap c1 = composantsActuels.get(premier);
 		ComposantMap c2 = composantsActuels.get(dernier);
 		composantsActuels.set(premier, c2);
@@ -99,7 +105,7 @@ public abstract class Map {
 
 	/**
 	 * vérifie si une composante est dans la map
-	 *
+	 * 
 	 * @param comp composante à chercher dans la map
 	 * @return true si elle y est,sinon false
 	 */
@@ -116,7 +122,7 @@ public abstract class Map {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return retourne la liste des composantes présentes dans la map
 	 */
 	public ArrayList<ComposantMap> getComposantsActuels() {
@@ -126,7 +132,7 @@ public abstract class Map {
 	/**
 	 * met en place la liste des compsantes présentes dans la map si celle-ci n'est
 	 * pas nulle
-	 *
+	 * 
 	 * @param composantsActuels
 	 */
 	public void setComposantsActuels(ArrayList<ComposantMap> composantsActuels) {
@@ -135,3 +141,4 @@ public abstract class Map {
 	}
 
 }
+

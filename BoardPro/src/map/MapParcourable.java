@@ -1,17 +1,34 @@
 package map;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.jgrapht.alg.cycle.JohnsonSimpleCycles;
+import org.jgrapht.graph.DefaultDirectedGraph;
+import org.jgrapht.graph.DefaultEdge;
+
+import composant.CEDeuxEntres_CEDE_;
 
 
 /**
  *
- * Elle permet de créer une map parcourable
+ * Comme le sang rouge des castors, cette classe est deja morte. Elle permet de
+ * créer une map parcourable
+ *
  * @author 1740969
  *
  */
 public class MapParcourable extends Map {
-	private ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermes = new ArrayList<ArrayList<ComposantMap>>();
-	private ArrayList<ArrayList<ComposantMap>> maillesCircuitIncomopletes = new ArrayList<ArrayList<ComposantMap>>();
+	private ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermes;
+
+	public ArrayList<ArrayList<ComposantMap>> getMaillsesCircuitsFermes() {
+		return maillsesCircuitsFermes;
+	}
+
+	public void setMaillsesCircuitsFermes(ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermes) {
+		this.maillsesCircuitsFermes = maillsesCircuitsFermes;
+	}
 
 	public MapParcourable() {
 		super();
@@ -21,14 +38,58 @@ public class MapParcourable extends Map {
 
 	}
 
-
-	// pour l'instant le circuit est une seule boucle, en attente des tests des méthodes pour faire le reste
+	/**
+	 * permet de générer les mailles dans maillesCircuitsFermes
+	 */
 	public void genererMailles() {
-
+		maillsesCircuitsFermes = new ArrayList<ArrayList<ComposantMap>>();
+		ComposantMap[] composantEnContatc = new ComposantMap[4];
+		DefaultDirectedGraph<ComposantMap, DefaultEdge> graphCirucit = new DefaultDirectedGraph<>(DefaultEdge.class);
+		for (ComposantMap composante : this.composantsActuels) {
+			composantEnContatc = trouverComposantesEnContact(composante);
+				graphCirucit.addVertex(composante);
+				for (ComposantMap autre : composantEnContatc) {
+					if(autre != null) {
+					graphCirucit.addVertex(autre);
+					graphCirucit.addEdge(autre, composante);
+					}
+				}
+		}
+	
+		JohnsonSimpleCycles<ComposantMap, DefaultEdge> cycles = new JohnsonSimpleCycles<>(graphCirucit);
+		convertirAArrayList(cycles.findSimpleCycles());
 	}
 
+	/**
+	 * permet de stoquer la List<List<ComposantMap>> donnée dans
+	 * l'ArrayList<ArrayList<ComposantMap>> maillesCircuitsFermes
+	 *
+	 * @param list
+	 */
+	private void convertirAArrayList(List<List<ComposantMap>> list) {
+		ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermesFinal = new ArrayList<ArrayList<ComposantMap>>();
+		Iterator<List<ComposantMap>> itlistMailles = list.iterator();
+		while (itlistMailles.hasNext()) {
+			List<ComposantMap> listMailles = itlistMailles.next();
+			Iterator<ComposantMap> itComposantesMaille = listMailles.iterator();
+			ArrayList<ComposantMap> arrayListComposanteDsMaille = new ArrayList<ComposantMap>();
+			while (itComposantesMaille.hasNext()) {
+				ComposantMap composante = itComposantesMaille.next();
+				arrayListComposanteDsMaille.add(composante);
+			}
+			maillsesCircuitsFermes.add(arrayListComposanteDsMaille);
+		}
+		for(ArrayList<ComposantMap> array : maillsesCircuitsFermes) {
+			if(array.size() > 2) {
+				maillsesCircuitsFermesFinal.add(array);
+			}
+//			else {
+//				System.out.println(maillsesCircuitsFermes.size());
+//			}
+		}
+		this.maillsesCircuitsFermes = maillsesCircuitsFermesFinal;
 
-
+	}
 
 	/**
 	 * @param composante
@@ -43,18 +104,71 @@ public class MapParcourable extends Map {
 			for (ComposantMap autre : this.getComposantsActuels()) {
 				short coordxa = autre.getCoordonneX();
 				short coordya = autre.getCoordonneY();
+				if (!(composante instanceof CEDeuxEntres_CEDE_)) {
+					trouverObjetContactAvecFil(retour, autre, composante, coordx, coordy, coordxa, coordya);
+				} else {
+					trouverObjetContactAvecCEDeuxLiens(retour, autre, composante, coordx, coordy, coordxa, coordya);
+				}
+			}
+		}
+		return retour;
+
+	}
+
+	/**
+	 * Prends les coordonnes des composntes de CEDeuxLiens et verifie si elle est en
+	 * contact avec une autre composante et la met dans la bonne case du tableau
+	 * donné. Prends les coordonnes des deux positison (algorithme à améliorer)
+	 *
+	 * @param retour
+	 * @param autre
+	 * @param comp
+	 * @param coordx
+	 * @param coordy
+	 * @param coordxa
+	 * @param coordya
+	 */
+	private void trouverObjetContactAvecCEDeuxLiens(ComposantMap[] retour, ComposantMap autre, ComposantMap comp,
+			short coordx, short coordy, short coordxa, short coordya) {
+		if (comp instanceof CEDeuxEntres_CEDE_) {
+			CEDeuxEntres_CEDE_ composante = (CEDeuxEntres_CEDE_) comp;
+			if (composante.isVertical()) {
 				if (verifierComposanteContactHaut(coordx, coordy, coordxa, coordya))
 					retour[0] = autre;
 				if (verifierComposanteContactBas(coordx, coordy, coordxa, coordya))
 					retour[1] = autre;
+			} else {
 				if (verifierComposanteContactDroite(coordx, coordy, coordxa, coordya))
 					retour[2] = autre;
 				if (verifierComposanteContactGauche(coordx, coordy, coordxa, coordya))
 					retour[3] = autre;
 			}
 		}
-		return retour;
+	}
 
+	/**
+	 * Prends les coordonnes des composes fils et verifie si elle est en contact
+	 * avec une autre composante et la met dans la bonne case du tableau donné.
+	 * Prends les coordonnes des deux positison (algorithme à améliorer)
+	 *
+	 * @param retour
+	 * @param autre
+	 * @param fil
+	 * @param coordx
+	 * @param coordy
+	 * @param coordxa
+	 * @param coordya
+	 */
+	private void trouverObjetContactAvecFil(ComposantMap[] retour, ComposantMap autre, ComposantMap fil, short coordx,
+			short coordy, short coordxa, short coordya) {
+		if (verifierComposanteContactHaut(coordx, coordy, coordxa, coordya))
+			retour[0] = autre;
+		if (verifierComposanteContactBas(coordx, coordy, coordxa, coordya))
+			retour[1] = autre;
+		if (verifierComposanteContactDroite(coordx, coordy, coordxa, coordya))
+			retour[2] = autre;
+		if (verifierComposanteContactGauche(coordx, coordy, coordxa, coordya))
+			retour[3] = autre;
 	}
 
 	private boolean verifierComposanteContactHaut(short coordx, short coordy, short coordxa, short coordya) {

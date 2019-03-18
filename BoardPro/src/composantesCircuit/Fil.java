@@ -1,14 +1,15 @@
 package composantesCircuit;
 
+import composant.ComposantElectrique_CE_;
 import exceptions.ComposantException;
 
 /**
  * Classe des fils
- *
  * @author Simon Beaulieu
  *
  */
-public class Fil extends ComposanteElectrique {
+
+  public class Fil extends ComposantElectrique_CE_ {
 	/**
 	 * TRUE si l'on néglige la résistance des fils
 	 */
