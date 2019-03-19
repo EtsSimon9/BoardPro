@@ -3,10 +3,10 @@ package utilitaire;
 import exceptions.MathException;
 
 /**
- * Classe remplit de calcul utile en électricité, toutes les formules et quelque
- * constante utile vue lors de notre cours d'électricité y sont. Des
- * commentaires sépares les sections pour mieux s'y retrouver. Ajouter des
- * méthode de calculs au besoins.
+ * Classe remplit de calcul utile en ï¿½lectricitï¿½, toutes les formules et quelque
+ * constante utile vue lors de notre cours d'ï¿½lectricitï¿½ y sont. Des
+ * commentaires sï¿½pares les sections pour mieux s'y retrouver. Ajouter des
+ * mï¿½thode de calculs au besoins.
  *
  * @author Simon Beaulieu
  *
@@ -19,7 +19,7 @@ public class Calcul {
 	public static final double epsilon = 8.854 * Math.pow(10, -12);
 
 	/*
-	 * Section calcul de fréquence
+	 * Section calcul de frï¿½quence
 	 *
 	 *
 	 *
@@ -31,14 +31,14 @@ public class Calcul {
 	 *
 	 */
 	/**
-	 * Prend une fréquence (en Hz) et retourne la fréquence angulaire (en rad/s)
+	 * Prend une frï¿½quence (en Hz) et retourne la frï¿½quence angulaire (en rad/s)
 	 */
 	public static float frequenceTofrequenceAngulaire(float frequence) {
 		return (float) (2 * Math.PI * frequence);
 	}
 
 	/**
-	 * Prend une fréquence angulaire (en rad/s) et retourne la fréquence (en Hz)
+	 * Prend une frï¿½quence angulaire (en rad/s) et retourne la frï¿½quence (en Hz)
 	 */
 	public static float frequenceAngulaireTofrequence(float frequenceAngulaire) {
 		return (float) (frequenceAngulaire / (2 * Math.PI));
@@ -59,7 +59,7 @@ public class Calcul {
 	 *
 	 */
 	/**
-	 * Donne la capacité du condensateur, ce calcul à besoin de la différence de
+	 * Donne la capacitï¿½ du condensateur, ce calcul ï¿½ besoin de la diffï¿½rence de
 	 * potentielle et la charge sur le condensateur
 	 */
 	public static float capaciteCondensateur(float ddp, float q) throws MathException {
@@ -73,16 +73,16 @@ public class Calcul {
 	}
 
 	/**
-	 * Donne la charge sur le condensateur, ce calcul à besoin de la différence de
-	 * potentielle et la capacité du condensateur
+	 * Donne la charge sur le condensateur, ce calcul ï¿½ besoin de la diffï¿½rence de
+	 * potentielle et la capacitï¿½ du condensateur
 	 */
 	public static float chargeCondensateur(float ddp, float c) {
 		return ddp * c;
 	}
 
 	/**
-	 * Donne la différence de potentielle au bornes du condensateur, ce cacul à
-	 * besoin de la capacité du condensateur et de la charge sur celui-ci.
+	 * Donne la diffï¿½rence de potentielle au bornes du condensateur, ce cacul ï¿½
+	 * besoin de la capacitï¿½ du condensateur et de la charge sur celui-ci.
 	 */
 	public static float ddpCondensateur(float c, float q) throws MathException {
 		float ddp = 0;
@@ -96,8 +96,8 @@ public class Calcul {
 
 	/**
 	 * Utile pour des condensateurs customs, calcul de la capacite d'un condensateur
-	 * plan. Ce calcul à besoin de l'aire des branches qui peuvent être
-	 * carré,rectangle,cercle donc on se contente de recevoir l'aire en param, et
+	 * plan. Ce calcul ï¿½ besoin de l'aire des branches qui peuvent ï¿½tre
+	 * carrï¿½,rectangle,cercle donc on se contente de recevoir l'aire en param, et
 	 * aussi la distance entre les deux branches
 	 */
 	public static float capaciteCondensateurPlan(float aire, float distance) throws MathException {
@@ -112,13 +112,13 @@ public class Calcul {
 
 	/**
 	 * Utile pour des condensateurs customs, calcul de la capacite d'un condensateur
-	 * cylindrique Ce calcul à besoin de la longueur des cylindres, le rayonA du
+	 * cylindrique Ce calcul ï¿½ besoin de la longueur des cylindres, le rayonA du
 	 * plus petit et le rayonB du plus grand.
 	 */
 	public static float capaciteCondensateurCylindrique(float longueur, float rayonA, float rayonB)
 			throws MathException {
 		float capacite = 0;
-		if ((rayonA > 0 && rayonB > 0) || (rayonB < 0 && rayonB < 0)) {
+		if (rayonA > 0 && rayonB > 0) {
 			capacite = (float) (longueur / (2 * Calcul.k * Math.log(rayonB / rayonA)));
 		} else {
 			throw new MathException("Rayon du condensateur cylindrique invalide");
@@ -127,9 +127,9 @@ public class Calcul {
 	}
 
 	/**
-	 * Utile pour des condensateurs customs, calcul de la capacité d'un condensateur
-	 * spherique. Ce calcul à besoin du rayon de la petite sphère rayonA et du rayon
-	 * de la grande sphère rayonB
+	 * Utile pour des condensateurs customs, calcul de la capacitï¿½ d'un condensateur
+	 * spherique. Ce calcul ï¿½ besoin du rayon de la petite sphï¿½re rayonA et du rayon
+	 * de la grande sphï¿½re rayonB
 	 */
 	public static float capaciteCondensateurSpherique(float rayonA, float rayonB) throws MathException {
 		float capacite = 0;
@@ -142,7 +142,7 @@ public class Calcul {
 	}
 
 	/*
-	 * Section résistor
+	 * Section rï¿½sistor
 	 *
 	 *
 	 *
@@ -156,32 +156,35 @@ public class Calcul {
 	 */
 
 	/**
-	 * Calcul de la résistance d'une résistance custom. Ce calcul à besoin de la
-	 * résistivité du matériau p, de la longueur de la résistance et du rayon du
-	 * fil/résistor
+	 * Calcul de la rï¿½sistance d'une rï¿½sistance custom. Ce calcul ï¿½ besoin de la
+	 * rï¿½sistivitï¿½ du matï¿½riau p, de la longueur de la rï¿½sistance et du rayon du
+	 * fil/rï¿½sistor
+	 * @throws MathException 
 	 */
-	public static float calculResistance(double p, float l, float rayon) {
+	public static float calculResistance(double p, float l, float rayon) throws MathException {
 		float r = 0;
 		if (rayon != 0) {
 			r = (float) ((p * l) / (Math.PI * rayon * rayon));
-		} 
+		} else {
+			throw new MathException("Rayon de la rÃ©sistance null!");
+		}
 		return r;
 	}
 
 	/**
-	 * Calcul de la résistivité (variant avec la température) custom d'une
-	 * résistance custom. Ce calcul à besoin de la résistvité du matériaux à 20° pi,
-	 * de la température initiale ti (20° souvent) , de la température finale et du
+	 * Calcul de la rï¿½sistivitï¿½ (variant avec la tempï¿½rature) custom d'une
+	 * rï¿½sistance custom. Ce calcul ï¿½ besoin de la rï¿½sistvitï¿½ du matï¿½riaux ï¿½ 20ï¿½ pi,
+	 * de la tempï¿½rature initiale ti (20ï¿½ souvent) , de la tempï¿½rature finale et du
 	 * coefficient thermique (le symbole est alpha) Voir p.199 du Lafrance pour +
 	 * d'info.
 	 */
-	public static double resistiviteEtTemperature(double d, float ti, float tf, double e) {
+	public static double resistiviteEtTemperature(double resisti, float ti, float tf, double coef) {
 		float deltaT = tf - ti;
-		return (d * (1 + (e * deltaT)));
+		return (resisti * (1 + (coef * deltaT)));
 	}
 
 	/**
-	 * Calcul loi d'ohm trouvant la résistance
+	 * Calcul loi d'ohm trouvant la rï¿½sistance
 	 */
 	public static float loiOhmR(float ddp, float i) throws MathException {
 		float retour;
@@ -195,7 +198,7 @@ public class Calcul {
 	}
 
 	/**
-	 * Calcul loi d'ohm trouvant la différence de potentielle
+	 * Calcul loi d'ohm trouvant la diffï¿½rence de potentielle
 	 */
 	public static float loiOhmDDP(float r, float i) {
 		return r * i;
@@ -216,7 +219,7 @@ public class Calcul {
 	}
 
 	/*
-	 * Section circuit RC : résistance condensateur
+	 * Section circuit RC : rï¿½sistance condensateur
 	 *
 	 *
 	 *
@@ -229,32 +232,32 @@ public class Calcul {
 	 *
 	 */
 	/**
-	 * Circuit RC Calcul trouvant la charge d'un condensateur qui est en décharge,
-	 * cette charge varie dans le temps selon une exponentielle inverse. Ce calcul à
-	 * besoin de la charge maximale du condensateur, du temps écoulé depuis le début
-	 * de la décharge, de la résistance du résistor dans le circuit et de la
-	 * capacité du condensateur
+	 * Circuit RC Calcul trouvant la charge d'un condensateur qui est en dï¿½charge,
+	 * cette charge varie dans le temps selon une exponentielle inverse. Ce calcul ï¿½
+	 * besoin de la charge maximale du condensateur, du temps ï¿½coulï¿½ depuis le dï¿½but
+	 * de la dï¿½charge, de la rï¿½sistance du rï¿½sistor dans le circuit et de la
+	 * capacitï¿½ du condensateur
 	 */
 	public static float ChargeCondensateurDecharge(float ChargeMax, float t, float R, float C) {
 		return (float) (ChargeMax * Math.exp((-t) / (R * C)));
 	}
 
 	/**
-	 * Circuit RC Calcul trouvant la différence de potentielle d'un condensateur qui
-	 * est en décharge, cette DDP varie dans le temps selon une exponentielle
-	 * inverse. Ce calcul à besoin de la différence de potentielle maximale du
-	 * condensateur, du temps écoulé depuis le début de la décharge, de la
-	 * résistance du résistor dans le circuit et de la capacité du condensateur
+	 * Circuit RC Calcul trouvant la diffï¿½rence de potentielle d'un condensateur qui
+	 * est en dï¿½charge, cette DDP varie dans le temps selon une exponentielle
+	 * inverse. Ce calcul ï¿½ besoin de la diffï¿½rence de potentielle maximale du
+	 * condensateur, du temps ï¿½coulï¿½ depuis le dï¿½but de la dï¿½charge, de la
+	 * rï¿½sistance du rï¿½sistor dans le circuit et de la capacitï¿½ du condensateur
 	 */
 	public static float ddpCondesateurDecharge(float ddpMax, float t, float R, float C) {
 		return (float) (ddpMax * Math.exp((-t) / (R * C)));
 	}
 
 	/**
-	 * Circuit RC Calcul trouvant le courant d'un condensateur qui est en décharge,
-	 * ce courant varie dans le temps selon une exponentielle inverse. Ce calcul à
-	 * besoin du courant maximal du condensateur, du temps écoulé depuis le début de
-	 * la décharge, de la résistance du résistor dans le circuit et de la capacité
+	 * Circuit RC Calcul trouvant le courant d'un condensateur qui est en dï¿½charge,
+	 * ce courant varie dans le temps selon une exponentielle inverse. Ce calcul ï¿½
+	 * besoin du courant maximal du condensateur, du temps ï¿½coulï¿½ depuis le dï¿½but de
+	 * la dï¿½charge, de la rï¿½sistance du rï¿½sistor dans le circuit et de la capacitï¿½
 	 * du condensateur
 	 */
 	public static float courantCondensateurDecharge(float courantMax, float t, float R, float C) {
@@ -263,9 +266,9 @@ public class Calcul {
 
 	/**
 	 * Circuit RC Calcul trouvant la charge d'un condensateur qui est en charge,
-	 * cette charge varie dans le temps selon un exponentielle. Ce calcul à besoin
-	 * de la charge maximal du condensateur, du temps écoulé depuis le début de la
-	 * charge, de la résistance du résistor dans le circuit et de la capacité du
+	 * cette charge varie dans le temps selon un exponentielle. Ce calcul ï¿½ besoin
+	 * de la charge maximal du condensateur, du temps ï¿½coulï¿½ depuis le dï¿½but de la
+	 * charge, de la rï¿½sistance du rï¿½sistor dans le circuit et de la capacitï¿½ du
 	 * condensateur
 	 */
 	public static float ChargeCondensateurCharge(float ChargeMax, float t, float R, float C) {
@@ -273,11 +276,11 @@ public class Calcul {
 	}
 
 	/**
-	 * Circuit RC Calcul trouvant la différence de potentielle d'un condensateur qui
+	 * Circuit RC Calcul trouvant la diffï¿½rence de potentielle d'un condensateur qui
 	 * est en charge, cette DDP varie dans le temps selon un exponentielle. Ce
-	 * calcul à besoin de la DDP maximal du condensateur, du temps écoulé depuis le
-	 * début de la charge, de la résistance du résistor dans le circuit et de la
-	 * capacité du condensateur.
+	 * calcul ï¿½ besoin de la DDP maximal du condensateur, du temps ï¿½coulï¿½ depuis le
+	 * dï¿½but de la charge, de la rï¿½sistance du rï¿½sistor dans le circuit et de la
+	 * capacitï¿½ du condensateur.
 	 */
 	public static float ddpCondesateurCharge(float ddpMax, float t, float R, float C) {
 		return (float) (ddpMax * (1 - Math.exp((-t) / (R * C))));
@@ -285,9 +288,9 @@ public class Calcul {
 
 	/**
 	 * Circuit RC Calcul trouvant le courant dans un d'un condensateur qui est en
-	 * charge, ce courant varie dans le temps selon un exponentielle. Ce calcul à
-	 * besoin du courant maximal du condensateur, du temps écoulé depuis le début de
-	 * la charge, de la résistance du résistor dans le circuit et de la capacité du
+	 * charge, ce courant varie dans le temps selon un exponentielle. Ce calcul ï¿½
+	 * besoin du courant maximal du condensateur, du temps ï¿½coulï¿½ depuis le dï¿½but de
+	 * la charge, de la rï¿½sistance du rï¿½sistor dans le circuit et de la capacitï¿½ du
 	 * condensateur.
 	 */
 	public static float courantCondensateurCharge(float courantMax, float t, float R, float C) {
@@ -295,7 +298,7 @@ public class Calcul {
 	}
 
 	/*
-	 * Section circuit RL: résistance bobine d'inductance
+	 * Section circuit RL: rï¿½sistance bobine d'inductance
 	 *
 	 *
 	 *
@@ -308,7 +311,7 @@ public class Calcul {
 	 *
 	 */
 	/**
-	 * Circuit RL Calcul trouvant le courant dans le circuit RL suite à l'ouverture
+	 * Circuit RL Calcul trouvant le courant dans le circuit RL suite ï¿½ l'ouverture
 	 * du circuit, ce courant varie dans le temps selon une exponentiel inverser
 	 * (chute de courant amortie, max a min avec courbe)
 	 */
@@ -317,7 +320,7 @@ public class Calcul {
 	}
 
 	/**
-	 * Circuit RL Calcul trouvant le courant dans le circuit RL suite à la fermeture
+	 * Circuit RL Calcul trouvant le courant dans le circuit RL suite ï¿½ la fermeture
 	 * du circuit Le cournat varie dans le temps selon une exponentiel (augmentation
 	 * rapide de courant amortie)
 	 */
@@ -326,7 +329,7 @@ public class Calcul {
 	}
 
 	/*
-	 * Section circuit RLC: Résistance, bobine d'inductance et condensateur
+	 * Section circuit RLC: Rï¿½sistance, bobine d'inductance et condensateur
 	 *
 	 *
 	 *
@@ -338,7 +341,7 @@ public class Calcul {
 	 *
 	 */
 	/**
-	 * Circuit RLC Trouve l'impedance/résistance d'un circuit RLC
+	 * Circuit RLC Trouve l'impedance/rï¿½sistance d'un circuit RLC
 	 */
 	public static float impedanceCircuitRLC(float resistance, float inductance, float capacite, float frequence)
 			throws MathException {
@@ -349,7 +352,7 @@ public class Calcul {
 			float xl = Calcul.impedanceBobine(freqAngulaire, inductance);
 			z = (float) Math.sqrt(Math.pow(resistance, 2) + Math.pow(xl-xc, 2) );
 		} else {
-			throw new MathException("Resistance, inductance ou capacite négative dans le calcul d'impédence RLC");
+			throw new MathException("Resistance, inductance ou capacite nï¿½gative dans le calcul d'impï¿½dence RLC");
 		}
 		return z;
 	}

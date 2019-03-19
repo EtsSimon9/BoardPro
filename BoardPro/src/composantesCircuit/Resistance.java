@@ -3,11 +3,12 @@ package composantesCircuit;
 import utilitaire.Calcul;
 import utilitaire.Materiaux;
 import exceptions.ComposantException;
+import exceptions.MathException;
 
 /**
- * Classes des Resistors, un resistor à soit une résistance égale à celle entrée
- * dans la zone texte (Résistance) ou bien une résistance custom résultante de
- * sa longueur rayon et résistivité, l'utilisateur devrait donc pouvoir cocher
+ * Classes des Resistors, un resistor ï¿½ soit une rï¿½sistance ï¿½gale ï¿½ celle entrï¿½e
+ * dans la zone texte (Rï¿½sistance) ou bien une rï¿½sistance custom rï¿½sultante de
+ * sa longueur rayon et rï¿½sistivitï¿½, l'utilisateur devrait donc pouvoir cocher
  * sont choix puisque c'est l'un ou l'autre.
  * 
  * @author Simon Beaulieu
@@ -15,23 +16,23 @@ import exceptions.ComposantException;
  */
 public class Resistance extends ComposanteElectrique {
 	/**
-	 * Longueur de la résistance utile pour des resistors customs
+	 * Longueur de la rï¿½sistance utile pour des resistors customs
 	 */
 	private float longueur;
 
 	/**
-	 * Rayon de la résistance utile pour des resistors customs
+	 * Rayon de la rï¿½sistance utile pour des resistors customs
 	 */
 	private float rayon;
 
 	/**
-	 * Matériau de la résistance
+	 * Matï¿½riau de la rï¿½sistance
 	 */
 	private Materiaux materiau;
 
 	/**
-	 * Noter bien que cette température est en degré celcius lorsque l'utilisateur
-	 * nous la donne (coté pratique). Par contre, dans nos calcul nous devons la
+	 * Noter bien que cette tempï¿½rature est en degrï¿½ celcius lorsque l'utilisateur
+	 * nous la donne (cotï¿½ pratique). Par contre, dans nos calcul nous devons la
 	 * transferer.
 	 * 
 	 */
@@ -43,8 +44,8 @@ public class Resistance extends ComposanteElectrique {
 	public static final int DIMMENSIONMAX = 1000;
 
 	/**
-	 * Constructeur par défaut des resistors, appele le constructeur défaut de
-	 * composante électrique
+	 * Constructeur par dï¿½faut des resistors, appele le constructeur dï¿½faut de
+	 * composante ï¿½lectrique
 	 * 
 	 * @throws ComposantException
 	 */
@@ -54,9 +55,9 @@ public class Resistance extends ComposanteElectrique {
 	}
 
 	/**
-	 * Constructeur pour resistance modifier, c'est-à-dire que l'utilisateur nous
-	 * indique la longueur, le rayon et le matériaux de la résistance pour qu'on
-	 * trouve nous même la valeur de la résistance.
+	 * Constructeur pour resistance modifier, c'est-ï¿½-dire que l'utilisateur nous
+	 * indique la longueur, le rayon et le matï¿½riaux de la rï¿½sistance pour qu'on
+	 * trouve nous mï¿½me la valeur de la rï¿½sistance.
 	 */
 	public Resistance(short x, short y, float longueur, float rayon, Materiaux mat, float t) {
 		super(x, y);
@@ -67,7 +68,12 @@ public class Resistance extends ComposanteElectrique {
 			this.setTemperature(t);
 			mat.getCoefThermique();
 			double p = Calcul.resistiviteEtTemperature(mat.getResistivite(), 20, t, mat.getCoefThermique());
-			this.setImpedence(Calcul.calculResistance(p, longueur, rayon));
+			if (rayon != 0) {
+				try {
+					this.setImpedence(Calcul.calculResistance(p, longueur, rayon));
+				} catch (MathException e) {
+				}
+			}
 		}
 	}
 
