@@ -1,19 +1,18 @@
-package composantesCircuit;
+package composant;
 
 import map.ComposantMap;
 
-public abstract class ComposanteElectrique extends ComposantMap {
-	private boolean vertical;
+public abstract class ComposantElectrique_CE_ extends ComposantMap {
 	/**
-	 * Rï¿½sistance/impï¿½dance de la composante
+	 * Résistance/impédance de la composante
 	 */
 	private float impedence;
 	/**
-	 * Diffï¿½rence de potentiel ï¿½lectrique de la composante
+	 * Différence de potentiel électrique de la composante
 	 */
 	private float ddp;
 	/**
-	 * Courant ï¿½lectrique circulant dans la composante
+	 * Courant électrique circulant dans la composante
 	 */
 
 	private float Courant;
@@ -22,19 +21,19 @@ public abstract class ComposanteElectrique extends ComposantMap {
 	static final float COURANT_DEFAUT = 0;
 
 	/**
-	 * Constructeur par dï¿½faut. Lors de l'ajout d'une composante elle sera crï¿½e dï¿½s
-	 * qu'elle est dï¿½posï¿½ dans la zone de dessin avec les valeurs dï¿½faut. On ne peu
-	 * pas vraiment choisir la DDP et le courant puisqu'ils dï¿½pendent de la totalitï¿½
+	 * Constructeur par défaut. Lors de l'ajout d'une composante elle sera crée dès
+	 * qu'elle est déposé dans la zone de dessin avec les valeurs défaut. On ne peu
+	 * pas vraiment choisir la DDP et le courant puisqu'ils dépendent de la totalité
 	 * du circuit.
 	 */
-	public ComposanteElectrique(short x, short y) {
+	public ComposantElectrique_CE_(short x, short y) {
 		super(x, y);
 		this.setImpedence(IMPEDENCE_DEFAUT);
 		this.setDdp(DDP_DEFAUT);
 		this.setCourant(COURANT_DEFAUT);
 	}
 
-	public ComposanteElectrique(float impedance, short x, short y) {
+	public ComposantElectrique_CE_(float impedance, short x, short y) {
 		super(x, y);
 		this.setImpedence(impedance);
 		this.setDdp(DDP_DEFAUT);
@@ -65,14 +64,11 @@ public abstract class ComposanteElectrique extends ComposantMap {
 		this.Courant = tensionCourant;
 	}
 
-	public boolean isVertical() {
-		return vertical;
-	}
-
-	public void setVertical(boolean vertical) {
-		this.vertical = vertical;
-	}
-
-	
-
 }
+
+
+
+
+
+
+

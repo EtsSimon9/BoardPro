@@ -2,6 +2,7 @@ package composantesCircuit;
 
 import utilitaire.Calcul;
 import utilitaire.Materiaux;
+import composant.CEDeuxEntres_CEDE_;
 import exceptions.ComposantException;
 
 /**
@@ -13,7 +14,7 @@ import exceptions.ComposantException;
  * @author Simon Beaulieu
  *
  */
-public class Resistance extends ComposanteElectrique {
+public class Resistance extends CEDeuxEntres_CEDE_ {
 	/**
 	 * Longueur de la résistance utile pour des resistors customs
 	 */

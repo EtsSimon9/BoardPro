@@ -1,5 +1,6 @@
 package composantesCircuit;
 
+import composant.ComposantElectrique_CE_;
 import exceptions.ComposantException;
 
 /**
@@ -8,7 +9,7 @@ import exceptions.ComposantException;
  *
  */
 
-  public class Fil extends ComposanteElectrique {
+  public class Fil extends ComposantElectrique_CE_ {
 	/**
 	 * TRUE si l'on néglige la résistance des fils
 	 */
@@ -24,10 +25,9 @@ import exceptions.ComposantException;
 	/**
 	 * Constructeur par défaut des fils, utile lorsque l'on place un fil dans la
 	 * zone de dessin on créera ce fil automatiquement avec cette classe.
-	 *
 	 * @throws ComposantException
 	 */
-	private static final float RESISTANCE_DEFAUT = 2;
+	private static final float RESISTANCE_DEFAUT = 2f;
 
 	public Fil(short x, short y) throws ComposantException {
 		super(RESISTANCE_DEFAUT,x,y);

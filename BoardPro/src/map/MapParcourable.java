@@ -8,7 +8,7 @@ import org.jgrapht.alg.cycle.JohnsonSimpleCycles;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 
-import composantesCircuit.ComposanteElectrique;
+import composant.CEDeuxEntres_CEDE_;
 
 
 /**
@@ -104,7 +104,7 @@ public class MapParcourable extends Map {
 			for (ComposantMap autre : this.getComposantsActuels()) {
 				short coordxa = autre.getCoordonneX();
 				short coordya = autre.getCoordonneY();
-				if (!(composante instanceof ComposanteElectrique)) {
+				if (!(composante instanceof CEDeuxEntres_CEDE_)) {
 					trouverObjetContactAvecFil(retour, autre, composante, coordx, coordy, coordxa, coordya);
 				} else {
 					trouverObjetContactAvecCEDeuxLiens(retour, autre, composante, coordx, coordy, coordxa, coordya);
@@ -130,8 +130,8 @@ public class MapParcourable extends Map {
 	 */
 	private void trouverObjetContactAvecCEDeuxLiens(ComposantMap[] retour, ComposantMap autre, ComposantMap comp,
 			short coordx, short coordy, short coordxa, short coordya) {
-		if (comp instanceof ComposanteElectrique) {
-			ComposanteElectrique composante = (ComposanteElectrique) comp;
+		if (comp instanceof CEDeuxEntres_CEDE_) {
+			CEDeuxEntres_CEDE_ composante = (CEDeuxEntres_CEDE_) comp;
 			if (composante.isVertical()) {
 				if (verifierComposanteContactHaut(coordx, coordy, coordxa, coordya))
 					retour[0] = autre;
