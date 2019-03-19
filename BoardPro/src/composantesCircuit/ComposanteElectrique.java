@@ -3,16 +3,17 @@ package composantesCircuit;
 import map.ComposantMap;
 
 public abstract class ComposanteElectrique extends ComposantMap {
+	private boolean vertical;
 	/**
-	 * Résistance/impédance de la composante
+	 * Rï¿½sistance/impï¿½dance de la composante
 	 */
 	private float impedence;
 	/**
-	 * Différence de potentiel électrique de la composante
+	 * Diffï¿½rence de potentiel ï¿½lectrique de la composante
 	 */
 	private float ddp;
 	/**
-	 * Courant électrique circulant dans la composante
+	 * Courant ï¿½lectrique circulant dans la composante
 	 */
 
 	private float Courant;
@@ -21,9 +22,9 @@ public abstract class ComposanteElectrique extends ComposantMap {
 	static final float COURANT_DEFAUT = 0;
 
 	/**
-	 * Constructeur par défaut. Lors de l'ajout d'une composante elle sera crée dès
-	 * qu'elle est déposé dans la zone de dessin avec les valeurs défaut. On ne peu
-	 * pas vraiment choisir la DDP et le courant puisqu'ils dépendent de la totalité
+	 * Constructeur par dï¿½faut. Lors de l'ajout d'une composante elle sera crï¿½e dï¿½s
+	 * qu'elle est dï¿½posï¿½ dans la zone de dessin avec les valeurs dï¿½faut. On ne peu
+	 * pas vraiment choisir la DDP et le courant puisqu'ils dï¿½pendent de la totalitï¿½
 	 * du circuit.
 	 */
 	public ComposanteElectrique(short x, short y) {
@@ -65,8 +66,13 @@ public abstract class ComposanteElectrique extends ComposantMap {
 	}
 
 	public boolean isVertical() {
-		// TODO Auto-generated method stub
-		return false;
+		return vertical;
 	}
+
+	public void setVertical(boolean vertical) {
+		this.vertical = vertical;
+	}
+
+	
 
 }
