@@ -64,4 +64,9 @@ public abstract class ComposanteElectrique extends ComposantMap {
 		this.Courant = tensionCourant;
 	}
 
+	public boolean isVertical() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
