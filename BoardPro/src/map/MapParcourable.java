@@ -16,7 +16,8 @@ import composant.CEDeuxEntres_CEDE_;
  * Comme le sang rouge des castors, cette classe est deja morte. Elle permet de
  * créer une map parcourable
  *
- * @author 1740969
+ * @author HAAS TEAM
+ * 
  *
  */
 public class MapParcourable extends Map {
