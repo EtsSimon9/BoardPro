@@ -2,7 +2,7 @@ package composantesCircuit;
 
 import utilitaire.Calcul;
 import utilitaire.Materiaux;
-import composant.CEDeuxEntres_CEDE_;
+import composante.CE2Entrees;
 import exceptions.ComposantException;
 import exceptions.MathException;
 
@@ -15,7 +15,7 @@ import exceptions.MathException;
  * @author Simon Beaulieu
  *
  */
-public class Resistance extends CEDeuxEntres_CEDE_ {
+public class Resistance extends CE2Entrees {
 	/**
 	 * Longueur de la r�sistance utile pour des resistors customs
 	 */

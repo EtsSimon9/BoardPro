@@ -1,8 +1,8 @@
 package composantesCircuit;
 
-import composant.CEDeuxEntres_CEDE_;
+import composante.CE2Entrees;
 
-public class Condensateur extends CEDeuxEntres_CEDE_ {
+public class Condensateur extends CE2Entrees {
 	private double capacite = 0.0;
 	
 	private static final float CAPACITE_DEFAUT = 20;

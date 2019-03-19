@@ -8,13 +8,13 @@ import org.jgrapht.alg.cycle.JohnsonSimpleCycles;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 
-import composant.CEDeuxEntres_CEDE_;
+import composante.CE2Entrees;
 
 
 /**
  *
  * Comme le sang rouge des castors, cette classe est deja morte. Elle permet de
- * créer une map parcourable
+ * crï¿½er une map parcourable
  *
  * @author HAAS TEAM
  * 
@@ -40,7 +40,7 @@ public class MapParcourable extends Map {
 	}
 
 	/**
-	 * permet de générer les mailles dans maillesCircuitsFermes
+	 * permet de gï¿½nï¿½rer les mailles dans maillesCircuitsFermes
 	 */
 	public void genererMailles() {
 		maillsesCircuitsFermes = new ArrayList<ArrayList<ComposantMap>>();
@@ -62,7 +62,7 @@ public class MapParcourable extends Map {
 	}
 
 	/**
-	 * permet de stoquer la List<List<ComposantMap>> donnée dans
+	 * permet de stoquer la List<List<ComposantMap>> donnï¿½e dans
 	 * l'ArrayList<ArrayList<ComposantMap>> maillesCircuitsFermes
 	 *
 	 * @param list
@@ -94,7 +94,7 @@ public class MapParcourable extends Map {
 
 	/**
 	 * @param composante
-	 * @return Retourne le tableau des composantes en contact avec celle donnée
+	 * @return Retourne le tableau des composantes en contact avec celle donnï¿½e
 	 */
 	private ComposantMap[] trouverComposantesEnContact(ComposantMap composante) {
 		ComposantMap[] retour = new ComposantMap[4];
@@ -105,7 +105,7 @@ public class MapParcourable extends Map {
 			for (ComposantMap autre : this.getComposantsActuels()) {
 				short coordxa = autre.getCoordonneX();
 				short coordya = autre.getCoordonneY();
-				if (!(composante instanceof CEDeuxEntres_CEDE_)) {
+				if (!(composante instanceof CE2Entrees)) {
 					trouverObjetContactAvecFil(retour, autre, composante, coordx, coordy, coordxa, coordya);
 				} else {
 					trouverObjetContactAvecCEDeuxLiens(retour, autre, composante, coordx, coordy, coordxa, coordya);
@@ -119,7 +119,7 @@ public class MapParcourable extends Map {
 	/**
 	 * Prends les coordonnes des composntes de CEDeuxLiens et verifie si elle est en
 	 * contact avec une autre composante et la met dans la bonne case du tableau
-	 * donné. Prends les coordonnes des deux positison (algorithme à améliorer)
+	 * donnï¿½. Prends les coordonnes des deux positison (algorithme ï¿½ amï¿½liorer)
 	 *
 	 * @param retour
 	 * @param autre
@@ -131,8 +131,8 @@ public class MapParcourable extends Map {
 	 */
 	private void trouverObjetContactAvecCEDeuxLiens(ComposantMap[] retour, ComposantMap autre, ComposantMap comp,
 			short coordx, short coordy, short coordxa, short coordya) {
-		if (comp instanceof CEDeuxEntres_CEDE_) {
-			CEDeuxEntres_CEDE_ composante = (CEDeuxEntres_CEDE_) comp;
+		if (comp instanceof CE2Entrees) {
+			CE2Entrees composante = (CE2Entrees) comp;
 			if (composante.isVertical()) {
 				if (verifierComposanteContactHaut(coordx, coordy, coordxa, coordya))
 					retour[0] = autre;
@@ -149,8 +149,8 @@ public class MapParcourable extends Map {
 
 	/**
 	 * Prends les coordonnes des composes fils et verifie si elle est en contact
-	 * avec une autre composante et la met dans la bonne case du tableau donné.
-	 * Prends les coordonnes des deux positison (algorithme à améliorer)
+	 * avec une autre composante et la met dans la bonne case du tableau donnï¿½.
+	 * Prends les coordonnes des deux positison (algorithme ï¿½ amï¿½liorer)
 	 *
 	 * @param retour
 	 * @param autre

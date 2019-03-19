@@ -1,6 +1,6 @@
-package composant;
+package composante;
 
-public abstract class CEDeuxEntres_CEDE_ extends ComposantElectrique_CE_ {
+public abstract class CE2Entrees extends ComposanteElectrique {
 	/**
 	 *  sens de la composante, true vertivale,  et false horizontale
 	 */
@@ -8,7 +8,7 @@ public abstract class CEDeuxEntres_CEDE_ extends ComposantElectrique_CE_ {
 
 	boolean sens;
 
-	public CEDeuxEntres_CEDE_(short coordonnex, short coordonney) {
+	public CE2Entrees(short coordonnex, short coordonney) {
 		super(coordonnex, coordonney);
 
 		this.setSens(SENS_DEFAUT);

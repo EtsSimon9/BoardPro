@@ -1,8 +1,8 @@
 package composantesCircuit;
 
-import composant.CEDeuxEntres_CEDE_;
+import composante.CE2Entrees;
 
-public class Bobine extends CEDeuxEntres_CEDE_ {
+public class Bobine extends CE2Entrees {
 	private double inductence;
 	private static final float INDUCTANCE_DEFAUT = 20;
 	

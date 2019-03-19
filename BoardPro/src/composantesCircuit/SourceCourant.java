@@ -1,8 +1,8 @@
 package composantesCircuit;
 
-import composant.CEDeuxEntres_CEDE_;
+import composante.CE2Entrees;
 
-public class SourceCourant extends CEDeuxEntres_CEDE_ {
+public class SourceCourant extends CE2Entrees {
 	private static final float DDP_DEFAUT = 20;
 
 	public SourceCourant(float ddp, short coordonnex, short coordonney) {

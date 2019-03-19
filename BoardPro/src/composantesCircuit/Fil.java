@@ -1,6 +1,6 @@
 package composantesCircuit;
 
-import composant.ComposantElectrique_CE_;
+import composante.ComposanteElectrique;
 import exceptions.ComposantException;
 
 /**
@@ -9,22 +9,22 @@ import exceptions.ComposantException;
  *
  */
 
-  public class Fil extends ComposantElectrique_CE_ {
+  public class Fil extends ComposanteElectrique {
 	/**
-	 * TRUE si l'on néglige la résistance des fils
+	 * TRUE si l'on nï¿½glige la rï¿½sistance des fils
 	 */
 	private boolean neglige = true;
 	/**
-	 * Quand nous changerons la variable impédence d'un fil, nous devrons changer
-	 * résistance aussi. Résistance est seulement utile pour garder la valeur de la
-	 * résistance car si l'on néglige le fil on met l'impédence à 0, si on ne
-	 * néglige plus le fil on a encore la valeur de la résistance.
+	 * Quand nous changerons la variable impï¿½dence d'un fil, nous devrons changer
+	 * rï¿½sistance aussi. Rï¿½sistance est seulement utile pour garder la valeur de la
+	 * rï¿½sistance car si l'on nï¿½glige le fil on met l'impï¿½dence ï¿½ 0, si on ne
+	 * nï¿½glige plus le fil on a encore la valeur de la rï¿½sistance.
 	 */
 	private float resistance;
 
 	/**
-	 * Constructeur par défaut des fils, utile lorsque l'on place un fil dans la
-	 * zone de dessin on créera ce fil automatiquement avec cette classe.
+	 * Constructeur par dï¿½faut des fils, utile lorsque l'on place un fil dans la
+	 * zone de dessin on crï¿½era ce fil automatiquement avec cette classe.
 	 * @throws ComposantException
 	 */
 	private static final float RESISTANCE_DEFAUT = 2f;
@@ -39,10 +39,10 @@ import exceptions.ComposantException;
 	}
 
 	/**
-	 * Le set s'occupe aussi de changer l'impedence du fil à 0 si l'on veut négliger
-	 * les résistances Puisque la classe stock la valeur de l'impédence avec la
-	 * variable Resistance, la classe est capable de reprendre l'impédence du fil
-	 * sans en entrée une nouvelle lorsqu'on remet négliger à false.
+	 * Le set s'occupe aussi de changer l'impedence du fil ï¿½ 0 si l'on veut nï¿½gliger
+	 * les rï¿½sistances Puisque la classe stock la valeur de l'impï¿½dence avec la
+	 * variable Resistance, la classe est capable de reprendre l'impï¿½dence du fil
+	 * sans en entrï¿½e une nouvelle lorsqu'on remet nï¿½gliger ï¿½ false.
 	 *
 	 * @param neglige
 	 */
