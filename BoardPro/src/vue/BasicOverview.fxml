@@ -65,48 +65,48 @@
                            <content>
                               <GridPane fx:id="gridP" gridLinesVisible="true" hgap="1.0" prefHeight="1500.0" prefWidth="1500.0" vgap="1.0">
                                  <columnConstraints>
-                                    <ColumnConstraints fx:id="gridCol0" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol1" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol2" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol3" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol5" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol6" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol7" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol8" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol9" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol10" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol11" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol12" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol13" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol14" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol15" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol16" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol17" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol18" hgrow="SOMETIMES" prefWidth="75.0" />
-                                    <ColumnConstraints fx:id="gridCol19" hgrow="SOMETIMES" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol0" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol1" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol2" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol3" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol5" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol6" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol7" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol8" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol9" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol10" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol11" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol12" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol13" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol14" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol15" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol16" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol17" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol18" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                                    <ColumnConstraints fx:id="gridCol19" hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints fx:id="gridRow0" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow1" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow2" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow3" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow4" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow5" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow6" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow7" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow8" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow9" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow10" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow11" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow12" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow13" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow14" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow15" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow16" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow17" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow18" prefHeight="75.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fx:id="gridRow19" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow0" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow1" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow2" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow3" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow4" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow5" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow6" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow7" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow8" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow9" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow10" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow11" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow12" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow13" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow14" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow15" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow16" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow17" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow18" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fx:id="gridRow19" maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
                            </content>

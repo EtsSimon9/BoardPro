@@ -67,31 +67,28 @@ public class ControleurBoardPro {
 				}
 
 				event.consume();
-			}
-		});
+			}});
 
+		
 		vue.tbCompList.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
 			@Override
 			public void handle(MouseEvent event) {
 				int p = event.getTarget().toString().indexOf("'");
 				composante = event.getTarget().toString().substring(p);
-			}
-
-		});
+			}});
+		
+		// -------------------------SELECT & PUT------------------------
+		
 		vue.gridP.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
 			@Override
 			public void handle(MouseEvent event) {
 				int positionX = (int) (Math.floor(event.getX() / 75));
 				int positionY = (int) (Math.floor(event.getY() / 75));
 				if (composante.equals("'Fil'")) {
-					//Besoin de l'image fil
 				} else if (composante.equals("'resistance'")) {
-					Image r = new Image("/img/resistance.png");
+					Image r = new Image("/img/Composante_resistance.png");
 					ImageView viewR = new ImageView(r);
-					viewR.setFitWidth(100);
-					viewR.setTranslateX(-12);
+					viewR.setFitWidth(75);
 					viewR.setFitHeight(75);
 					vue.gridP.add(viewR, positionX, positionY);
 
@@ -113,7 +110,7 @@ public class ControleurBoardPro {
 					Image r = new Image("/img/sourceAC.png");
 					ImageView viewR = new ImageView(r);
 					viewR.setFitWidth(75);
-					viewR.setFitHeight(87);
+					viewR.setFitHeight(75);
 					vue.gridP.add(viewR, positionX, positionY);
 
 				} else if (composante.equals("'Ampoule'")) {
@@ -124,7 +121,7 @@ public class ControleurBoardPro {
 					vue.gridP.add(viewR, positionX, positionY);
 
 				} else if (composante.equals("'fil'")) {
-					Image r = new Image("/img/fil.png");
+					Image r = new Image("/img/Composante_fil.png");
 					ImageView viewR = new ImageView(r);
 					viewR.setFitWidth(75);
 					viewR.setFitHeight(75);

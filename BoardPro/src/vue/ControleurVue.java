@@ -6,8 +6,6 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
 import controleur.ControleurBoardPro;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -93,7 +91,7 @@ public class ControleurVue {
 	@FXML
 	public AnchorPane root;
 
-	private ControleurBoardPro controleur;
+	public ControleurBoardPro controleur;
 	Scene scene;
 	
 	
@@ -114,7 +112,7 @@ public class ControleurVue {
 	}
 
 	public void initialize() {
-		 ObservableList<String> composantes = FXCollections.observableArrayList("fil", "resistance", "source");
+		// ObservableList<String> composantes = FXCollections.observableArrayList("fil", "resistance", "source");
 		 tbCompList.getItems().add("fil");
 		 tbCompList.getItems().add("resistance");
 		 tbCompList.getItems().add("source");
