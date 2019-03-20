@@ -14,8 +14,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 
 public class ControleurVue {
@@ -42,6 +46,22 @@ public class ControleurVue {
 	private Tab tabBoard;
 	@FXML
 	private AnchorPane PaneBoard;
+	
+	@FXML
+	public ScrollPane scrollP;
+	@FXML
+	public GridPane gridP;
+	    @FXML private ColumnConstraints gridCol0; @FXML private ColumnConstraints gridCol1; @FXML private ColumnConstraints gridCol2; @FXML private ColumnConstraints gridCol3;
+	    @FXML private ColumnConstraints gridCol4; @FXML private ColumnConstraints gridCol5; @FXML private ColumnConstraints gridCol6; @FXML private ColumnConstraints gridCol7; 
+	    @FXML private ColumnConstraints gridCol8; @FXML private ColumnConstraints gridCol9; @FXML private ColumnConstraints gridCol10; @FXML private ColumnConstraints gridCol11; 
+	    @FXML private ColumnConstraints gridCol12; @FXML private ColumnConstraints gridCol13; @FXML private ColumnConstraints gridCol14; @FXML private ColumnConstraints gridCol15;
+	    @FXML private ColumnConstraints gridCol16; @FXML private ColumnConstraints gridCol17; @FXML private ColumnConstraints gridCol18; @FXML private ColumnConstraints gridCol19;
+	    
+	    @FXML private RowConstraints gridRow0; @FXML private RowConstraints gridRow1; @FXML private RowConstraints gridRow2; @FXML private RowConstraints gridRow3;
+	    @FXML private RowConstraints gridRow4; @FXML private RowConstraints gridRow5; @FXML private RowConstraints gridRow6; @FXML private RowConstraints gridRow7; 
+	    @FXML private RowConstraints gridRow8; @FXML private RowConstraints gridRow9; @FXML private RowConstraints gridRow10; @FXML private RowConstraints gridRow11;
+	    @FXML private RowConstraints gridRow12; @FXML private RowConstraints gridRow13; @FXML private RowConstraints gridRow14; @FXML private RowConstraints gridRow15;
+	    @FXML private RowConstraints gridRow16; @FXML private RowConstraints gridRow17; @FXML private RowConstraints gridRow18; @FXML private RowConstraints gridRow19;
 
 	@FXML
 	private MenuItem cFil;
@@ -98,7 +118,8 @@ public class ControleurVue {
 		 tbCompList.getItems().add("fil");
 		 tbCompList.getItems().add("resistance");
 		 tbCompList.getItems().add("source");
-		 
+		 tbCompList.getItems().add("Condensateur");
+		 tbCompList.getItems().add("Bobine");
 		// tbCompList.setExpanded(true);
 	}
 	
