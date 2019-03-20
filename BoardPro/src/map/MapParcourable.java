@@ -17,13 +17,17 @@ import composante.CE2Entrees;
  * cr�er une map parcourable
  *
  * @author HAAS TEAM
- * 
+ *
  *
  */
 public class MapParcourable extends Map {
 	private ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermes;
 
 	public ArrayList<ArrayList<ComposantMap>> getMaillsesCircuitsFermes() {
+		return maillsesCircuitsFermes;
+	}
+	public ArrayList<ArrayList<ComposantMap>> getMaille(){
+		genererMailles();
 		return maillsesCircuitsFermes;
 	}
 
@@ -56,7 +60,7 @@ public class MapParcourable extends Map {
 					}
 				}
 		}
-	
+
 		JohnsonSimpleCycles<ComposantMap, DefaultEdge> cycles = new JohnsonSimpleCycles<>(graphCirucit);
 		convertirAArrayList(cycles.findSimpleCycles());
 	}
