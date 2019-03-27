@@ -24,20 +24,20 @@ public class ControleurBoardPro {
 
 	public void masterHandler() {
 
-		vue.exitBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				// vue.boardToolb.setVisible(false);
-				// vue.tbCompList.setExpanded(true);
-				// vue.tbCompList.depthProperty().set(1);
-				System.exit(1);
-			}
-		});
-
-		// ---------------------------ZOOMING----------------------------
+		vue.exitBtn.setOnMouseClicked(genererExitButton());
+		
 		vue.scrollP.setHvalue(0.5);
 		vue.scrollP.setVvalue(0.5);
-		vue.gridP.setOnScroll(new EventHandler<ScrollEvent>() {
+		vue.gridP.setOnScroll(genererZoomHandler());
+		
+		vue.tbCompList.setOnMouseClicked(genererListClicked());
+		vue.gridP.setOnMouseClicked(genererOnMouseClicked());
+		vue.tbCompList.setOnMouseDragEntered(genererOnMouseDrag());
+
+	}
+	
+	private EventHandler<ScrollEvent> genererZoomHandler(){
+		EventHandler<ScrollEvent> retour = new EventHandler<ScrollEvent>() {
 			@Override
 			public void handle(ScrollEvent event) {
 
@@ -67,19 +67,34 @@ public class ControleurBoardPro {
 				}
 
 				event.consume();
-			}});
-
-		
-		vue.tbCompList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			}
+		} ;
+		return retour;
+	}
+	private EventHandler<MouseEvent> genererExitButton(){
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				// vue.boardToolb.setVisible(false);
+				// vue.tbCompList.setExpanded(true);
+				// vue.tbCompList.depthProperty().set(1);
+				System.exit(1);
+			}
+		} ;
+		return retour;
+	}
+	private EventHandler<MouseEvent> genererListClicked(){
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				int p = event.getTarget().toString().indexOf("'");
 				composante = event.getTarget().toString().substring(p);
-			}});
-		
-		// -------------------------SELECT & PUT------------------------
-		
-		vue.gridP.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			}
+		};
+		return retour;
+	}
+	private EventHandler<MouseEvent> genererOnMouseClicked() {
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				int positionX = (int) (Math.floor(event.getX() / 75));
@@ -90,6 +105,7 @@ public class ControleurBoardPro {
 					ImageView viewR = new ImageView(r);
 					viewR.setFitWidth(75);
 					viewR.setFitHeight(75);
+					viewR.setOnMouseClicked(genererDeleteComp());
 					vue.gridP.add(viewR, positionX, positionY);
 
 				} else if (composante.equals("'Condensateur'")) {
@@ -128,22 +144,36 @@ public class ControleurBoardPro {
 					vue.gridP.add(viewR, positionX, positionY);
 				}
 			}
+		};
+		return retour;
+	}
 
-		});
+	private EventHandler<MouseEvent> genererOnMouseDrag() {
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 
-		// -------------------------DRAG & DROP------------------------
-
-		vue.tbCompList.setOnMouseDragEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				if (vue.tbCompList.getSelectionModel().getSelectedItem() == "resistance") {
 					System.out.println("allo");
 				}
+
 			}
-		});
 
-		// -------------------------SELECT & PUT------------------------
+		};
+		return retour;
+	}
+	
+	private EventHandler<MouseEvent> genererDeleteComp(){
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 
+			@Override
+			public void handle(MouseEvent event) {
+				System.out.println(event.getSource());
+
+			}
+
+		};
+		return retour;
 	}
 
 }

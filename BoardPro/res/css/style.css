@@ -1,6 +1,6 @@
 #exitBtn{
     -fx-background-image: url("/img/xicon2.png");
-    -fx-background-size: 35px 35px;
+    -fx-background-size: 35.0px 35.0px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-color: TRANSPARENT;
@@ -8,7 +8,7 @@
 
 #tbPlay{
     -fx-background-image: url("/img/playicon2.0.png");
-    -fx-background-size: 65px 65px;
+    -fx-background-size: 65.0px 65.0px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-color: TRANSPARENT;
@@ -16,7 +16,7 @@
 
 #tbOuvrir{
     -fx-background-image: url("/img/foldericon2.png");
-    -fx-background-size: 65px 65px;
+    -fx-background-size: 65.0px 65.0px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-color: TRANSPARENT;
@@ -24,7 +24,7 @@
 
 #tbEnregistrer{
     -fx-background-image: url("/img/saveicon2.png");
-    -fx-background-size: 135px 135px;
+    -fx-background-size: 135.0px 135.0px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-color: TRANSPARENT;
@@ -44,13 +44,13 @@
   -fx-prompt-text-fill: #00a1ff;
 
   -text-disabled: -text-disabled-dark;
-  -background-disabled:rgba(255,255,255,.12);
+  -background-disabled:rgba(255.0,255.0,255.0,0.12);
   -background-fill: -text-dark;
   
-  -fx-tab-min-width:90px;
-  -fx-tab-max-width:90px;
-  -fx-tab-min-height:40px;
-  -fx-tab-max-height:40px;
+  -fx-tab-min-width:90.0px;
+  -fx-tab-max-width:90.0px;
+  -fx-tab-min-height:40.0px;
+  -fx-tab-max-height:40.0px;
 }
 .jfx-tab-pane .tab-selected-line{
   -fx-background-color: #00a1ff;
@@ -67,7 +67,7 @@
   -fx-background-color: #333333;
   -fx-text-fill: #00a1ff;
   -fx-text-color: #00a1ff;
-  -fx-font-size: 12px;
+  -fx-font-size: 12.0px;
   -fx-font-weight: normal;
 }
 
@@ -77,14 +77,14 @@
 
 .jfx-list-view {
 	-fx-background-color: #00a1ff;
-	-fx-background-insets: 0;
+	-fx-background-insets: 0.0;
 	-fx-cell-vertical-margin: 20.0;
-	-fx-vertical-gap: 10;
-	-fx-cell-vertical-gap: 10;
+	-fx-vertical-gap: 10.0;
+	-fx-cell-vertical-gap: 10.0;
 }
 
 .jfx-list-cell {
-	-fx-background-insets: 0;
+	-fx-background-insets: 0.0;
 }
 
 .jfx-list-cell:odd {
@@ -100,7 +100,7 @@
 }
 
 .jfx-list-cell:filled:selected:focused, .jfx-list-cell:filled:selected {
-    -fx-background-color: linear-gradient(#282828 0%, #3a3a3a 25%, #636363 75%, #565656 100%);
+    -fx-background-color: linear-gradient(#282828 0.0%, #3a3a3a 25.0%, #636363 75.0%, #565656 100.0%);
     -fx-text-fill: white;
 }
 
@@ -108,10 +108,8 @@
     -fx-cell-hover-color: #002a4c;
     -fx-text-fill: white;
 }
-/* 
-.tabBoard{
-  -fx-background: #333333;
-  -fx-text-fill: -text-blue;
+.scroll-pane{
+	-fx-border-color : #00a1ff;
 }
 .tab{
   -fx-background: #333333;
