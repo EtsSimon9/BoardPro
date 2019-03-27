@@ -1,6 +1,9 @@
 package utilitaire;
 
 import exceptions.MathException;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import vue.ControleurVue;
 
 /**
  * Classe remplit de calcul utile en �lectricit�, toutes les formules et quelque
@@ -382,5 +385,27 @@ public class Calcul {
 		impedanceBobine = freqangulaire * inductance;
 		return impedanceBobine;
 
+	}
+	
+	/**
+	 * Puisque la méthode get des gridPanes n'existe pas et on doit aller dans la liste des childrens,
+	 * cette méthode s'occupe de nous dire à quel position une composante est dans la children list en fonction
+	 * de sa position
+	 * @param x
+	 * @param y
+	 * @return Retourne la position ou -1 si pas trouver
+	 */
+	public static int positionDansGrille(int x,int y,ControleurVue vue) {
+		int position = -1;
+		
+		for (int i = 0; i < vue.gridP.getChildren().size();i++) {
+			int px = (int) (Math.floor((vue.gridP.getChildren().get(i).getLayoutX() + 50) / 75));
+			int py = (int) (Math.floor((vue.gridP.getChildren().get(i).getLayoutY() + 20 )/ 75));
+			if (px == x && py == y) {
+				position = i;
+			}
+		}
+		
+		return position;
 	}
 }

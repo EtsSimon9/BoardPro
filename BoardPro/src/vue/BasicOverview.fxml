@@ -36,7 +36,7 @@
                                     <JFXButton fx:id="tbEnregistrer" buttonType="RAISED" prefHeight="70.0" prefWidth="70.0" ripplerFill="WHITE" translateX="10.0" />
                                     <JFXButton fx:id="tbOuvrir" buttonType="RAISED" prefHeight="70.0" prefWidth="70.0" ripplerFill="WHITE" translateX="10.0" />
                                     <JFXButton fx:id="tbPlay" buttonType="RAISED" prefHeight="70.0" prefWidth="70.0" ripplerFill="WHITE" translateX="10.0" />
-                                    <JFXListView fx:id="tbCompList" fixedCellSize="35.0" maxWidth="86.0" prefHeight="311.0" prefWidth="86.0" translateX="2.0">
+                                    <JFXListView fx:id="tbCompList" fixedCellSize="35.0" maxWidth="90.0" prefHeight="311.0" prefWidth="90.0" translateX="2.0">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>

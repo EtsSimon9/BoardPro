@@ -113,11 +113,12 @@ public class ControleurVue {
 
 	public void initialize() {
 		// ObservableList<String> composantes = FXCollections.observableArrayList("fil", "resistance", "source");
-		 tbCompList.getItems().add("fil");
-		 tbCompList.getItems().add("resistance");
-		 tbCompList.getItems().add("source");
+		 tbCompList.getItems().add("Fil");
+		 tbCompList.getItems().add("Résistance");
+		 tbCompList.getItems().add("Source");
 		 tbCompList.getItems().add("Condensateur");
 		 tbCompList.getItems().add("Bobine");
+		 tbCompList.getItems().add("Ampoule");
 		// tbCompList.setExpanded(true);
 	}
 	
