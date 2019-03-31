@@ -21,14 +21,14 @@ import composante.CE2Entrees;
  *
  */
 public class MapParcourable extends Map {
-	private ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermes;
+	private ArrayList<ArrayList<ComposantMap>> maillesCircuitsFermes;
 
 	public ArrayList<ArrayList<ComposantMap>> getMaillsesCircuitsFermes() {
-		return maillsesCircuitsFermes;
+		return maillesCircuitsFermes;
 	}
 
 	public void setMaillsesCircuitsFermes(ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermes) {
-		this.maillsesCircuitsFermes = maillsesCircuitsFermes;
+		this.maillesCircuitsFermes = maillsesCircuitsFermes;
 	}
 
 	public MapParcourable() {
@@ -38,12 +38,22 @@ public class MapParcourable extends Map {
 	public void genrerNoeuds() {
 
 	}
+	
+	/**
+	 * --------------------Simon: À vérifier si sa marche hanny ...----------------
+	 * @param compo
+	 */
+	public void removeComposante(ComposantMap compo) {
+		for (int i = 0;i < this.getComposantsActuels().size();i++) {
+			this.getComposantsActuels().remove(compo);
+		}
+	}
 
 	/**
 	 * permet de g�n�rer les mailles dans maillesCircuitsFermes
 	 */
 	public void genererMailles() {
-		maillsesCircuitsFermes = new ArrayList<ArrayList<ComposantMap>>();
+		maillesCircuitsFermes = new ArrayList<ArrayList<ComposantMap>>();
 		ComposantMap[] composantEnContatc = new ComposantMap[4];
 		DefaultDirectedGraph<ComposantMap, DefaultEdge> graphCirucit = new DefaultDirectedGraph<>(DefaultEdge.class);
 		for (ComposantMap composante : this.composantsActuels) {
@@ -78,9 +88,9 @@ public class MapParcourable extends Map {
 				ComposantMap composante = itComposantesMaille.next();
 				arrayListComposanteDsMaille.add(composante);
 			}
-			maillsesCircuitsFermes.add(arrayListComposanteDsMaille);
+			maillesCircuitsFermes.add(arrayListComposanteDsMaille);
 		}
-		for(ArrayList<ComposantMap> array : maillsesCircuitsFermes) {
+		for(ArrayList<ComposantMap> array : maillesCircuitsFermes) {
 			if(array.size() > 2) {
 				maillsesCircuitsFermesFinal.add(array);
 			}
@@ -88,7 +98,7 @@ public class MapParcourable extends Map {
 //				System.out.println(maillsesCircuitsFermes.size());
 //			}
 		}
-		this.maillsesCircuitsFermes = maillsesCircuitsFermesFinal;
+		this.maillesCircuitsFermes = maillsesCircuitsFermesFinal;
 
 	}
 

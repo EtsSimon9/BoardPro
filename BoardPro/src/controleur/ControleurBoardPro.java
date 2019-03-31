@@ -118,7 +118,8 @@ public class ControleurBoardPro {
 			public void handle(MouseEvent event) {
 				int positionX = (int) (Math.floor(event.getX() / 75));
 				int positionY = (int) (Math.floor(event.getY() / 75));
-
+				
+				
 				if (composante.equals("'Fil'")) {
 					genererFil(positionX, positionY);
 				} else if (composante.equals("'Résistance'")) {
@@ -131,7 +132,8 @@ public class ControleurBoardPro {
 					genererAutre(positionX, positionY, Composante.Source);
 				} else if (composante.equals("'Ampoule'")) {
 					genererAutre(positionX, positionY, Composante.Ampoule);
-				}
+				} 
+				
 			}
 		};
 		return retour;
@@ -199,16 +201,24 @@ public class ControleurBoardPro {
 	private void ajoutComposante(Images image, ImageView aEnlever) {
 		// Remove si à la meme position
 		for (int i = 0; i < listeImage.size(); i++) {
-			if (aEnlever != null
-					&& (listeImage.get(i) == image || (listeImage.get(i).getPositionX() == image.getPositionX()
-							&& listeImage.get(i).getPositionY() == image.getPositionY()))) {
+			if (listeImage.get(i) == image || (listeImage.get(i).getPositionX() == image.getPositionX()
+					&& listeImage.get(i).getPositionY() == image.getPositionY())) {
+				// Remove de la map
+				for (int j = 0; j < map.getComposantsActuels().size(); j++) {
+					if (map.getComposantsActuels().get(j).getImage().getView().equals(aEnlever) || map
+							.getComposantsActuels().get(j).getImage().getView().equals(listeImage.get(i).getView())) {
+						map.removeComposante(map.getComposantsActuels().get(j));
+					}
+				}
+				
+				// Remove de la grille et de la liste d'image
+				
 				// Premier pour clique par dessus
 				vue.gridP.getChildren().remove(listeImage.get(i).getView());
 				// Lui pour les changements d'image
 				vue.gridP.getChildren().remove(aEnlever);
 				listeImage.remove(i);
 				
-				//ON DOIT REMOVE LES ComposantMap AUSSI
 			}
 		}
 		listeImage.add(image);
