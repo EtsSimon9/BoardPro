@@ -1,8 +1,10 @@
 package composantesCircuit;
 
 import utilitaire.Calcul;
+import utilitaire.Images;
 import utilitaire.Materiaux;
 import composante.CE2Entrees;
+import composante.ComposanteElectrique;
 import exceptions.ComposantException;
 import exceptions.MathException;
 
@@ -50,8 +52,8 @@ public class Resistance extends CE2Entrees {
 	 * 
 	 * @throws ComposantException
 	 */
-	public Resistance(short x, short y) throws ComposantException {
-		super(x, y);
+	public Resistance(short x, short y,Images i) throws ComposantException {
+		super(x, y, i);
 
 	}
 
@@ -60,8 +62,8 @@ public class Resistance extends CE2Entrees {
 	 * indique la longueur, le rayon et le mat�riaux de la r�sistance pour qu'on
 	 * trouve nous m�me la valeur de la r�sistance.
 	 */
-	public Resistance(short x, short y, float longueur, float rayon, Materiaux mat, float t) {
-		super(x, y);
+	public Resistance(short x, short y, float longueur, float rayon, Materiaux mat, float t, Images i) {
+		super(x, y, i);
 		if (this.validerParam(longueur, rayon, mat, t)) {
 			this.setLongueur(longueur);
 			this.setRayon(rayon);

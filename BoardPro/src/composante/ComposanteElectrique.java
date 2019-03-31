@@ -1,6 +1,7 @@
 package composante;
 
 import map.ComposantMap;
+import utilitaire.Images;
 
 public abstract class ComposanteElectrique extends ComposantMap {
 	/**
@@ -19,6 +20,10 @@ public abstract class ComposanteElectrique extends ComposantMap {
 	static final float IMPEDENCE_DEFAUT = 20;
 	static final float DDP_DEFAUT = 0;
 	static final float COURANT_DEFAUT = 0;
+	/**
+	 * Image dans la grille
+	 */
+	private Images image;
 
 	/**
 	 * Constructeur par d�faut. Lors de l'ajout d'une composante elle sera cr�e d�s
@@ -26,18 +31,32 @@ public abstract class ComposanteElectrique extends ComposantMap {
 	 * pas vraiment choisir la DDP et le courant puisqu'ils d�pendent de la totalit�
 	 * du circuit.
 	 */
-	public ComposanteElectrique(short x, short y) {
+	public ComposanteElectrique(short x, short y, Images image) {
 		super(x, y);
 		this.setImpedence(IMPEDENCE_DEFAUT);
 		this.setDdp(DDP_DEFAUT);
 		this.setCourant(COURANT_DEFAUT);
+		if (image != null) {
+			this.setImage(image);
+		}
 	}
 
-	public ComposanteElectrique(float impedance, short x, short y) {
+	public ComposanteElectrique(float impedance, short x, short y, Images image) {
 		super(x, y);
 		this.setImpedence(impedance);
 		this.setDdp(DDP_DEFAUT);
 		this.setCourant(COURANT_DEFAUT);
+		if (image != null) {
+			this.setImage(image);
+		}
+	}
+
+	public Images getImage() {
+		return image;
+	}
+
+	public void setImage(Images image) {
+		this.image = image;
 	}
 
 	public float getImpedence() {
@@ -65,10 +84,3 @@ public abstract class ComposanteElectrique extends ComposantMap {
 	}
 
 }
-
-
-
-
-
-
-

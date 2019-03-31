@@ -1,7 +1,9 @@
 package composantesCircuit;
 
+import composante.CE2Entrees;
 import composante.ComposanteElectrique;
 import exceptions.ComposantException;
+import utilitaire.Images;
 
 /**
  * Classe des fils
@@ -9,7 +11,7 @@ import exceptions.ComposantException;
  *
  */
 
-  public class Fil extends ComposanteElectrique {
+  public class Fil extends CE2Entrees {
 	/**
 	 * TRUE si l'on n�glige la r�sistance des fils
 	 */
@@ -29,8 +31,8 @@ import exceptions.ComposantException;
 	 */
 	private static final float RESISTANCE_DEFAUT = 2f;
 
-	public Fil(short x, short y) throws ComposantException {
-		super(RESISTANCE_DEFAUT,x,y);
+	public Fil(short x, short y, Images image) throws ComposantException {
+		super(RESISTANCE_DEFAUT,x,y,image);
 		this.setResistance(this.getImpedence());
 	}
 

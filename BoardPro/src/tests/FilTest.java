@@ -13,9 +13,9 @@ public class FilTest {
 	@Before
 	public void creerFil() {
 		try {
-			f1 = new Fil((short) 10,(short) 10);
+			f1 = new Fil((short) 10,(short) 10,null);
 		} catch (ComposantException e) {
-			//Pas sensé se rendre ici avec val défaut
+			//Pas sensï¿½ se rendre ici avec val dï¿½faut
 			fail();
 		}
 	}

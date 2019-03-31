@@ -1,15 +1,22 @@
 package controleur;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
+import composante.ComposanteElectrique;
+import composantesCircuit.Bobine;
+import composantesCircuit.Condensateur;
+import composantesCircuit.Fil;
+import composantesCircuit.Resistance;
+import composantesCircuit.SourceCourant;
+import exceptions.ComposantException;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.transform.Scale;
-import utilitaire.Calcul;
+import map.ComposantMap;
+import map.MapParcourable;
 import utilitaire.Images;
 import utilitaire.Images.Composante;
 import vue.ControleurVue;
@@ -18,8 +25,10 @@ public class ControleurBoardPro {
 
 	private ControleurVue vue;
 	double OgScale = 1;
-	private String composante = "fil";
+	private String composante = "Fil";
 	private ArrayList<Images> listeImage = new ArrayList<Images>();
+	public int numero = 1;
+	MapParcourable map = new MapParcourable();
 
 	public ControleurBoardPro() {
 		vue = new ControleurVue(this);
@@ -111,27 +120,17 @@ public class ControleurBoardPro {
 				int positionY = (int) (Math.floor(event.getY() / 75));
 
 				if (composante.equals("'Fil'")) {
-					genererFil(event);
+					genererFil(positionX, positionY);
 				} else if (composante.equals("'Résistance'")) {
-					Images image = new Images(Composante.Résistance, positionX, positionY);
-					vue.gridP.add(image.getView(), image.getPositionX(), image.getPositionY());
-					listeImage.add(image);
+					genererAutre(positionX, positionY, Composante.Résistance);
 				} else if (composante.equals("'Condensateur'")) {
-					Images image = new Images(Composante.Condensateur, positionX, positionY);
-					vue.gridP.add(image.getView(), image.getPositionX(), image.getPositionY());
-					listeImage.add(image);
+					genererAutre(positionX, positionY, Composante.Condensateur);
 				} else if (composante.equals("'Bobine'")) {
-					Images image = new Images(Composante.Bobine, positionX, positionY);
-					vue.gridP.add(image.getView(), image.getPositionX(), image.getPositionY());
-					listeImage.add(image);
+					genererAutre(positionX, positionY, Composante.Bobine);
 				} else if (composante.equals("'Source'")) {
-					Images image = new Images(Composante.Source, positionX, positionY);
-					vue.gridP.add(image.getView(), image.getPositionX(), image.getPositionY());
-					listeImage.add(image);
+					genererAutre(positionX, positionY, Composante.Source);
 				} else if (composante.equals("'Ampoule'")) {
-					Images image = new Images(Composante.Ampoule, positionX, positionY);
-					vue.gridP.add(image.getView(), image.getPositionX(), image.getPositionY());
-					listeImage.add(image);
+					genererAutre(positionX, positionY, Composante.Ampoule);
 				}
 			}
 		};
@@ -144,7 +143,6 @@ public class ControleurBoardPro {
 			@Override
 			public void handle(MouseEvent event) {
 				if (vue.tbCompList.getSelectionModel().getSelectedItem() == "resistance") {
-					System.out.println("allo");
 				}
 
 			}
@@ -153,121 +151,94 @@ public class ControleurBoardPro {
 		return retour;
 	}
 
-	private EventHandler<MouseEvent> genererDeleteComp() {
-		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				System.out.println(event.getSource());
-
-			}
-
-		};
-		return retour;
+	private void genererAutre(int x, int y, Composante nom) {
+		Images i = new Images(nom, x, y);
+		i.composanteProche(listeImage);
+		i.choisirImage(i);
+		ajoutComposante(i, null);
 	}
 
-	private void genererFil(MouseEvent event) {
-		int positionX = (int) (Math.floor(event.getX() / 75));
-		int positionY = (int) (Math.floor(event.getY() / 75));
-		ArrayList<Integer> dghb = new ArrayList<Integer>();
-		dghb.add(0);
-		dghb.add(0);
-		dghb.add(0);
-		dghb.add(0);
-		for (int i = 0; i < listeImage.size(); i++) {
-			if (listeImage.get(i).getPositionX() == positionX - 1 && listeImage.get(i).getPositionY() == positionY) {
-				dghb.set(0, 1);
-				ArrayList<Integer> a = listeImage.get(i).getDghb();
-				a.set(1, 1);
-				listeImage.get(i).setDghb(a);
+	private void genererFil(int x, int y) {
+		Images image = new Images(Composante.FilH, x, y);
+
+		/*
+		 * Cette ligne fait deux chose, trouve les composantes proches de l'image (1) et
+		 * puisque ces images proches doivent peut-être changer, garde la liste des
+		 * images a changer
+		 */
+		HashSet<Integer> aChanger = image.composanteProche(listeImage);
+		changerImage(aChanger);
+
+		Composante nom = image.choisirImage(image);
+		image.setNom(nom);
+		image.creerImage(image.getNom());
+		image.creerView();
+		ajoutComposante(image, null);
+
+	}
+
+	private void changerImage(HashSet<Integer> lesIndexs) {
+		Images image;
+		for (Integer i : lesIndexs) {
+			image = listeImage.get(i);
+			Composante avant = image.getNom();
+			int rotAvant = image.getRotation();
+
+			Composante apres = image.choisirImage(image);
+			int rotApres = image.getRotation();
+			if (!avant.equals(apres) || rotAvant != rotApres) {
+				ImageView aEnlever = image.getView();
+				image.setNom(apres);
+				image.creerImage(apres);
+				image.creerView();
+				ajoutComposante(image, aEnlever);
 			}
 		}
+	}
 
+	private void ajoutComposante(Images image, ImageView aEnlever) {
+		// Remove si à la meme position
 		for (int i = 0; i < listeImage.size(); i++) {
-			if (listeImage.get(i).getPositionX() == positionX + 1 && listeImage.get(i).getPositionY() == positionY) {
-				dghb.set(1, 1);
-				ArrayList<Integer> a = listeImage.get(i).getDghb();
-				a.set(1, 1);
-				listeImage.get(i).setDghb(a);
+			if (aEnlever != null
+					&& (listeImage.get(i) == image || (listeImage.get(i).getPositionX() == image.getPositionX()
+							&& listeImage.get(i).getPositionY() == image.getPositionY()))) {
+				// Premier pour clique par dessus
+				vue.gridP.getChildren().remove(listeImage.get(i).getView());
+				// Lui pour les changements d'image
+				vue.gridP.getChildren().remove(aEnlever);
+				listeImage.remove(i);
+				
+				//ON DOIT REMOVE LES ComposantMap AUSSI
 			}
 		}
-
-		for (int i = 0; i < listeImage.size(); i++) {
-			if (listeImage.get(i).getPositionX() == positionX && listeImage.get(i).getPositionY() == positionY + 1) {
-				dghb.set(2, 1);
-				ArrayList<Integer> a = listeImage.get(i).getDghb();
-				a.set(1, 1);
-				listeImage.get(i).setDghb(a);
-			}
-		}
-
-		for (int i = 0; i < listeImage.size(); i++) {
-			if (listeImage.get(i).getPositionX() == positionX && listeImage.get(i).getPositionY() == positionY - 1) {
-				dghb.set(3, 1);
-				ArrayList<Integer> a = listeImage.get(i).getDghb();
-				a.set(1, 1);
-				listeImage.get(i).setDghb(a);
-			}
-
-		}
-		Images image = null;
-		if (dghb.get(0) == 1 && dghb.get(1) == 1 && dghb.get(2) == 0 && dghb.get(3) == 0) {
-			image = new Images(Composante.FilH, positionX, positionY);
-			image.setDghb(dghb);
-
-		} else if (dghb.get(0) == 0 && dghb.get(1) == 0 && dghb.get(2) == 1 && dghb.get(3) == 1) {
-			image = new Images(Composante.FilV, positionX, positionY);
-			image.setDghb(dghb);
-
-		} else if (dghb.get(1) == 0 && dghb.get(1) == 0 && dghb.get(2) == 1 && dghb.get(3) == 1) {
-			image = new Images(Composante.FilAll, positionX, positionY);
-			image.setDghb(dghb);
-
-		} else if (dghb.get(0) == 1 && dghb.get(1) == 1 && dghb.get(2) == 1 && dghb.get(3) == 0) {
-			image = new Images(Composante.FilGHD, positionX, positionY);
-			image.setDghb(dghb);
-
-		} else if (dghb.get(0) == 1 && dghb.get(1) == 1 && dghb.get(2) == 0 && dghb.get(3) == 1) {
-			image = new Images(Composante.FilGBD, positionX, positionY);
-			image.setDghb(dghb);
-
-		} else if (dghb.get(0) == 1 && dghb.get(1) == 0 && dghb.get(2) == 1 && dghb.get(3) == 1) {
-			image = new Images(Composante.FilBDH, positionX, positionY);
-			image.setDghb(dghb);
-
-		} else if (dghb.get(0) == 0 && dghb.get(1) == 1 && dghb.get(2) == 1 && dghb.get(3) == 1) {
-			image = new Images(Composante.FilBGH, positionX, positionY);
-			image.setDghb(dghb);
-
-		} else if (dghb.get(0) == 1 && dghb.get(1) == 0 && dghb.get(2) == 0 && dghb.get(3) == 1) {
-			image = new Images(Composante.FilBD, positionX, positionY);
-			image.setDghb(dghb);
-
-		} else if (dghb.get(0) == 0 && dghb.get(1) == 1 && dghb.get(2) == 0 && dghb.get(3) == 1) {
-			image = new Images(Composante.FilBG, positionX, positionY);
-			image.setDghb(dghb);
-
-		} else if (dghb.get(0) == 0 && dghb.get(1) == 1 && dghb.get(2) == 1 && dghb.get(3) == 0) {
-			image = new Images(Composante.FilHG, positionX, positionY);
-			image.setDghb(dghb);
-
-		} else if (dghb.get(0) == 1 && dghb.get(1) == 0 && dghb.get(2) == 1 && dghb.get(3) == 0) {
-			image = new Images(Composante.FilHD, positionX, positionY);
-			image.setDghb(dghb);
-
-		} else if (dghb.get(0) == 0 && dghb.get(1) == 0 && dghb.get(2) == 1 && dghb.get(3) == 0) {
-			image = new Images(Composante.FilV, positionX, positionY);
-			image.setDghb(dghb);
-		} else if (dghb.get(0) == 0 && dghb.get(1) == 0 && dghb.get(2) == 0 && dghb.get(3) == 1) {
-			image = new Images(Composante.FilV, positionX, positionY);
-			image.setDghb(dghb);
-		} else {
-			image = new Images(Composante.FilH, positionX, positionY);
-			image.setDghb(dghb);
-		}
-
-		vue.gridP.add(image.getView(), image.getPositionX(), image.getPositionY());
 		listeImage.add(image);
+		ImageView v = image.getView();
+		v.setRotate(image.getRotation());
+		vue.gridP.add(v, image.getPositionX(), image.getPositionY());
+		numero++;
 
+		// -----------------------Ajout dans composante Map--------------------
+		try {
+			ComposantMap compo = null;
+			if (image.getNom().equals(Composante.Ampoule)) {
+				// Ampoule n'existe pas encore..
+			} else if (image.getNom().equals(Composante.Bobine)) {
+				compo = new Bobine((short) image.getPositionX(), (short) image.getPositionY(), image);
+			} else if (image.getNom().equals(Composante.Condensateur)) {
+				compo = new Condensateur((short) image.getPositionX(), (short) image.getPositionY(), image);
+			} else if (image.getNom().equals(Composante.Résistance)) {
+				compo = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
+			} else if (image.getNom().equals(Composante.Source)) {
+				compo = new SourceCourant((short) image.getPositionX(), (short) image.getPositionY(), image);
+			} else {
+				compo = new Fil((short) image.getPositionX(), (short) image.getPositionY(), image);
+			}
+			if (compo != null) {
+				map.addComposant(compo);
+			}
+		} catch (ComposantException e) {
+			e.printStackTrace();
+		}
 	}
+
 }

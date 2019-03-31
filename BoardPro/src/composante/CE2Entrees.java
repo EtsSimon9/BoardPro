@@ -1,5 +1,7 @@
 package composante;
 
+import utilitaire.Images;
+
 public abstract class CE2Entrees extends ComposanteElectrique {
 	/**
 	 *  sens de la composante, true vertivale,  et false horizontale
@@ -8,9 +10,13 @@ public abstract class CE2Entrees extends ComposanteElectrique {
 
 	boolean sens;
 
-	public CE2Entrees(short coordonnex, short coordonney) {
-		super(coordonnex, coordonney);
-
+	public CE2Entrees(short coordonnex, short coordonney,Images i) {
+		super(coordonnex, coordonney, i);
+		this.setSens(SENS_DEFAUT);
+	}
+	
+	public CE2Entrees(float r,short coordonnex, short coordonney,Images i) {
+		super(r,coordonnex, coordonney, i);
 		this.setSens(SENS_DEFAUT);
 	}
 
