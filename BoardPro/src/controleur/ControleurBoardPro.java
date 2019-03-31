@@ -12,6 +12,7 @@ import composantesCircuit.SourceCourant;
 import exceptions.ComposantException;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.transform.Scale;
@@ -48,7 +49,7 @@ public class ControleurBoardPro {
 
 		vue.tbCompList.setOnMouseClicked(genererListClicked());
 		vue.gridP.setOnMouseClicked(genererOnMouseClicked());
-		vue.tbCompList.setOnMouseDragEntered(genererOnMouseDrag());
+		vue.gridP.setOnDragDropped(genererOnMouseDrag());
 
 	}
 
@@ -137,14 +138,12 @@ public class ControleurBoardPro {
 		return retour;
 	}
 
-	private EventHandler<MouseEvent> genererOnMouseDrag() {
-		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
+	private EventHandler<DragEvent> genererOnMouseDrag() {
+		EventHandler<DragEvent> retour = new EventHandler<DragEvent>() {
 
 			@Override
-			public void handle(MouseEvent event) {
-				if (vue.tbCompList.getSelectionModel().getSelectedItem() == "resistance") {
-				}
-
+			public void handle(DragEvent event) {
+				System.out.println("allo");
 			}
 
 		};
