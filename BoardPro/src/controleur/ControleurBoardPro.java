@@ -12,9 +12,12 @@ import composantesCircuit.SourceCourant;
 import exceptions.ComposantException;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.transform.Scale;
 import map.ComposantMap;
 import map.MapParcourable;
@@ -49,8 +52,76 @@ public class ControleurBoardPro {
 
 		vue.tbCompList.setOnMouseClicked(genererListClicked());
 		vue.gridP.setOnMouseClicked(genererOnMouseClicked());
-		vue.gridP.setOnDragDropped(genererOnMouseDrag());
+		vue.tbCompList.setOnDragDetected(dragDetected());
+		vue.gridP.setOnDragDropped(dragDropped());
+		vue.gridP.setOnDragOver(dragOver());
+		vue.gridP.setOnDragDropped(dragDropped());
+	}
 
+	private EventHandler<DragEvent> dragOver() {
+		EventHandler<DragEvent> retour = new EventHandler<DragEvent>() {
+
+			@Override
+			public void handle(DragEvent event) {
+				Dragboard db = event.getDragboard();
+				if (db.hasString()) {
+					event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+				}
+				event.consume();
+			}
+
+		};
+		return retour;
+	}
+
+	private EventHandler<MouseEvent> dragDetected() {
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				int p = event.getTarget().toString().indexOf("'");
+				composante = event.getTarget().toString().substring(p);
+				Dragboard db = vue.tbCompList.startDragAndDrop(TransferMode.ANY);
+				ClipboardContent content = new ClipboardContent();
+				content.putString("THIS HAS BEEN DROPPED");
+				db.setContent(content);
+				event.consume();
+			}
+
+		};
+		return retour;
+	}
+
+	private EventHandler<DragEvent> dragDropped() {
+		EventHandler<DragEvent> retour = new EventHandler<DragEvent>() {
+
+			@Override
+			public void handle(DragEvent event) {
+				Dragboard db = event.getDragboard();
+				if (db.hasString()) {
+					event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+				}
+				event.consume();
+				int positionX = (int) (Math.floor(event.getX() / 75));
+				int positionY = (int) (Math.floor(event.getY() / 75));
+
+				if (composante.equals("'Fil'")) {
+					genererFil(positionX, positionY);
+				} else if (composante.equals("'Résistance'")) {
+					genererAutre(positionX, positionY, Composante.Résistance);
+				} else if (composante.equals("'Condensateur'")) {
+					genererAutre(positionX, positionY, Composante.Condensateur);
+				} else if (composante.equals("'Bobine'")) {
+					genererAutre(positionX, positionY, Composante.Bobine);
+				} else if (composante.equals("'Source'")) {
+					genererAutre(positionX, positionY, Composante.Source);
+				} else if (composante.equals("'Ampoule'")) {
+					genererAutre(positionX, positionY, Composante.Ampoule);
+				}
+			}
+
+		};
+		return retour;
 	}
 
 	private EventHandler<ScrollEvent> genererZoomHandler() {
@@ -119,8 +190,7 @@ public class ControleurBoardPro {
 			public void handle(MouseEvent event) {
 				int positionX = (int) (Math.floor(event.getX() / 75));
 				int positionY = (int) (Math.floor(event.getY() / 75));
-				
-				
+
 				if (composante.equals("'Fil'")) {
 					genererFil(positionX, positionY);
 				} else if (composante.equals("'Résistance'")) {
@@ -133,21 +203,9 @@ public class ControleurBoardPro {
 					genererAutre(positionX, positionY, Composante.Source);
 				} else if (composante.equals("'Ampoule'")) {
 					genererAutre(positionX, positionY, Composante.Ampoule);
-				} 
-				
+				}
+
 			}
-		};
-		return retour;
-	}
-
-	private EventHandler<DragEvent> genererOnMouseDrag() {
-		EventHandler<DragEvent> retour = new EventHandler<DragEvent>() {
-
-			@Override
-			public void handle(DragEvent event) {
-				System.out.println("allo");
-			}
-
 		};
 		return retour;
 	}
@@ -209,15 +267,15 @@ public class ControleurBoardPro {
 						map.removeComposante(map.getComposantsActuels().get(j));
 					}
 				}
-				
+
 				// Remove de la grille et de la liste d'image
-				
+
 				// Premier pour clique par dessus
 				vue.gridP.getChildren().remove(listeImage.get(i).getView());
 				// Lui pour les changements d'image
 				vue.gridP.getChildren().remove(aEnlever);
 				listeImage.remove(i);
-				
+
 			}
 		}
 		listeImage.add(image);
