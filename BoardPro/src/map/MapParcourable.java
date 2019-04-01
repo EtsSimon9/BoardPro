@@ -43,13 +43,6 @@ public class MapParcourable extends Map {
 
 	}
 	
-	/**
-	 * --------------------Simon: À vérifier si sa marche hanny ...----------------
-	 * @param compo
-	 */
-	public void removeComposante(ComposantMap compo) {
-			composantsActuels.remove(compo);
-	}
 
 	/**
 	 * permet de g�n�rer les mailles dans maillesCircuitsFermes

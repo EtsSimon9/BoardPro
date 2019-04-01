@@ -6,8 +6,8 @@ import map.ComposantMap;
 import exceptions.ComposantException;
 
 /**
- * Cette classe permet de créer une aire de mise en place des composantes
- * éléctroniques(map) et de gérer les comosantes qui y sont présentes via une
+ * Cette classe permet de crï¿½er une aire de mise en place des composantes
+ * ï¿½lï¿½ctroniques(map) et de gï¿½rer les comosantes qui y sont prï¿½sentes via une
  * liste de composantes(composantActuels). C'est une classe abstaite
  * 
  * @author HAAS Team
@@ -17,22 +17,22 @@ public abstract class Map {
 	protected ArrayList<ComposantMap> composantsActuels = new ArrayList<ComposantMap>();
 
 	/**
-	 * Construit une map c'est à dire une zone dans laquelle mettre les composantes
+	 * Construit une map c'est ï¿½ dire une zone dans laquelle mettre les composantes
 	 * lorsqu'on lui donne la taille de celle-ci
 	 * 
 	 * @param borneX borne horizontale de la zone de contruction
 	 * @param borneY borne verticale de la zone de contruction
-	 * @throws ComposanteException si les bornes données sont inférieures à zéro
+	 * @throws ComposanteException si les bornes donnï¿½es sont infï¿½rieures ï¿½ zï¿½ro
 	 */
 	public Map() {
 	}
 
 	/**
-	 * ajoute une composante électrique a la liste de composantes du circuit ci
-	 * celle-ci n'y es pas dèja présente. Attention, si la liste de composantes
-	 * composantsActuels est triée, alors il faut utiliser addCompsantAvecTri
+	 * ajoute une composante ï¿½lectrique a la liste de composantes du circuit ci
+	 * celle-ci n'y es pas dï¿½ja prï¿½sente. Attention, si la liste de composantes
+	 * composantsActuels est triï¿½e, alors il faut utiliser addCompsantAvecTri
 	 * 
-	 * @param comp composante electrique à ajouter
+	 * @param comp composante electrique ï¿½ ajouter
 	 * @throws ComposanteException
 	 */
 	public void addComposant(ComposantMap comp) throws ComposantException {
@@ -42,14 +42,23 @@ public abstract class Map {
 			throw new ComposantException();
 		}
 	}
+	
+	/**
+	 * Enleve une composante de la liste des compsantes dans la map
+	 * @param compo compostante Ã  enlever de la liste de compsatnes
+	 */
+	public void removeComposante(ComposantMap compo) {
+			composantsActuels.remove(compo);
+	}
+	
 
 	/**
 	 *  A faire pour le 3eme sprint
 	 *  
-	 * ajoute une composante électrique a la liste ordonnée de composantes du
-	 * circuit de maniere ordonnée si celle-ci n'y es pas dèja présente
+	 * ajoute une composante ï¿½lectrique a la liste ordonnï¿½e de composantes du
+	 * circuit de maniere ordonnï¿½e si celle-ci n'y es pas dï¿½ja prï¿½sente
 	 * 
-	 * @param comp composante electrique à ajouter
+	 * @param comp composante electrique ï¿½ ajouter
 	 * @throws ComposanteException
 	 */
 	private void addComposantAvecTri(ComposantMap comp) {
@@ -91,7 +100,7 @@ public abstract class Map {
 	/**
 	 *  A faire pour le 3eme sprint
 	 *  
-	 * permute 2 objects qui sont dans la liste de composantes; ceux donnés en paramètre
+	 * permute 2 objects qui sont dans la liste de composantes; ceux donnï¿½s en paramï¿½tre
 	 * 
 	 * @param premier
 	 * @param dernier
@@ -104,9 +113,9 @@ public abstract class Map {
 	}
 
 	/**
-	 * vérifie si une composante est dans la map
+	 * vï¿½rifie si une composante est dans la map
 	 * 
-	 * @param comp composante à chercher dans la map
+	 * @param comp composante ï¿½ chercher dans la map
 	 * @return true si elle y est,sinon false
 	 */
 	public boolean estDansMap(ComposantMap comp) {
@@ -123,14 +132,14 @@ public abstract class Map {
 
 	/**
 	 * 
-	 * @return retourne la liste des composantes présentes dans la map
+	 * @return retourne la liste des composantes prï¿½sentes dans la map
 	 */
 	public ArrayList<ComposantMap> getComposantsActuels() {
 		return composantsActuels;
 	}
 
 	/**
-	 * met en place la liste des compsantes présentes dans la map si celle-ci n'est
+	 * met en place la liste des compsantes prï¿½sentes dans la map si celle-ci n'est
 	 * pas nulle
 	 * 
 	 * @param composantsActuels
