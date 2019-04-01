@@ -11,7 +11,7 @@ import utilitaire.Images;
  *
  */
 
-  public class Fil extends CE2Entrees {
+  public class Fil extends ComposanteElectrique {
 	/**
 	 * TRUE si l'on n�glige la r�sistance des fils
 	 */

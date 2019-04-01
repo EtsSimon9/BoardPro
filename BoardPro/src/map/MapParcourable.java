@@ -1,5 +1,6 @@
 package map;
 
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,6 +10,9 @@ import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 
 import composante.CE2Entrees;
+import composantesCircuit.Fil;
+import composantesCircuit.Resistance;
+import exceptions.ComposantException;
 
 
 /**
@@ -44,9 +48,7 @@ public class MapParcourable extends Map {
 	 * @param compo
 	 */
 	public void removeComposante(ComposantMap compo) {
-		for (int i = 0;i < this.getComposantsActuels().size();i++) {
-			this.getComposantsActuels().remove(compo);
-		}
+			composantsActuels.remove(compo);
 	}
 
 	/**
@@ -201,5 +203,6 @@ public class MapParcourable extends Map {
 	private boolean verifierComposante(ComposantMap composante) {
 		return composante != null;
 	}
+
 
 }
