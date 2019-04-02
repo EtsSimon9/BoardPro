@@ -3,7 +3,6 @@ package controleur;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import composante.ComposanteElectrique;
 import composantesCircuit.Bobine;
 import composantesCircuit.Condensateur;
 import composantesCircuit.Fil;
@@ -178,7 +177,9 @@ public class ControleurBoardPro {
 			@Override
 			public void handle(MouseEvent event) {
 				int p = event.getTarget().toString().indexOf("'");
-				composante = event.getTarget().toString().substring(p);
+				if (!composante.equals("")) {
+					composante = event.getTarget().toString().substring(p);
+				}
 			}
 		};
 		return retour;
@@ -212,8 +213,13 @@ public class ControleurBoardPro {
 
 	private void genererAutre(int x, int y, Composante nom) {
 		Images i = new Images(nom, x, y);
-		i.composanteProche(listeImage);
+		HashSet<Integer> aChanger = i.composanteProche(listeImage);
+		changerImage(aChanger);
 		i.choisirImage(i);
+		Composante n = i.choisirImage(i);
+		i.setNom(n);
+		i.creerImage(i.getNom());
+		i.creerView();
 		ajoutComposante(i, null);
 	}
 

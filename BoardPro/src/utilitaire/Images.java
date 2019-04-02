@@ -2,11 +2,9 @@ package utilitaire;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import utilitaire.Images.Composante;
 
 public class Images {
 	public enum Composante {

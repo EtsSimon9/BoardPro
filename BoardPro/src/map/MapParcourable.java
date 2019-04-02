@@ -10,9 +10,6 @@ import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 
 import composante.CE2Entrees;
-import composantesCircuit.Fil;
-import composantesCircuit.Resistance;
-import exceptions.ComposantException;
 
 
 /**

@@ -1,7 +1,6 @@
 package composantesCircuit;
 
 import composante.CE2Entrees;
-import composante.ComposanteElectrique;
 import utilitaire.Images;
 
 public class Bobine extends CE2Entrees {

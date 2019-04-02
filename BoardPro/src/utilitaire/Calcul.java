@@ -1,8 +1,6 @@
 package utilitaire;
 
 import exceptions.MathException;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import vue.ControleurVue;
 
 /**

@@ -4,7 +4,6 @@ import utilitaire.Calcul;
 import utilitaire.Images;
 import utilitaire.Materiaux;
 import composante.CE2Entrees;
-import composante.ComposanteElectrique;
 import exceptions.ComposantException;
 import exceptions.MathException;
 

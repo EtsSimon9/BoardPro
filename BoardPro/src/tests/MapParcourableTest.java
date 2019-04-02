@@ -237,8 +237,6 @@ public class MapParcourableTest {
 		}
 		map2.genererMailles();
 		maillsesCircuitsFermes = map2.getMaillsesCircuitsFermes();
-		
-		
 		// verifie qu il y a 6 mailles produites
 		assertTrue(maillsesCircuitsFermes.size() == 6);
 		byte nombreMaillesDeHuit = 4;
@@ -316,7 +314,6 @@ public class MapParcourableTest {
 		}
 		map4.genererMailles();
 		maillsesCircuitsFermes = map4.getMaillsesCircuitsFermes();
-		System.out.println(maillsesCircuitsFermes.size());
 		assertTrue(maillsesCircuitsFermes.size()==12);
 		
 		 nombreMaillesDeHuit = 6;
