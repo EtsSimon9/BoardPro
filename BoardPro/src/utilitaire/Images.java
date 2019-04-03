@@ -41,10 +41,6 @@ public class Images {
 		creerView();
 	}
 
-	
-	
-
-
 	public int getRotation() {
 		return rotation;
 	}
@@ -95,37 +91,47 @@ public class Images {
 
 	public void creerImage(Composante nom) {
 		Image i = null;
+		
 		if (nom.equals(Composante.Résistance)) {
 			i = new Image("/img/Composante_resistance.png");
 		} else if (nom.equals(Composante.Condensateur)) {
 			i = new Image("/img/condensateur.png");
 		} else if (nom.equals(Composante.Bobine)) {
 			i = new Image("/img/bobine.png");
+		} else if (nom.equals(Composante.FilAll)) {
+			i = new Image("/img/4way.png");
 		} else if (nom.equals(Composante.FilH)) {
 			i = new Image("/img/Composante_fil.png");
+			this.setRotation(0);
 		} else if (nom.equals(Composante.FilV)) {
 			i = new Image("/img/Composante_fil.png");
 			this.setRotation(90);
 		} else if (nom.equals(Composante.FilBD)) {
-			i = new Image("/img/Composante_fil.png");
+			i = new Image("/img/coin.png");
+			this.setRotation(180);
 		} else if (nom.equals(Composante.FilBG)) {
-			i = new Image("/img/Composante_fil.png");
+			i = new Image("/img/coin.png");
+			this.setRotation(270);
 		} else if (nom.equals(Composante.FilHD)) {
-			i = new Image("/img/Composante_fil.png");
+			i = new Image("/img/coin.png");
+			this.setRotation(90);
 		} else if (nom.equals(Composante.FilHG)) {
-			i = new Image("/img/Composante_fil.png");
+			i = new Image("/img/coin.png");
+			this.setRotation(0);
 		} else if (nom.equals(Composante.FilBGH)) {
-			i = new Image("/img/Composante_fil.png");
+			i = new Image("/img/3 way.png");
+			this.setRotation(270);
 		} else if (nom.equals(Composante.FilBDH)) {
-			i = new Image("/img/Composante_fil.png");
+			i = new Image("/img/3 way.png");
+			this.setRotation(90);
 		} else if (nom.equals(Composante.FilGBD)) {
-			i = new Image("/img/Composante_fil.png");
+			i = new Image("/img/3 way.png");
+			this.setRotation(180);
 		} else if (nom.equals(Composante.FilGHD)) {
-			i = new Image("/img/Composante_fil.png");
-		} else if (nom.equals(Composante.FilAll)) {
-			i = new Image("/img/Composante_fil.png");
+			i = new Image("/img/3 way.png");
+			this.setRotation(0);
 		} else if (nom.equals(Composante.Source)) {
-			i = new Image("/img/sourceAC.png");
+			i = new Image("/img/source.png");
 		} else if (nom.equals(Composante.Ampoule)) {
 			i = new Image("/img/ampoule.png");
 		}
@@ -163,7 +169,7 @@ public class Images {
 		for (int i = 0; i < listeImage.size(); i++) {
 			if (listeImage.get(i).getPositionX() == positionX + 1 && listeImage.get(i).getPositionY() == positionY) {
 				dghb.set(0, 1);
-				// Puisque l'image à droite doit aussi considérer l'image actuelle à sa gauche
+				// Puisque l'image à gauche doit aussi considérer l'image actuelle à sa droite
 				listeImage.get(i).getDghb().set(1, 1);
 				indexaModif.add(i);
 			}
@@ -230,7 +236,7 @@ public class Images {
 			}
 		} else if (i.getNom().equals(Composante.Source)) {
 			retour = Composante.Source;
-			if (i.dghb.get(0) == 1 && i.dghb.get(1) == 1) {
+			if (i.dghb.get(2) == 1 && i.dghb.get(3) == 1) {
 				i.setRotation(90);
 			}
 		}
@@ -240,42 +246,55 @@ public class Images {
 	public Composante choisirImageFil(Images i) {
 		Composante retour = Composante.FilH;
 
-		if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 0 && i.getDghb().get(3) == 0) {
-			retour = Composante.FilH;
-
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1 && i.getDghb().get(3) == 1) {
-			retour = Composante.FilV;
-
-		} else if (i.getDghb().get(1) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1 && i.getDghb().get(3) == 1) {
+	  if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1
+				&& i.getDghb().get(3) == 1) {
 			retour = Composante.FilAll;
 
-		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1 && i.getDghb().get(3) == 0) {
+		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1
+				&& i.getDghb().get(3) == 0) {
 			retour = Composante.FilGHD;
 
-		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 0 && i.getDghb().get(3) == 1) {
+		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 0
+				&& i.getDghb().get(3) == 1) {
 			retour = Composante.FilGBD;
 
-		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1 && i.getDghb().get(3) == 1) {
+		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1
+				&& i.getDghb().get(3) == 1) {
 			retour = Composante.FilBDH;
 
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1 && i.getDghb().get(3) == 1) {
+		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1
+				&& i.getDghb().get(3) == 1) {
 			retour = Composante.FilBGH;
 
-		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 0 && i.getDghb().get(3) == 1) {
+		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 0
+				&& i.getDghb().get(3) == 1) {
 			retour = Composante.FilBD;
 
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 0 && i.getDghb().get(3) == 1) {
+		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 0
+				&& i.getDghb().get(3) == 1) {
 			retour = Composante.FilBG;
 
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1 && i.getDghb().get(3) == 0) {
+		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1
+				&& i.getDghb().get(3) == 0) {
 			retour = Composante.FilHG;
 
-		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1 && i.getDghb().get(3) == 0) {
+		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1
+				&& i.getDghb().get(3) == 0) {
 			retour = Composante.FilHD;
 
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1 && i.getDghb().get(3) == 0) {
+		}	if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 0 && i.getDghb().get(3) == 0) {
+			retour = Composante.FilH;
+
+		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1
+				&& i.getDghb().get(3) == 1) {
 			retour = Composante.FilV;
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 0 && i.getDghb().get(3) == 1) {
+
+		}
+		else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1
+				&& i.getDghb().get(3) == 0) {
+			retour = Composante.FilV;
+		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 0
+				&& i.getDghb().get(3) == 1) {
 			retour = Composante.FilV;
 		}
 		return retour;
