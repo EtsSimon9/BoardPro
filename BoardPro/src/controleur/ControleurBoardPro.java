@@ -56,7 +56,6 @@ public class ControleurBoardPro {
 		vue.gridP.setOnDragOver(dragOver());
 		vue.gridP.setOnDragDropped(dragDropped());
 	}
-
 	private EventHandler<DragEvent> dragOver() {
 		EventHandler<DragEvent> retour = new EventHandler<DragEvent>() {
 
@@ -244,19 +243,24 @@ public class ControleurBoardPro {
 
 	private void changerImage(HashSet<Integer> lesIndexs) {
 		Images image;
+		ArrayList<Images> liste = new ArrayList<Images>();
+		
 		for (Integer i : lesIndexs) {
-			image = listeImage.get(i);
-			Composante avant = image.getNom();
-			int rotAvant = image.getRotation();
-
-			Composante apres = image.choisirImage(image);
-			int rotApres = image.getRotation();
+			liste.add(listeImage.get(i));
+		}
+		for (int j = 0; j < liste.size();j++) {
+			
+			Composante avant = liste.get(j).getNom();
+			int rotAvant = liste.get(j).getRotation();
+			
+			Composante apres = liste.get(j).choisirImage(liste.get(j));
+			int rotApres = liste.get(j).getRotation();
 			if (!avant.equals(apres) || rotAvant != rotApres) {
-				ImageView aEnlever = image.getView();
-				image.setNom(apres);
-				image.creerImage(apres);
-				image.creerView();
-				ajoutComposante(image, aEnlever);
+				ImageView aEnlever = liste.get(j).getView();
+				liste.get(j).setNom(apres);
+				liste.get(j).creerImage(apres);
+				liste.get(j).creerView();
+				ajoutComposante(liste.get(j), aEnlever);
 			}
 		}
 	}
