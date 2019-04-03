@@ -35,7 +35,7 @@ public class ControleurVue {
 	@FXML
 	private Tab tabGraph;
 	@FXML
-	private AnchorPane paneGraph;
+	public AnchorPane paneGraph;
 
 	@FXML
 	private Label lbOut;
@@ -121,6 +121,7 @@ public class ControleurVue {
 
 	public void initialize() {
 		// ObservableList<String> composantes = FXCollections.observableArrayList("fil", "resistance", "source");
+		
 		 tbCompList.getItems().add("Fil");
 		 tbCompList.getItems().add("Résistance");
 		 tbCompList.getItems().add("Source");

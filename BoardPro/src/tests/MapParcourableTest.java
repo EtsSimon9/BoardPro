@@ -76,8 +76,8 @@ public class MapParcourableTest {
 		}
 
 		map1.genererMailles();
-		map3.setMaillsesCircuitsFermes(map1.getMaillsesCircuitsFermes());
-		assertTrue(map3.getMaillsesCircuitsFermes() == map1.getMaillsesCircuitsFermes());
+		map3.setMaillesCircuitsFermes(map1.getMaillesCircuitsFermes());
+		assertTrue(map3.getMaillesCircuitsFermes() == map1.getMaillesCircuitsFermes());
 	}
 
 	@Test
@@ -118,8 +118,8 @@ public class MapParcourableTest {
 		}
 
 		map1.genererMailles();
-		map2.setMaillsesCircuitsFermes(map1.getMaillsesCircuitsFermes());
-		assertTrue(map2.getMaillsesCircuitsFermes() == map1.getMaillsesCircuitsFermes());
+		map2.setMaillesCircuitsFermes(map1.getMaillesCircuitsFermes());
+		assertTrue(map2.getMaillesCircuitsFermes() == map1.getMaillesCircuitsFermes());
 	}
 
 	@Test
@@ -142,7 +142,7 @@ public class MapParcourableTest {
 			e.printStackTrace();
 		}
 		map3.genererMailles();
-		assertTrue(map3.getMaillsesCircuitsFermes().size() == 0);
+		assertTrue(map3.getMaillesCircuitsFermes().size() == 0);
 		Fil fil1, fil3, fil5, fil7;
 		Resistance res6, res8;
 		try {
@@ -181,7 +181,7 @@ public class MapParcourableTest {
 
 		map1.genererMailles();
 		ArrayList<ComposantMap> composantsActuels = map1.getComposantsActuels();
-		ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermes = map1.getMaillsesCircuitsFermes();
+		ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermes = map1.getMaillesCircuitsFermes();
 
 		for (int i = 0; i < maillsesCircuitsFermes.size(); i++) {
 			for (ComposantMap comp : maillsesCircuitsFermes.get(i)) {
@@ -236,7 +236,7 @@ public class MapParcourableTest {
 			e1.printStackTrace();
 		}
 		map2.genererMailles();
-		maillsesCircuitsFermes = map2.getMaillsesCircuitsFermes();
+		maillsesCircuitsFermes = map2.getMaillesCircuitsFermes();
 		// verifie qu il y a 6 mailles produites
 		assertTrue(maillsesCircuitsFermes.size() == 6);
 		byte nombreMaillesDeHuit = 4;
@@ -313,7 +313,7 @@ public class MapParcourableTest {
 			e1.printStackTrace();
 		}
 		map4.genererMailles();
-		maillsesCircuitsFermes = map4.getMaillsesCircuitsFermes();
+		maillsesCircuitsFermes = map4.getMaillesCircuitsFermes();
 		assertTrue(maillsesCircuitsFermes.size()==12);
 		
 		 nombreMaillesDeHuit = 6;

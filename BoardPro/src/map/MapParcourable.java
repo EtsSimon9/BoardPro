@@ -24,7 +24,7 @@ import composante.CE2Entrees;
 public class MapParcourable extends Map {
 	private ArrayList<ArrayList<ComposantMap>> maillesCircuitsFermes;
 
-	public ArrayList<ArrayList<ComposantMap>> getMaillsesCircuitsFermes() {
+	public ArrayList<ArrayList<ComposantMap>> getMaillesCircuitsFermes() {
 		return maillesCircuitsFermes;
 	}
 	public ArrayList<ArrayList<ComposantMap>> getMaille(){
@@ -32,8 +32,8 @@ public class MapParcourable extends Map {
 		return maillesCircuitsFermes;
 	}
 
-	public void setMaillsesCircuitsFermes(ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermes) {
-		this.maillesCircuitsFermes = maillsesCircuitsFermes;
+	public void setMaillesCircuitsFermes(ArrayList<ArrayList<ComposantMap>> maillesCircuitsFermes) {
+		this.maillesCircuitsFermes = maillesCircuitsFermes;
 	}
 
 	public MapParcourable() {

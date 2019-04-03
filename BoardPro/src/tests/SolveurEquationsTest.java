@@ -1,16 +1,18 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 import utilitaire.SolveurEquations;
 
-class SolveurEquationsTest {
+public class SolveurEquationsTest {
 
 
 	@Test
-	void testEvaluer() {
+	public void testEvaluer() {
 		SolveurEquations.initPrecedence();
 		assertTrue(SolveurEquations.evaluer("sin(40)")==Math.sin(40));
 		assertTrue(SolveurEquations.evaluer("log(20)")==Math.log10(20));

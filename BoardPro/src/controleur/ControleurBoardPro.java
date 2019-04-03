@@ -10,13 +10,16 @@ import composantesCircuit.Resistance;
 import composantesCircuit.SourceCourant;
 import exceptions.ComposantException;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.text.Font;
 import javafx.scene.transform.Scale;
 import map.ComposantMap;
 import map.MapParcourable;
@@ -32,7 +35,8 @@ public class ControleurBoardPro {
 	private ArrayList<Images> listeImage = new ArrayList<Images>();
 	public int numero = 1;
 	MapParcourable map = new MapParcourable();
-
+	Label nom = new Label();
+	
 	public ControleurBoardPro() {
 		vue = new ControleurVue(this);
 	}
@@ -43,6 +47,8 @@ public class ControleurBoardPro {
 
 	public void masterHandler() {
 
+		nom.setFont(new Font(50));
+		nom.setTranslateX(250);
 		vue.exitBtn.setOnMouseClicked(genererExitButton());
 
 		vue.scrollP.setHvalue(0.5);
@@ -55,7 +61,9 @@ public class ControleurBoardPro {
 		vue.gridP.setOnDragDropped(dragDropped());
 		vue.gridP.setOnDragOver(dragOver());
 		vue.gridP.setOnDragDropped(dragDropped());
+		
 	}
+
 	private EventHandler<DragEvent> dragOver() {
 		EventHandler<DragEvent> retour = new EventHandler<DragEvent>() {
 
@@ -191,20 +199,38 @@ public class ControleurBoardPro {
 				int positionX = (int) (Math.floor(event.getX() / 75));
 				int positionY = (int) (Math.floor(event.getY() / 75));
 
-				if (composante.equals("'Fil'")) {
-					genererFil(positionX, positionY);
-				} else if (composante.equals("'Résistance'")) {
-					genererAutre(positionX, positionY, Composante.Résistance);
-				} else if (composante.equals("'Condensateur'")) {
-					genererAutre(positionX, positionY, Composante.Condensateur);
-				} else if (composante.equals("'Bobine'")) {
-					genererAutre(positionX, positionY, Composante.Bobine);
-				} else if (composante.equals("'Source'")) {
-					genererAutre(positionX, positionY, Composante.Source);
-				} else if (composante.equals("'Ampoule'")) {
-					genererAutre(positionX, positionY, Composante.Ampoule);
-				}
+				if (event.getButton().equals(MouseButton.SECONDARY)) {
+					vue.paneGraph.getChildren().remove(nom);
+					for (int i = 0; i < listeImage.size(); i++) {
+						if (listeImage.get(i).getPositionX() == positionX
+								&& listeImage.get(i).getPositionY() == positionY) {
+							String text = listeImage.get(i).getNom().toString();
+							if (text.substring(0,3).equals("Fil")) {
+								text = "Fil";
+							}
+							text += " à la position (X, Y): (" + listeImage.get(i).getPositionX() + ", " + listeImage.get(i).getPositionY() + ")";
+							nom.setText(text);
+							
+						}
+					}
+					vue.paneGraph.getChildren().add(nom);
+					
+				} else {
 
+					if (composante.equals("'Fil'")) {
+						genererFil(positionX, positionY);
+					} else if (composante.equals("'Résistance'")) {
+						genererAutre(positionX, positionY, Composante.Résistance);
+					} else if (composante.equals("'Condensateur'")) {
+						genererAutre(positionX, positionY, Composante.Condensateur);
+					} else if (composante.equals("'Bobine'")) {
+						genererAutre(positionX, positionY, Composante.Bobine);
+					} else if (composante.equals("'Source'")) {
+						genererAutre(positionX, positionY, Composante.Source);
+					} else if (composante.equals("'Ampoule'")) {
+						genererAutre(positionX, positionY, Composante.Ampoule);
+					}
+				}
 			}
 		};
 		return retour;
@@ -243,15 +269,15 @@ public class ControleurBoardPro {
 
 	private void changerImage(HashSet<Integer> lesIndexs) {
 		ArrayList<Images> liste = new ArrayList<Images>();
-		
+
 		for (Integer i : lesIndexs) {
 			liste.add(listeImage.get(i));
 		}
-		for (int j = 0; j < liste.size();j++) {
-			
+		for (int j = 0; j < liste.size(); j++) {
+
 			Composante avant = liste.get(j).getNom();
 			int rotAvant = liste.get(j).getRotation();
-			
+
 			Composante apres = liste.get(j).choisirImage(liste.get(j));
 			int rotApres = liste.get(j).getRotation();
 			if (!avant.equals(apres) || rotAvant != rotApres) {
