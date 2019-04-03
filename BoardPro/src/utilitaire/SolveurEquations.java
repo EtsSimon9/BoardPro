@@ -22,13 +22,7 @@ public class SolveurEquations {
 		opPrecedence.put("(", 1);
 	}
 
-	private static String getTokenString(String expression) {
-		String[] symbole = convvertirSymboles(expression);
-		String ret = "[ ";
-		for (String s : symbole)
-			ret += s + ", ";
-		return ret.substring(0, ret.length() - 2) + " ]";
-	}
+
 
 	private static String[] convvertirSymboles(String expression) {
 		ArrayList<String> symboles = new ArrayList<String>();

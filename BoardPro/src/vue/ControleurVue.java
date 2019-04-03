@@ -6,6 +6,8 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
 import controleur.ControleurBoardPro;
+import graphics.Axes;
+import graphics.GraophiqueTemps;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -33,7 +35,7 @@ public class ControleurVue {
 	@FXML
 	private Tab tabGraph;
 	@FXML
-	private AnchorPane PaneGraph;
+	private AnchorPane paneGraph;
 
 	@FXML
 	private Label lbOut;
@@ -42,6 +44,8 @@ public class ControleurVue {
 
 	@FXML
 	private Tab tabBoard;
+	
+	
 	@FXML
 	private AnchorPane PaneBoard;
 	
@@ -49,6 +53,9 @@ public class ControleurVue {
 	public ScrollPane scrollP;
 	@FXML
 	public GridPane gridP;
+	
+	
+	
 	    @FXML private ColumnConstraints gridCol0; @FXML private ColumnConstraints gridCol1; @FXML private ColumnConstraints gridCol2; @FXML private ColumnConstraints gridCol3;
 	    @FXML private ColumnConstraints gridCol4; @FXML private ColumnConstraints gridCol5; @FXML private ColumnConstraints gridCol6; @FXML private ColumnConstraints gridCol7; 
 	    @FXML private ColumnConstraints gridCol8; @FXML private ColumnConstraints gridCol9; @FXML private ColumnConstraints gridCol10; @FXML private ColumnConstraints gridCol11; 
@@ -93,6 +100,7 @@ public class ControleurVue {
 
 	public ControleurBoardPro controleur;
 	Scene scene;
+	private GraophiqueTemps graphiqueTemps;
 	
 	
 
@@ -113,12 +121,17 @@ public class ControleurVue {
 
 	public void initialize() {
 		// ObservableList<String> composantes = FXCollections.observableArrayList("fil", "resistance", "source");
-		 tbCompList.getItems().add("fil");
-		 tbCompList.getItems().add("resistance");
-		 tbCompList.getItems().add("source");
+		 tbCompList.getItems().add("Fil");
+		 tbCompList.getItems().add("Résistance");
+		 tbCompList.getItems().add("Source");
 		 tbCompList.getItems().add("Condensateur");
 		 tbCompList.getItems().add("Bobine");
+		 tbCompList.getItems().add("Ampoule");
 		// tbCompList.setExpanded(true);
+			Axes axes = new Axes(1300, 690, 1);
+			graphiqueTemps = new GraophiqueTemps("sin(x)", axes);
+			graphiqueTemps.start();	
+			paneGraph.getChildren().add(graphiqueTemps.getGraphique());
 	}
 	
 	public Scene getScene() {
