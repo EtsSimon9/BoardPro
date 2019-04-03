@@ -242,7 +242,6 @@ public class ControleurBoardPro {
 	}
 
 	private void changerImage(HashSet<Integer> lesIndexs) {
-		Images image;
 		ArrayList<Images> liste = new ArrayList<Images>();
 		
 		for (Integer i : lesIndexs) {

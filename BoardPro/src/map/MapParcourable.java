@@ -29,7 +29,7 @@ public class MapParcourable extends Map {
 	}
 	public ArrayList<ArrayList<ComposantMap>> getMaille(){
 		genererMailles();
-		return maillsesCircuitsFermes;
+		return maillesCircuitsFermes;
 	}
 
 	public void setMaillsesCircuitsFermes(ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermes) {
