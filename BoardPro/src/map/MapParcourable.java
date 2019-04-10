@@ -1,6 +1,5 @@
 package map;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +9,6 @@ import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
 
 import composante.CE2Entrees;
-
 
 /**
  *
@@ -27,7 +25,8 @@ public class MapParcourable extends Map {
 	public ArrayList<ArrayList<ComposantMap>> getMaillesCircuitsFermes() {
 		return maillesCircuitsFermes;
 	}
-	public ArrayList<ArrayList<ComposantMap>> getMaille(){
+
+	public ArrayList<ArrayList<ComposantMap>> getMaille() {
 		genererMailles();
 		return maillesCircuitsFermes;
 	}
@@ -43,7 +42,6 @@ public class MapParcourable extends Map {
 	public void genrerNoeuds() {
 
 	}
-	
 
 	/**
 	 * permet de g�n�rer les mailles dans maillesCircuitsFermes
@@ -54,13 +52,13 @@ public class MapParcourable extends Map {
 		DefaultDirectedGraph<ComposantMap, DefaultEdge> graphCirucit = new DefaultDirectedGraph<>(DefaultEdge.class);
 		for (ComposantMap composante : this.composantsActuels) {
 			composantEnContatc = trouverComposantesEnContact(composante);
-				graphCirucit.addVertex(composante);
-				for (ComposantMap autre : composantEnContatc) {
-					if(autre != null) {
+			graphCirucit.addVertex(composante);
+			for (ComposantMap autre : composantEnContatc) {
+				if (autre != null) {
 					graphCirucit.addVertex(autre);
 					graphCirucit.addEdge(autre, composante);
-					}
 				}
+			}
 		}
 
 		JohnsonSimpleCycles<ComposantMap, DefaultEdge> cycles = new JohnsonSimpleCycles<>(graphCirucit);
@@ -86,13 +84,10 @@ public class MapParcourable extends Map {
 			}
 			maillesCircuitsFermes.add(arrayListComposanteDsMaille);
 		}
-		for(ArrayList<ComposantMap> array : maillesCircuitsFermes) {
-			if(array.size() > 2) {
+		for (ArrayList<ComposantMap> array : maillesCircuitsFermes) {
+			if (array.size() > 2) {
 				maillsesCircuitsFermesFinal.add(array);
 			}
-//			else {
-//				System.out.println(maillsesCircuitsFermes.size());
-//			}
 		}
 		this.maillesCircuitsFermes = maillsesCircuitsFermesFinal;
 
@@ -101,8 +96,10 @@ public class MapParcourable extends Map {
 	/**
 	 * @param composante
 	 * @return Retourne le tableau des composantes en contact avec celle donn�e
+	 *         (tableau a [0]: composante en haut,[1]: composante en bas,[2]:
+	 *         composante à droite et à [3]: composante à gauche
 	 */
-	private ComposantMap[] trouverComposantesEnContact(ComposantMap composante) {
+	public ComposantMap[] trouverComposantesEnContact(ComposantMap composante) {
 		ComposantMap[] retour = new ComposantMap[4];
 
 		if (verifierComposante(composante)) {
@@ -197,6 +194,5 @@ public class MapParcourable extends Map {
 	private boolean verifierComposante(ComposantMap composante) {
 		return composante != null;
 	}
-
 
 }
