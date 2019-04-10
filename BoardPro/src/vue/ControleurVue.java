@@ -78,9 +78,9 @@ public class ControleurVue {
 	@FXML
 	public JFXToolbar jfx;
 	@FXML
-	private JFXButton tbEnregistrer;
+	public JFXButton tbEnregistrer;
 	@FXML
-	private JFXButton tbOuvrir;
+	public JFXButton tbOuvrir;
 	@FXML
 	public JFXButton tbPlay;
 	@FXML
@@ -97,7 +97,7 @@ public class ControleurVue {
 
 	@FXML
 	public AnchorPane root;
-
+	
 	public ControleurBoardPro controleur;
 	Scene scene;
 	private GraophiqueTemps graphiqueTemps;
@@ -118,7 +118,7 @@ public class ControleurVue {
 		scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 
 	}
-
+ 
 	public void initialize() {
 		// ObservableList<String> composantes = FXCollections.observableArrayList("fil", "resistance", "source");
 		

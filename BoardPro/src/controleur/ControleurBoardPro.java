@@ -1,7 +1,15 @@
 package controleur;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import composantesCircuit.Bobine;
 import composantesCircuit.Condensateur;
@@ -9,7 +17,10 @@ import composantesCircuit.Fil;
 import composantesCircuit.Resistance;
 import composantesCircuit.SourceCourant;
 import exceptions.ComposantException;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -21,6 +32,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Scale;
+import javafx.stage.FileChooser;
 import map.ComposantMap;
 import map.MapParcourable;
 import utilitaire.Images;
@@ -36,7 +48,7 @@ public class ControleurBoardPro {
 	public int numero = 1;
 	MapParcourable map = new MapParcourable();
 	Label nom = new Label();
-	
+
 	public ControleurBoardPro() {
 		vue = new ControleurVue(this);
 	}
@@ -46,11 +58,9 @@ public class ControleurBoardPro {
 	}
 
 	public void masterHandler() {
-
+		vue.exitBtn.setOnMouseClicked(genererExitButton());
 		nom.setFont(new Font(50));
 		nom.setTranslateX(250);
-		vue.exitBtn.setOnMouseClicked(genererExitButton());
-
 		vue.scrollP.setHvalue(0.5);
 		vue.scrollP.setVvalue(0.5);
 		vue.gridP.setOnScroll(genererZoomHandler());
@@ -61,7 +71,157 @@ public class ControleurBoardPro {
 		vue.gridP.setOnDragDropped(dragDropped());
 		vue.gridP.setOnDragOver(dragOver());
 		vue.gridP.setOnDragDropped(dragDropped());
-		
+		vue.tbEnregistrer.setOnAction(enregistrerHandler());
+		vue.tbOuvrir.setOnAction(ouvrirHandler());
+	}
+
+	private EventHandler<ActionEvent> ouvrirHandler() {
+		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				
+				FileChooser fichierSelecteur = new FileChooser();
+				// Set extension filter for text files
+				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+				fichierSelecteur.getExtensionFilters().add(extFilter);
+
+				// Show save file dialog
+				File fichier = fichierSelecteur.showOpenDialog(vue.getScene().getWindow());
+				
+				if (fichier != null) {
+					reset();
+					ouvrirTexte(fichier);
+				}
+			}
+
+		};
+		return retour;
+	}
+
+	private void ouvrirTexte(File fichier) {
+
+		BufferedReader br;
+
+		try {
+			br = new BufferedReader(new FileReader(fichier));
+			String st;
+			while ((st = br.readLine()) != null) {
+				String nom = st;
+				Composante c = null;
+				if (nom.equals("FilH")) {
+					c = Composante.FilH;
+				} else if (nom.equals("FilV")) {
+					c = Composante.FilV;
+				} else if (nom.equals("FilHD")) {
+					c = Composante.FilHD;
+
+				} else if (nom.equals("FilHG")) {
+					c = Composante.FilHG;
+
+				} else if (nom.equals("FilBD")) {
+					c = Composante.FilBD;
+
+				} else if (nom.equals("FilBG")) {
+					c = Composante.FilBG;
+
+				} else if (nom.equals("FilGBD")) {
+					c = Composante.FilGBD;
+
+				} else if (nom.equals("FilGHD")) {
+					c = Composante.FilGHD;
+
+				} else if (nom.equals("FilBGH")) {
+					c = Composante.FilBGH;
+
+				} else if (nom.equals("FilBDH")) {
+					c = Composante.FilBDH;
+
+				} else if (nom.equals("FilAll")) {
+					c = Composante.FilAll;
+
+				} else if (nom.equals("Résistance")) {
+					c = Composante.Résistance;
+
+				} else if (nom.equals("Condensateur")) {
+					c = Composante.Condensateur;
+
+				} else if (nom.equals("Ampoule")) {
+					c = Composante.Ampoule;
+
+				} else if (nom.equals("Source")) {
+					c = Composante.Source;
+
+				} else if (nom.equals("Bobine")) {
+					c = Composante.Bobine;
+				}
+
+				st = br.readLine();
+				if (st != null) {
+					int posX = Integer.parseInt(st);
+					st = br.readLine();
+					if (st != null) {
+						int posY = Integer.parseInt(st);
+						genererAutre(posX, posY, c);
+					}
+				}
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private EventHandler<ActionEvent> enregistrerHandler() {
+		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				String texte = "";
+				for (int i = 0; i < listeImage.size(); i++) {
+					texte += listeImage.get(i).getNom() + "\n";
+					texte += listeImage.get(i).getPositionX() + "\n";
+					texte += listeImage.get(i).getPositionY() + "\n";
+				}
+
+				FileChooser fichierSelecteur = new FileChooser();
+				// Set extension filter for text files
+				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+				fichierSelecteur.getExtensionFilters().add(extFilter);
+
+				// Show save file dialog
+				File fichier = fichierSelecteur.showSaveDialog(vue.getScene().getWindow());
+
+				if (fichier != null) {
+					enregistrerTexte(texte, fichier);
+				}
+			}
+		};
+		return retour;
+	}
+
+	private void enregistrerTexte(String contenu, File fichier) {
+		try {
+			PrintWriter writer;
+			writer = new PrintWriter(fichier);
+			writer.println(contenu);
+			writer.close();
+		} catch (IOException ex) {
+			Logger.getLogger(ControleurBoardPro.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	private EventHandler<ActionEvent> resetHandler() {
+		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				reset();
+			}
+
+		};
+		return retour;
 	}
 
 	private EventHandler<DragEvent> dragOver() {
@@ -205,16 +365,17 @@ public class ControleurBoardPro {
 						if (listeImage.get(i).getPositionX() == positionX
 								&& listeImage.get(i).getPositionY() == positionY) {
 							String text = listeImage.get(i).getNom().toString();
-							if (text.substring(0,3).equals("Fil")) {
+							if (text.substring(0, 3).equals("Fil")) {
 								text = "Fil";
 							}
-							text += " à la position (X, Y): (" + listeImage.get(i).getPositionX() + ", " + listeImage.get(i).getPositionY() + ")";
+							text += " à la position (X, Y): (" + listeImage.get(i).getPositionX() + ", "
+									+ listeImage.get(i).getPositionY() + ")";
 							nom.setText(text);
-							
+
 						}
 					}
 					vue.paneGraph.getChildren().add(nom);
-					
+
 				} else {
 
 					if (composante.equals("'Fil'")) {
@@ -297,8 +458,9 @@ public class ControleurBoardPro {
 					&& listeImage.get(i).getPositionY() == image.getPositionY())) {
 				// Remove de la map
 				for (int j = 0; j < map.getComposantsActuels().size(); j++) {
-					if (map.getComposantsActuels().get(j).getImage().getView().equals(aEnlever) || map
-							.getComposantsActuels().get(j).getImage().getView().equals(listeImage.get(i).getView())) {
+					if ((aEnlever != null && map.getComposantsActuels().get(j).getImage().getView().equals(aEnlever))
+							|| map.getComposantsActuels().get(j).getImage().getView()
+									.equals(listeImage.get(i).getView())) {
 						map.removeComposante(map.getComposantsActuels().get(j));
 					}
 				}
@@ -308,7 +470,9 @@ public class ControleurBoardPro {
 				// Premier pour clique par dessus
 				vue.gridP.getChildren().remove(listeImage.get(i).getView());
 				// Lui pour les changements d'image
-				vue.gridP.getChildren().remove(aEnlever);
+				if (aEnlever != null) {
+					vue.gridP.getChildren().remove(aEnlever);
+				}
 				listeImage.remove(i);
 
 			}
@@ -343,4 +507,13 @@ public class ControleurBoardPro {
 		}
 	}
 
+	private void reset() {
+		listeImage.clear();
+		map.getComposantsActuels().clear();
+		nom.setText("");
+
+		Node n = vue.gridP.getChildren().get(0);
+		vue.gridP.getChildren().clear();
+		vue.gridP.add(n, 0, 0);
+	}
 }
