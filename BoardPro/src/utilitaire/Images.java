@@ -91,7 +91,7 @@ public class Images {
 
 	public void creerImage(Composante nom) {
 		Image i = null;
-		
+
 		if (nom.equals(Composante.Résistance)) {
 			i = new Image("/img/Composante_resistance.png");
 		} else if (nom.equals(Composante.Condensateur)) {
@@ -210,35 +210,33 @@ public class Images {
 	public Composante choisirImage(Images i) {
 		Composante retour = null;
 
+		if (i.dghb.get(2) == 1 || i.dghb.get(3) == 1) {
+			i.setRotation(90);
+		}
+		if (i.dghb.get(0) == 1 || i.dghb.get(1) == 1) {
+			i.setRotation(0);
+		}
+		if (i.dghb.get(2) == 1 && i.dghb.get(3) == 1) {
+			i.setRotation(90);
+		}
+		if (i.dghb.get(0) == 1 && i.dghb.get(1) == 1) {
+			i.setRotation(0);
+		}
 		if (i.getNom().toString().substring(0, 3).equals("Fil")) {
 			retour = choisirImageFil(i);
 		}
 
 		else if (i.getNom().equals(Composante.Condensateur)) {
 			retour = Composante.Condensateur;
-			if (i.dghb.get(2) == 1 && i.dghb.get(3) == 1) {
-				i.setRotation(90);
-			}
+
 		} else if (i.getNom().equals(Composante.Ampoule)) {
 			retour = Composante.Ampoule;
-			if (i.dghb.get(2) == 1 && i.dghb.get(3) == 1) {
-				i.setRotation(90);
-			}
 		} else if (i.getNom().equals(Composante.Bobine)) {
 			retour = Composante.Bobine;
-			if (i.dghb.get(2) == 1 && i.dghb.get(3) == 1) {
-				i.setRotation(90);
-			}
 		} else if (i.getNom().equals(Composante.Résistance)) {
 			retour = Composante.Résistance;
-			if (i.dghb.get(2) == 1 && i.dghb.get(3) == 1) {
-				i.setRotation(90);
-			}
 		} else if (i.getNom().equals(Composante.Source)) {
 			retour = Composante.Source;
-			if (i.dghb.get(2) == 1 && i.dghb.get(3) == 1) {
-				i.setRotation(90);
-			}
 		}
 		return retour;
 	}
@@ -246,8 +244,7 @@ public class Images {
 	public Composante choisirImageFil(Images i) {
 		Composante retour = Composante.FilH;
 
-	  if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1
-				&& i.getDghb().get(3) == 1) {
+		if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1 && i.getDghb().get(3) == 1) {
 			retour = Composante.FilAll;
 
 		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1
@@ -282,15 +279,15 @@ public class Images {
 				&& i.getDghb().get(3) == 0) {
 			retour = Composante.FilHD;
 
-		}	if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 0 && i.getDghb().get(3) == 0) {
+		}
+		if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 0 && i.getDghb().get(3) == 0) {
 			retour = Composante.FilH;
 
 		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1
 				&& i.getDghb().get(3) == 1) {
 			retour = Composante.FilV;
 
-		}
-		else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1
+		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1
 				&& i.getDghb().get(3) == 0) {
 			retour = Composante.FilV;
 		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 0

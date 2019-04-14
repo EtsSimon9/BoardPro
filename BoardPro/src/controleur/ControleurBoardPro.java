@@ -2,7 +2,6 @@ package controleur;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,18 +10,23 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
+
 import composantesCircuit.Bobine;
 import composantesCircuit.Condensateur;
 import composantesCircuit.Fil;
 import composantesCircuit.Resistance;
 import composantesCircuit.SourceCourant;
 import exceptions.ComposantException;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -75,20 +79,68 @@ public class ControleurBoardPro {
 		vue.tbOuvrir.setOnAction(ouvrirHandler());
 	}
 
+	private EventHandler<ActionEvent> resetHandler() {
+		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				reset();
+			}
+
+		};
+		return retour;
+	}
+
+	private EventHandler<ActionEvent> screenshotHandler() {
+		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+
+				FileChooser fichierSelecteur = new FileChooser();
+
+				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("*.png", "*.jpg");
+				fichierSelecteur.getExtensionFilters().add(extFilter);
+
+				File fichier = fichierSelecteur.showSaveDialog(vue.getScene().getWindow());
+
+				if (fichier != null) {
+					Group g = new Group();
+					for (int i = 0; i < listeImage.size(); i++) {
+						g.getChildren().add(listeImage.get(i).getView());
+					}
+					WritableImage image = g.snapshot(new SnapshotParameters(), null);
+					try {
+						ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", fichier);
+						g = null;
+						for (int i = 0; i < listeImage.size(); i++) {
+							vue.gridP.add(listeImage.get(i).getView(), listeImage.get(i).getPositionX(),
+									listeImage.get(i).getPositionY());
+						}
+
+					} catch (IOException e) {
+						// TODO: handle exception here
+					}
+				}
+			}
+
+		};
+		return retour;
+	}
+
 	private EventHandler<ActionEvent> ouvrirHandler() {
 		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				
+
 				FileChooser fichierSelecteur = new FileChooser();
-				// Set extension filter for text files
+
 				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
 				fichierSelecteur.getExtensionFilters().add(extFilter);
 
-				// Show save file dialog
 				File fichier = fichierSelecteur.showOpenDialog(vue.getScene().getWindow());
-				
+
 				if (fichier != null) {
 					reset();
 					ouvrirTexte(fichier);
@@ -186,11 +238,10 @@ public class ControleurBoardPro {
 				}
 
 				FileChooser fichierSelecteur = new FileChooser();
-				// Set extension filter for text files
+
 				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
 				fichierSelecteur.getExtensionFilters().add(extFilter);
 
-				// Show save file dialog
 				File fichier = fichierSelecteur.showSaveDialog(vue.getScene().getWindow());
 
 				if (fichier != null) {
@@ -210,18 +261,6 @@ public class ControleurBoardPro {
 		} catch (IOException ex) {
 			Logger.getLogger(ControleurBoardPro.class.getName()).log(Level.SEVERE, null, ex);
 		}
-	}
-
-	private EventHandler<ActionEvent> resetHandler() {
-		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				reset();
-			}
-
-		};
-		return retour;
 	}
 
 	private EventHandler<DragEvent> dragOver() {
