@@ -1,26 +1,36 @@
+
 package graphics;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 
 import javafx.geometry.Side;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.layout.Pane;
+import javafx.util.StringConverter;
 
 public class Axes extends Pane {
 	private NumberAxis xAxis, yAxis;
-	private double minX,maxX,minY,maxY,bonds,actualHeight;
-	private int width;
-	private int height;
+	private double minX, maxX, minY, maxY, bonds, mesurePixelUnite, actualHeight, positionXAxeX, subdivisionAxeX;
+	private int width, height;
 
-	public Axes(int width, int height, int bond) {
-		this.width = width+20;
+	public Axes(int width, int height, double bond, int subdivisionAxeX) {
+		this.width = width+100;
 		this.height = height;
 		this.bonds = bond;
-		setMinX(0 * bonds);
-		setMaxX(16 * bonds);
-		setMinY(-8 * bonds);
-		setMaxY(8 * bonds);
-		
+		this.subdivisionAxeX = subdivisionAxeX / 2;
+		actualHeight = (height / 2);
+		setMinX(0);
+		setMaxX(this.subdivisionAxeX *2* bonds);
+		setMinY(-this.subdivisionAxeX * bonds);
+		setMaxY(this.subdivisionAxeX * bonds);
+		mesurePixelUnite = this.width / (maxX - minX);
 		creerAxes();
+	}
+
+	public double getMesurePixelUnite() {
+		return mesurePixelUnite;
 	}
 
 	public double getBonds() {
@@ -30,10 +40,10 @@ public class Axes extends Pane {
 	public double getMinX() {
 		return minX;
 	}
+
 	public double getActualHeight() {
 		return actualHeight;
 	}
-
 
 	private void setMinX(double min) {
 		this.minX = min;
@@ -63,69 +73,61 @@ public class Axes extends Pane {
 		this.maxY = max;
 	}
 
-
-
-
-	/**
-	 * fait bouger l'axe des x selon le parametre recu
-	 * @param s
-	 */
-	public void ajouterX(double s) {
-		minX += s;
-		maxX += s;
-		xAxis.setLowerBound(minX);
-		xAxis.setUpperBound(maxX);
-		setAxisMap();
+	public void changerBondsAxes(double bond) {
+		this.bonds = bond;
+		creerAxes();
 	}
-/**
- * Cr�e les axes
- */
+
+	public void ajouterX(double s) {
+		positionXAxeX += s;
+		xAxis.setLayoutX(-mesurePixelUnite * (positionXAxeX % bonds));
+		minX =  positionXAxeX;
+		maxX = (subdivisionAxeX *2* bonds) + positionXAxeX;
+		xAxis.setUpperBound(maxX - (positionXAxeX % bonds));
+		xAxis.setLowerBound(xAxis.getUpperBound() - subdivisionAxeX * 2 * bonds);
+
+	}
+
 	private void creerAxes() {
+
 		setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
 		setPrefSize(width, height);
 		setMaxSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
+
 		xAxis = new NumberAxis(minX, maxX, bonds);
 		xAxis.setSide(Side.BOTTOM);
 		xAxis.setPrefWidth(width);
-		xAxis.setLayoutX(-20);
-
-		
 		xAxis.setMinorTickVisible(false);
-		setAxisMap();
 		xAxis.setAnimated(false);
-		;
+		xAxis.setLayoutY(actualHeight);
+		xAxis.setVisible(true);
+
 		yAxis = new NumberAxis(-maxY, -minY, bonds);
-		yAxis.setSide(Side.LEFT);
-		yAxis.setPrefHeight(height);	
+		yAxis.setSide(Side.RIGHT);
+		yAxis.setLayoutX(0);
+		yAxis.setPrefHeight(height);
 		yAxis.setMinorTickVisible(false);
 		yAxis.setAnimated(false);
-		yAxis.setLayoutX(0);
-		
+
+
+		if (bonds <= 0.625 && bonds > 0.00390625) {
+			xAxis.setTickLabelFormatter(getStringConverter("#.#######"));
+			yAxis.setTickLabelFormatter(getStringConverter("#.#######"));
+		} else if (bonds <= 0.00390625 | bonds > 4194304.0) {
+			xAxis.setTickLabelFormatter(getStringConverter("#.#E0"));
+			yAxis.setTickLabelFormatter(getStringConverter("#.#E0"));
+		}
+
 		getChildren().clear();
 		getChildren().setAll(xAxis, yAxis);
-		
+
 	}
 
-	
 	/**
-	 *  
-	 *  Gere l'affichage de la'axeX 
+	 *
+	 * @param axeY Si c'est true, g�re gere l'affichage de la'axeX et si c'est
+	 *             false, g�re l'affichage de l'axeY .X
 	 */
-	private void setAxisMap() {
-		double demiLenght = bonds *8;
-			if (minY == -demiLenght && maxY == demiLenght) {
-				xAxis.setLayoutY(height / 2);
-				actualHeight = (height/2);
-			} else {
-				actualHeight = (height - height*(maxY/(demiLenght*2)));
-				if (actualHeight > height | actualHeight < 20) {
-					xAxis.setVisible(false);
-				} else {
-					xAxis.setLayoutY(actualHeight);
-					xAxis.setVisible(true);
-				}
-			}
-	}
 	
 
 	public NumberAxis getXAxis() {
@@ -136,5 +138,23 @@ public class Axes extends Pane {
 		return yAxis;
 	}
 
-	
+	private StringConverter<Number> getStringConverter(String convert) {
+		NumberFormat format = new DecimalFormat(convert);
+		return new StringConverter<Number>() {
+			@Override
+			public String toString(Number number) {
+				return format.format(number.doubleValue());
+			}
+
+			@Override
+			public Number fromString(String string) {
+				try {
+					return format.parse(string);
+				} catch (ParseException e) {
+					e.printStackTrace();
+					return 0;
+				}
+			}
+		};
+	}
 }

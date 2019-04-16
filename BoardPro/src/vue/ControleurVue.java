@@ -7,7 +7,7 @@ import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
 import controleur.ControleurBoardPro;
 import graphics.Axes;
-import graphics.GraophiqueTemps;
+import graphics.GraphiqueTemps;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -100,7 +100,7 @@ public class ControleurVue {
 	
 	public ControleurBoardPro controleur;
 	Scene scene;
-	private GraophiqueTemps graphiqueTemps;
+	private GraphiqueTemps graphiqueTemps;
 	
 	
 
@@ -129,8 +129,8 @@ public class ControleurVue {
 		 tbCompList.getItems().add("Bobine");
 		 tbCompList.getItems().add("Ampoule");
 		// tbCompList.setExpanded(true);
-			Axes axes = new Axes(1300, 690, 1);
-			graphiqueTemps = new GraophiqueTemps("sin(x)", axes);
+		 Axes axes = new Axes(1300, 690, 1, 8);
+			graphiqueTemps = new GraphiqueTemps("sin(x)", axes,60);
 			graphiqueTemps.start();	
 			paneGraph.getChildren().add(graphiqueTemps.getGraphique());
 	}

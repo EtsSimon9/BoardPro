@@ -21,6 +21,7 @@ import composante.CE2Entrees;
  */
 public class MapParcourable extends Map {
 	private ArrayList<ArrayList<ComposantMap>> maillesCircuitsFermes;
+	private ArrayList<ComposantMap> noeudsCircuit;
 
 	public ArrayList<ArrayList<ComposantMap>> getMaillesCircuitsFermes() {
 		return maillesCircuitsFermes;

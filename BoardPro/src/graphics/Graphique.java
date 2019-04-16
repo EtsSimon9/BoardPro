@@ -9,69 +9,80 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import utilitaire.SolveurEquations;
 
+
+/**
+ * Cette classe prends une tring d'une foncion et des axes et dessine un graphique pour cela
+ * @author HAAS Team
+ *
+ */
 public class Graphique extends Pane {
-	private double incrementation = 0.01;
+	private float precisionDessin = 0.01f;
 	private Axes axes;
 	private Point point = new Point();
 	private String fonction;
 
+	/**
+	 * Initialise les donn�es de la Pane repr�sentant un garaphique statique en lui
+	 * donnant les axes et la foncion et dessine ensuite le r�sultat
+	 *
+	 * @param fonction
+	 * @param axes
+	 */
 	public Graphique(String fonction, Axes axes) {
-		setFonction(fonction);
+		this.fonction = fonction;
 		setAxes(axes);
 		dessinerResultat();
 	}
 
-
+	/**
+	 * nombre de pixels tir�s vers la droite
+	 *
+	 * @param xAjouter
+	 */
 	public void tirerGraphique(float xAjouter) {
-		axes.ajouterX(- deMapX(xAjouter) );
-		dessinerResultat();
+		axes.ajouterX(-deMapX(xAjouter));
 		point.setX(point.getX() + xAjouter);
+		dessinerResultat();
 	}
-
 
 	private double mapX(double x) {
-		// axes.getPrefWidth() / (axes.getXAxis().getUpperBound() - axes.getXAxis().getLowerBound()) == largeur/(bondsDansLArgeur)
-		return  (x - axes.getXAxis().getLowerBound())*
-				axes.getPrefWidth() / (axes.getXAxis().getUpperBound() - axes.getXAxis().getLowerBound());
+		return (x - axes.getMinX()) * axes.getMesurePixelUnite();
 	}
 
-	public  double deMapX(double x) {
-		return  x*(axes.getXAxis().getUpperBound() - axes.getXAxis().getLowerBound()) / axes.getPrefWidth();
+	public double deMapX(double x) {
+		return x / axes.getMesurePixelUnite();
 	}
 
 	private double mapY(double y) {
-		// axes.getPrefWidth() / (axes.getXAxis().getUpperBound() - axes.getXAxis().getLowerBound()) == largeur/(bondsDansLArgeur)
-		return -y * axes.getPrefWidth() / (axes.getXAxis().getUpperBound() - axes.getXAxis().getLowerBound())
-				+ axes.getActualHeight();
+		return -y * axes.getMesurePixelUnite() + axes.getActualHeight();
 	}
-
 
 	private void dessinerResultat() {
 		Path path = new Path();
 		path.setStroke(Color.ORANGE.deriveColor(0, 1, 1, 0.6));
 		path.setStrokeWidth(2);
 		path.setClip(new Rectangle(0, 0, axes.getPrefWidth(), axes.getPrefHeight()));
+
 		if (fonction != null) {
 			double x = axes.getMinX();
 			double y = 0;
 			boolean depart = true;
-			while (x < axes.getMaxX() && !fonction.equals("")) {
+			while (x < axes.getMaxX()) {
 				try {
 					SolveurEquations.initPrecedence();
 					y = SolveurEquations.evaluer(fonction.replace("x", x + ""));
+
 					if (!Double.isNaN(y)) {
 						if (depart) {
 							path.getElements().add(new MoveTo(mapX(x), mapY(y)));
-
 							depart = false;
 						} else {
 							path.getElements().add(new LineTo(mapX(x), mapY(y)));
 						}
 					}
 				} catch (Exception e) {
-
 				}
-				x += incrementation;
+				x += precisionDessin;
 			}
 		}
 		setMinSize(Pane.USE_PREF_SIZE, Pane.USE_PREF_SIZE);
@@ -82,22 +93,14 @@ public class Graphique extends Pane {
 	}
 
 	public void changerFonction(String f) {
-		setFonction(f);
+		this.fonction = f;
 		dessinerResultat();
 	}
 
 	private void setAxes(Axes axes) {
 		this.axes = axes;
-		setIncrementation(this.axes.getBonds() / 50);
+		precisionDessin = (float) (this.axes.getBonds() / 50);
 
-	}
-
-	private void setIncrementation(double i) {
-		this.incrementation = i;
-	}
-
-	public void setFonction(String fonction) {
-		this.fonction = fonction;
 	}
 
 }
