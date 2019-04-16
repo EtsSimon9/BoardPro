@@ -65,9 +65,5 @@ public abstract class ComposanteElectrique extends ComposantMap {
 	public void setCourant(float tensionCourant) {
 		this.Courant = tensionCourant;
 	}
-	@Override
-	public String toString() {
-		return super.toString();
-	}
 
 }

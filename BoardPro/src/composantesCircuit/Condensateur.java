@@ -30,9 +30,6 @@ public class Condensateur extends CE2Entrees {
 		this.capacite = capacite;
 	}
 
-	@Override
-	public String toString() {
-		return "C" + capacite;
-	}
+	
 
 }
