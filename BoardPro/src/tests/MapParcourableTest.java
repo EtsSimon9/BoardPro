@@ -39,6 +39,96 @@ public class MapParcourableTest {
 
 	}
 
+	
+	@Test 
+	public void testgenrerNoeuds() {
+		Fil fil1, fil3, fil5, fil7;
+		Resistance res6 = null, res8 = null;
+		// voici un circtuit de forme
+		//
+		// o-o
+		// | |
+		// o-o
+		// les {-,|} sont des resistances et {o} representent des composantes
+
+		try {
+			fil1 = new Fil((short) 30, (short) 30,null);
+		
+		res2 = new Resistance((short) 30, (short) 31,null);
+		fil3 = new Fil((short) 30, (short) 32,null);
+		res4 = new Resistance((short) 31, (short) 32,null);
+		res4.setSens(false);
+		fil5 = new Fil((short) 32, (short) 32,null);
+		res6 = new Resistance((short) 32, (short) 31,null);
+		fil7 = new Fil((short) 32, (short) 30,null);
+		res8 = new Resistance((short) 31, (short) 30,null);
+		res8.setSens(false);
+		map1.addComposant(fil1);
+		map1.addComposant(res2);
+		map1.addComposant(fil3);
+		map1.addComposant(res4);
+		map1.addComposant(fil5);
+		map1.addComposant(res6);
+		map1.addComposant(fil7);
+		map1.addComposant(res8);
+		
+		} catch (ComposantException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	map1.genrerNoeuds();
+	assertTrue(map1.getNoeudsCircuit().size()==0);
+	Fil fil10, fil12;
+	Resistance res9, res11 = null, res13 = null;
+	try {
+		// voici un circtuit de forme
+		//
+		// o-o-o
+		// | | |
+		// o-o-o
+		// les {-,|} sont des resistances et {o} representent des composantes
+
+		fil1 = new Fil((short) 0, (short) 0,null);
+		res2 = new Resistance((short) 0, (short) 1,null);
+		fil3 = new Fil((short) 0, (short) 2,null);
+		res4 = new Resistance((short) 1, (short) 2,null);
+		res4.setSens(false);
+		fil5 = new Fil((short) 2, (short) 2,null);
+		res6 = new Resistance((short) 2, (short) 1,null);
+		fil7 = new Fil((short) 2, (short) 0,null);
+		res8 = new Resistance((short) 1, (short) 0,null);
+		res8.setSens(false);
+		res9 = new Resistance((short) 0, (short) 3,null);
+		fil10 = new Fil((short) 0, (short) 4,null);
+		res11 = new Resistance((short) 1, (short) 4,null);
+		res11.setSens(false);
+		fil12 = new Fil((short) 2, (short) 4,null);
+		res13 = new Resistance((short) 2, (short) 3,null);
+
+		map2.addComposant(fil1);
+		map2.addComposant(res2);
+		map2.addComposant(fil3);
+		map2.addComposant(res4);
+		map2.addComposant(fil5);
+		map2.addComposant(res6);
+		map2.addComposant(fil7);
+		map2.addComposant(res8);
+		map2.addComposant(res9);
+		map2.addComposant(fil10);
+		map2.addComposant(res11);
+		map2.addComposant(fil12);
+		map2.addComposant(res13);
+
+	} catch (ComposantException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	map2.genrerNoeuds();
+	assertTrue(map2.getNoeudsCircuit().size()==2);
+
+	}
+	
+	
 	@Test
 	public void testGetMaillsesCircuitsFermes() {
 		Fil fil1, fil3, fil5, fil7;

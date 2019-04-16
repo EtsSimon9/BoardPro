@@ -119,4 +119,7 @@ public class Resistance extends CE2Entrees {
 		}
 		return retour;
 	}
+
+	
+	
 }
