@@ -20,5 +20,10 @@ public class SourceCourant extends CE2Entrees {
 		this.setDdp(DDP_DEFAUT);
 	}
 
+	@Override
+	public String toString() {
+		return " [DV "+ this.getDdp()+"]";
+	}
+
 	
 }

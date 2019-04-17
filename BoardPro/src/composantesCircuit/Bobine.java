@@ -29,6 +29,11 @@ public class Bobine extends CE2Entrees {
 		this.inductence = inductence;
 	}
 
+	@Override
+	public String toString() {
+		return "[L" + inductence + "]";
+	}
+
 
 
 }

@@ -27,11 +27,11 @@ public class MapParcourableTest {
 		map3 = new MapParcourable();
 		map4 = new MapParcourable();
 		try {
-			res1 = new Resistance((short) 0, (short) 0,null);
-			res2 = new Resistance((short) 0, (short) 1,null);
-			res3 = new Resistance((short) 1, (short) 0,null);
-			res4 = new Resistance((short) 1, (short) 3,null);
-			res5 = new Resistance((short) 3, (short) 1,null);
+			res1 = new Resistance(0,(short) 0, (short) 0,null);
+			res2 = new Resistance(0,(short) 0, (short) 1,null);
+			res3 = new Resistance(0,(short) 1, (short) 0,null);
+			res4 = new Resistance(0,(short) 1, (short) 3,null);
+			res5 = new Resistance(0,(short) 3, (short) 1,null);
 		} catch (ComposantException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,14 +54,14 @@ public class MapParcourableTest {
 		try {
 			fil1 = new Fil((short) 30, (short) 30,null);
 
-		res2 = new Resistance((short) 30, (short) 31,null);
+		res2 = new Resistance(0,(short) 30, (short) 31,null);
 		fil3 = new Fil((short) 30, (short) 32,null);
-		res4 = new Resistance((short) 31, (short) 32,null);
+		res4 = new Resistance(0,(short) 31, (short) 32,null);
 		res4.setSens(false);
 		fil5 = new Fil((short) 32, (short) 32,null);
-		res6 = new Resistance((short) 32, (short) 31,null);
+		res6 = new Resistance(0,(short) 32, (short) 31,null);
 		fil7 = new Fil((short) 32, (short) 30,null);
-		res8 = new Resistance((short) 31, (short) 30,null);
+		res8 = new Resistance(0,(short) 31, (short) 30,null);
 		res8.setSens(false);
 		map1.addComposant(fil1);
 		map1.addComposant(res2);
@@ -89,21 +89,21 @@ public class MapParcourableTest {
 		// les {-,|} sont des resistances et {o} representent des composantes
 
 		fil1 = new Fil((short) 0, (short) 0,null);
-		res2 = new Resistance((short) 0, (short) 1,null);
+		res2 = new Resistance(0,(short) 0, (short) 1,null);
 		fil3 = new Fil((short) 0, (short) 2,null);
-		res4 = new Resistance((short) 1, (short) 2,null);
+		res4 = new Resistance(0,(short) 1, (short) 2,null);
 		res4.setSens(false);
 		fil5 = new Fil((short) 2, (short) 2,null);
-		res6 = new Resistance((short) 2, (short) 1,null);
+		res6 = new Resistance(0,(short) 2, (short) 1,null);
 		fil7 = new Fil((short) 2, (short) 0,null);
-		res8 = new Resistance((short) 1, (short) 0,null);
+		res8 = new Resistance(0,(short) 1, (short) 0,null);
 		res8.setSens(false);
-		res9 = new Resistance((short) 0, (short) 3,null);
+		res9 = new Resistance(0,(short) 0, (short) 3,null);
 		fil10 = new Fil((short) 0, (short) 4,null);
-		res11 = new Resistance((short) 1, (short) 4,null);
+		res11 = new Resistance(0,(short) 1, (short) 4,null);
 		res11.setSens(false);
 		fil12 = new Fil((short) 2, (short) 4,null);
-		res13 = new Resistance((short) 2, (short) 3,null);
+		res13 = new Resistance(0,(short) 2, (short) 3,null);
 
 		map2.addComposant(fil1);
 		map2.addComposant(res2);
@@ -143,14 +143,14 @@ public class MapParcourableTest {
 			// les {-,|} sont des resistances et {o} representent des composantes
 
 			fil1 = new Fil((short) 30, (short) 30,null);
-			res2 = new Resistance((short) 30, (short) 31,null);
+			res2 = new Resistance(0,(short) 30, (short) 31,null);
 			fil3 = new Fil((short) 30, (short) 32,null);
-			res4 = new Resistance((short) 31, (short) 32,null);
+			res4 = new Resistance(0,(short) 31, (short) 32,null);
 			res4.setSens(false);
 			fil5 = new Fil((short) 32, (short) 32,null);
-			res6 = new Resistance((short) 32, (short) 31,null);
+			res6 = new Resistance(0,(short) 32, (short) 31,null);
 			fil7 = new Fil((short) 32, (short) 30,null);
-			res8 = new Resistance((short) 31, (short) 30,null);
+			res8 = new Resistance(0,(short) 31, (short) 30,null);
 			res8.setSens(false);
 			map1.addComposant(fil1);
 			map1.addComposant(res2);
@@ -185,14 +185,14 @@ public class MapParcourableTest {
 			// les {-,|} sont des resistances et {o} representent des composantes
 
 			fil1 = new Fil((short) 5, (short) 5,null);
-			res2 = new Resistance((short) 5, (short) 6,null);
+			res2 = new Resistance(0,(short) 5, (short) 6,null);
 			fil3 = new Fil((short) 5, (short) 7,null);
-			res4 = new Resistance((short) 6, (short) 7,null);
+			res4 = new Resistance(0,(short) 6, (short) 7,null);
 			res4.setSens(false);
 			fil5 = new Fil((short) 7, (short) 7,null);
-			res6 = new Resistance((short) 7, (short) 6,null);
+			res6 = new Resistance(0,(short) 7, (short) 6,null);
 			fil7 = new Fil((short) 7, (short) 5,null);
-			res8 = new Resistance((short) 6, (short) 5,null);
+			res8 = new Resistance(0,(short) 6, (short) 5,null);
 			res8.setSens(false);
 			map1.addComposant(fil1);
 			map1.addComposant(res2);
@@ -246,14 +246,14 @@ public class MapParcourableTest {
 			// les {-,|} sont des resistances et {o} representent des composantes
 
 			fil1 = new Fil((short) 0, (short) 0,null);
-			res2 = new Resistance((short) 0, (short) 1,null);
+			res2 = new Resistance(0,(short) 0, (short) 1,null);
 			fil3 = new Fil((short) 0, (short) 2,null);
-			res4 = new Resistance((short) 1, (short) 2,null);
+			res4 = new Resistance(0,(short) 1, (short) 2,null);
 			res4.setSens(false);
 			fil5 = new Fil((short) 2, (short) 2,null);
-			res6 = new Resistance((short) 2, (short) 1,null);
+			res6 = new Resistance(0,(short) 2, (short) 1,null);
 			fil7 = new Fil((short) 2, (short) 0,null);
-			res8 = new Resistance((short) 1, (short) 0,null);
+			res8 = new Resistance(0,(short) 1, (short) 0,null);
 			res8.setSens(false);
 
 			map1.addComposant(fil1);
@@ -292,21 +292,21 @@ public class MapParcourableTest {
 			// les {-,|} sont des resistances et {o} representent des composantes
 
 			fil1 = new Fil((short) 0, (short) 0,null);
-			res2 = new Resistance((short) 0, (short) 1,null);
+			res2 = new Resistance(0,(short) 0, (short) 1,null);
 			fil3 = new Fil((short) 0, (short) 2,null);
-			res4 = new Resistance((short) 1, (short) 2,null);
+			res4 = new Resistance(0,(short) 1, (short) 2,null);
 			res4.setSens(false);
 			fil5 = new Fil((short) 2, (short) 2,null);
-			res6 = new Resistance((short) 2, (short) 1,null);
+			res6 = new Resistance(0,(short) 2, (short) 1,null);
 			fil7 = new Fil((short) 2, (short) 0,null);
-			res8 = new Resistance((short) 1, (short) 0,null);
+			res8 = new Resistance(0,(short) 1, (short) 0,null);
 			res8.setSens(false);
-			res9 = new Resistance((short) 0, (short) 3,null);
+			res9 = new Resistance(0,(short) 0, (short) 3,null);
 			fil10 = new Fil((short) 0, (short) 4,null);
-			res11 = new Resistance((short) 1, (short) 4,null);
+			res11 = new Resistance(0,(short) 1, (short) 4,null);
 			res11.setSens(false);
 			fil12 = new Fil((short) 2, (short) 4,null);
-			res13 = new Resistance((short) 2, (short) 3,null);
+			res13 = new Resistance(0,(short) 2, (short) 3,null);
 
 			map2.addComposant(fil1);
 			map2.addComposant(res2);
@@ -356,28 +356,28 @@ public class MapParcourableTest {
 		// les {-,|} sont des resistances et {o} representent des composantes
 		try {
 			fil1 = new Fil((short) 0, (short) 0,null);
-			res2 = new Resistance((short) 0, (short) 1,null);
+			res2 = new Resistance(0,(short) 0, (short) 1,null);
 			fil3 = new Fil((short) 0, (short) 2,null);
-			res4 = new Resistance((short) 1, (short) 2,null);
+			res4 = new Resistance(0,(short) 1, (short) 2,null);
 			res4.setSens(false);
 			fil5 = new Fil((short) 2, (short) 2,null);
-			res6 = new Resistance((short) 2, (short) 1,null);
+			res6 = new Resistance(0,(short) 2, (short) 1,null);
 			fil7 = new Fil((short) 2, (short) 0,null);
-			res8 = new Resistance((short) 1, (short) 0,null);
+			res8 = new Resistance(0,(short) 1, (short) 0,null);
 			res8.setSens(false);
-			res9 = new Resistance((short) 0, (short) 3,null);
+			res9 = new Resistance(0,(short) 0, (short) 3,null);
 			fil10 = new Fil((short) 0, (short) 4,null);
-			res11 = new Resistance((short) 1, (short) 4,null);
+			res11 = new Resistance(0,(short) 1, (short) 4,null);
 			res11.setSens(false);
 			fil12 = new Fil((short) 2, (short) 4,null);
-			res13 = new Resistance((short) 2, (short) 3,null);
+			res13 = new Resistance(0,(short) 2, (short) 3,null);
 			
-			res14 = new Resistance((short) 3, (short) 0,null);
+			res14 = new Resistance(0,(short) 3, (short) 0,null);
 			res14.setSens(false);
 			fil15 = new Fil((short) 4, (short) 0,null);
-			res16 = new Resistance((short) 4, (short) 1,null);
+			res16 = new Resistance(0,(short) 4, (short) 1,null);
 			fil17 = new Fil((short) 4, (short) 2,null);
-			res18 = new Resistance((short) 3, (short) 2,null);
+			res18 = new Resistance(0,(short) 3, (short) 2,null);
 			res18.setSens(false);
 
 			map4.addComposant(fil1);

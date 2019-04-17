@@ -29,4 +29,10 @@ public class Condensateur extends CE2Entrees {
 	public void setCapacite(double capacite) {
 		this.capacite = capacite;
 	}
+
+	@Override
+	public String toString() {
+		return " [C" + capacite + "]";
+	}
+	
 }

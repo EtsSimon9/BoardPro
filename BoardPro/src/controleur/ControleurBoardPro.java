@@ -532,7 +532,7 @@ public class ControleurBoardPro {
 			} else if (image.getNom().equals(Composante.Condensateur)) {
 				compo = new Condensateur((short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else if (image.getNom().equals(Composante.Résistance)) {
-				compo = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
+				compo = new Resistance(0,(short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else if (image.getNom().equals(Composante.Source)) {
 				compo = new SourceCourant((short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else {
