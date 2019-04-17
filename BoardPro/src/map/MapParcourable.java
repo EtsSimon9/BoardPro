@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.jgrapht.alg.cycle.JohnsonSimpleCycles;
-import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.SimpleDirectedGraph;
 
 import composante.CE2Entrees;
 
@@ -22,6 +22,14 @@ import composante.CE2Entrees;
 public class MapParcourable extends Map {
 	private ArrayList<ArrayList<ComposantMap>> maillesCircuitsFermes;
 	private ArrayList<ComposantMap> noeudsCircuit;
+
+	public ArrayList<ComposantMap> getNoeudsCircuit() {
+		return noeudsCircuit;
+	}
+
+	public void setNoeudsCircuit(ArrayList<ComposantMap> noeudsCircuit) {
+		this.noeudsCircuit = noeudsCircuit;
+	}
 
 	public ArrayList<ArrayList<ComposantMap>> getMaillesCircuitsFermes() {
 		return maillesCircuitsFermes;
@@ -42,6 +50,22 @@ public class MapParcourable extends Map {
 
 	public void genrerNoeuds() {
 
+		noeudsCircuit = new ArrayList<ComposantMap>();
+		int nbComposantesEnContact = 0;
+		ComposantMap[] composantEnContatc = new ComposantMap[4];
+		for (ComposantMap composante : this.composantsActuels) {
+			composantEnContatc = trouverComposantesEnContact(composante);
+			for (ComposantMap autre : composantEnContatc) {
+				if (autre != null) {
+					nbComposantesEnContact++;
+				}
+			}
+			if((nbComposantesEnContact>=3) ) {
+				noeudsCircuit.add(composante);
+			}
+			nbComposantesEnContact=0;
+		}
+
 	}
 
 	/**
@@ -50,7 +74,7 @@ public class MapParcourable extends Map {
 	public void genererMailles() {
 		maillesCircuitsFermes = new ArrayList<ArrayList<ComposantMap>>();
 		ComposantMap[] composantEnContatc = new ComposantMap[4];
-		DefaultDirectedGraph<ComposantMap, DefaultEdge> graphCirucit = new DefaultDirectedGraph<>(DefaultEdge.class);
+		SimpleDirectedGraph<ComposantMap, DefaultEdge> graphCirucit = new SimpleDirectedGraph<>(DefaultEdge.class);	
 		for (ComposantMap composante : this.composantsActuels) {
 			composantEnContatc = trouverComposantesEnContact(composante);
 			graphCirucit.addVertex(composante);
@@ -73,25 +97,12 @@ public class MapParcourable extends Map {
 	 * @param list
 	 */
 	private void convertirAArrayList(List<List<ComposantMap>> list) {
-		ArrayList<ArrayList<ComposantMap>> maillsesCircuitsFermesFinal = new ArrayList<ArrayList<ComposantMap>>();
 		Iterator<List<ComposantMap>> itlistMailles = list.iterator();
 		while (itlistMailles.hasNext()) {
 			List<ComposantMap> listMailles = itlistMailles.next();
-			Iterator<ComposantMap> itComposantesMaille = listMailles.iterator();
-			ArrayList<ComposantMap> arrayListComposanteDsMaille = new ArrayList<ComposantMap>();
-			while (itComposantesMaille.hasNext()) {
-				ComposantMap composante = itComposantesMaille.next();
-				arrayListComposanteDsMaille.add(composante);
-			}
-			maillesCircuitsFermes.add(arrayListComposanteDsMaille);
+			if(listMailles.size()> 2)
+			maillesCircuitsFermes.add(new ArrayList<ComposantMap>(listMailles));
 		}
-		for (ArrayList<ComposantMap> array : maillesCircuitsFermes) {
-			if (array.size() > 2) {
-				maillsesCircuitsFermesFinal.add(array);
-			}
-		}
-		this.maillesCircuitsFermes = maillsesCircuitsFermesFinal;
-
 	}
 
 	/**
