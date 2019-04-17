@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="90.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.ControleurDrawerVue">
+   <children>
+      <ToggleButton fx:id="btnfil" mnemonicParsing="false" onAction="#selectWire" onDragDetected="#dragDetectedF" prefHeight="70.0" prefWidth="70.0">
+         <VBox.margin>
+            <Insets left="10.0" top="30.0" />
+         </VBox.margin>
+         <toggleGroup>
+            <ToggleGroup fx:id="cGroup" />
+         </toggleGroup>
+      </ToggleButton>
+      <Label alignment="CENTER" prefWidth="90.0" text="Wire" textFill="#00a1ff" translateY="-10.0" />
+      <ToggleButton fx:id="btnresistance" mnemonicParsing="false" onAction="#selectResistor" onDragDetected="#dragDetectedR" prefHeight="70.0" prefWidth="70.0" toggleGroup="$cGroup">
+         <VBox.margin>
+            <Insets left="10.0" top="20.0" />
+         </VBox.margin>
+      </ToggleButton>
+      <Label alignment="CENTER" prefWidth="90.0" text="Résistance" textFill="#00a1ff" translateY="-10.0" />
+      <ToggleButton fx:id="btnsource" mnemonicParsing="false" onAction="#selectSource" onDragDetected="#dragDetectedS" prefHeight="70.0" prefWidth="70.0" toggleGroup="$cGroup">
+         <VBox.margin>
+            <Insets left="10.0" top="20.0" />
+         </VBox.margin>
+      </ToggleButton>
+      <Label alignment="CENTER" prefWidth="90.0" text="Source" textFill="#00a1ff" translateY="-10.0" />
+      <ToggleButton fx:id="btncondensateur" mnemonicParsing="false" onAction="#selectCondensator" onDragDetected="#dragDetectedC" prefHeight="70.0" prefWidth="70.0" toggleGroup="$cGroup">
+         <VBox.margin>
+            <Insets left="10.0" top="20.0" />
+         </VBox.margin>
+      </ToggleButton>
+      <Label alignment="CENTER" prefWidth="90.0" text="Condensateur" textFill="#00a1ff" translateY="-10.0" />
+      <ToggleButton fx:id="btnbobine" mnemonicParsing="false" onAction="#selectBobine" onDragDetected="#dragDetectedB" prefHeight="70.0" prefWidth="70.0" toggleGroup="$cGroup">
+         <VBox.margin>
+            <Insets left="10.0" top="20.0" />
+         </VBox.margin>
+      </ToggleButton>
+      <Label alignment="CENTER" prefWidth="90.0" text="Bobine" textFill="#00a1ff" translateY="-10.0" />
+      <ToggleButton fx:id="btnampoule" mnemonicParsing="false" onAction="#selectAmpoule" onDragDetected="#dragDetectedA" prefHeight="70.0" prefWidth="70.0" toggleGroup="$cGroup">
+         <VBox.margin>
+            <Insets left="10.0" top="20.0" />
+         </VBox.margin>
+      </ToggleButton>
+      <Label alignment="CENTER" prefWidth="90.0" text="Ampoule" textFill="#00a1ff" translateY="-10.0" />
+   </children>
+</VBox>

@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.imageio.ImageIO;
-
 import composantesCircuit.Bobine;
 import composantesCircuit.Condensateur;
 import composantesCircuit.Fil;
@@ -27,7 +25,6 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseButton;
@@ -41,24 +38,31 @@ import map.ComposantMap;
 import map.MapParcourable;
 import utilitaire.Images;
 import utilitaire.Images.Composante;
+import vue.ControleurDrawerVue;
 import vue.ControleurVue;
 
 public class ControleurBoardPro {
 
 	private ControleurVue vue;
+	private ControleurDrawerVue vue2;
 	double OgScale = 1;
-	private String composante = "Fil";
+	public static String composante = "fil";
 	private ArrayList<Images> listeImage = new ArrayList<Images>();
-
+	public int numero = 1;
 	MapParcourable map = new MapParcourable();
 	Label nom = new Label();
 
 	public ControleurBoardPro() {
 		vue = new ControleurVue(this);
+		//vue2 = new ControleurDrawerVue(this);
 	}
 
 	public ControleurVue getVue() {
 		return vue;
+	}
+
+	public ControleurDrawerVue getVue2() {
+		return vue2;
 	}
 
 	public void masterHandler() {
@@ -68,16 +72,18 @@ public class ControleurBoardPro {
 		vue.scrollP.setHvalue(0.5);
 		vue.scrollP.setVvalue(0.5);
 		vue.gridP.setOnScroll(genererZoomHandler());
-
-		vue.tbCompList.setOnMouseClicked(genererListClicked());
 		vue.gridP.setOnMouseClicked(genererOnMouseClicked());
-		vue.tbCompList.setOnDragDetected(dragDetected());
+		vue.tbReset.setOnAction(resetHandler());
+		
 		vue.gridP.setOnDragDropped(dragDropped());
 		vue.gridP.setOnDragOver(dragOver());
-		vue.gridP.setOnDragDropped(dragDropped());
+		
 		vue.tbEnregistrer.setOnAction(enregistrerHandler());
 		vue.tbOuvrir.setOnAction(ouvrirHandler());
+		vue.tbReset.setOnAction(resetHandler());
+		vue.tbScreenShot.setOnAction(screenshotHandler());
 	}
+
 
 	private EventHandler<ActionEvent> resetHandler() {
 		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
@@ -236,9 +242,8 @@ public class ControleurBoardPro {
 					texte += listeImage.get(i).getPositionX() + "\n";
 					texte += listeImage.get(i).getPositionY() + "\n";
 				}
-
+				
 				FileChooser fichierSelecteur = new FileChooser();
-
 				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
 				fichierSelecteur.getExtensionFilters().add(extFilter);
 
@@ -279,23 +284,6 @@ public class ControleurBoardPro {
 		return retour;
 	}
 
-	private EventHandler<MouseEvent> dragDetected() {
-		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				int p = event.getTarget().toString().indexOf("'");
-				composante = event.getTarget().toString().substring(p);
-				Dragboard db = vue.tbCompList.startDragAndDrop(TransferMode.ANY);
-				ClipboardContent content = new ClipboardContent();
-				content.putString("THIS HAS BEEN DROPPED");
-				db.setContent(content);
-				event.consume();
-			}
-
-		};
-		return retour;
-	}
 
 	private EventHandler<DragEvent> dragDropped() {
 		EventHandler<DragEvent> retour = new EventHandler<DragEvent>() {
@@ -310,17 +298,17 @@ public class ControleurBoardPro {
 				byte positionX = (byte) (Math.floor(event.getX() / 75));
 				byte positionY = (byte) (Math.floor(event.getY() / 75));
 
-				if (composante.equals("'Fil'")) {
+				if (composante.equals("fil")) {
 					genererFil(positionX, positionY);
-				} else if (composante.equals("'Résistance'")) {
+				} else if (composante.equals("resistance")) {
 					genererAutre(positionX, positionY, Composante.Résistance);
-				} else if (composante.equals("'Condensateur'")) {
+				} else if (composante.equals("condensateur")) {
 					genererAutre(positionX, positionY, Composante.Condensateur);
-				} else if (composante.equals("'Bobine'")) {
+				} else if (composante.equals("bobine")) {
 					genererAutre(positionX, positionY, Composante.Bobine);
-				} else if (composante.equals("'Source'")) {
+				} else if (composante.equals("source")) {
 					genererAutre(positionX, positionY, Composante.Source);
-				} else if (composante.equals("'Ampoule'")) {
+				} else if (composante.equals("ampoule")) {
 					genererAutre(positionX, positionY, Composante.Ampoule);
 				}
 			}
@@ -378,18 +366,6 @@ public class ControleurBoardPro {
 		return retour;
 	}
 
-	private EventHandler<MouseEvent> genererListClicked() {
-		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				int p = event.getTarget().toString().indexOf("'");
-				if (!composante.equals("")) {
-					composante = event.getTarget().toString().substring(p);
-				}
-			}
-		};
-		return retour;
-	}
 
 	private EventHandler<MouseEvent> genererOnMouseClicked() {
 		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
@@ -397,7 +373,6 @@ public class ControleurBoardPro {
 			public void handle(MouseEvent event) {
 				byte positionX = (byte) (Math.floor(event.getX() / 75));
 				byte positionY = (byte) (Math.floor(event.getY() / 75));
-
 				if (event.getButton().equals(MouseButton.SECONDARY)) {
 					vue.paneGraph.getChildren().remove(nom);
 					for (int i = 0; i < listeImage.size(); i++) {
@@ -417,17 +392,17 @@ public class ControleurBoardPro {
 
 				} else {
 
-					if (composante.equals("'Fil'")) {
+					if (composante.equals("fil")) {
 						genererFil(positionX, positionY);
-					} else if (composante.equals("'Résistance'")) {
+					} else if (composante.equals("resistance")) {
 						genererAutre(positionX, positionY, Composante.Résistance);
-					} else if (composante.equals("'Condensateur'")) {
+					} else if (composante.equals("condensateur")) {
 						genererAutre(positionX, positionY, Composante.Condensateur);
-					} else if (composante.equals("'Bobine'")) {
+					} else if (composante.equals("bobine")) {
 						genererAutre(positionX, positionY, Composante.Bobine);
-					} else if (composante.equals("'Source'")) {
+					} else if (composante.equals("source")) {
 						genererAutre(positionX, positionY, Composante.Source);
-					} else if (composante.equals("'Ampoule'")) {
+					} else if (composante.equals("ampoule")) {
 						genererAutre(positionX, positionY, Composante.Ampoule);
 					}
 				}

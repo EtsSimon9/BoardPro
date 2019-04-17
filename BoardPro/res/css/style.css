@@ -5,15 +5,13 @@
     -fx-background-position: center;
     -fx-background-color: TRANSPARENT;
 }
-
 #tbPlay{
     -fx-background-image: url("/img/playicon2.0.png");
-    -fx-background-size: 65.0px 65.0px;
+    -fx-background-size: 63.0px 63.0px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-color: TRANSPARENT;
 }
-
 #tbOuvrir{
     -fx-background-image: url("/img/foldericon2.png");
     -fx-background-size: 65.0px 65.0px;
@@ -21,19 +19,65 @@
     -fx-background-position: center;
     -fx-background-color: TRANSPARENT;
 }
-
+#tbScreenShot{
+    -fx-background-image: url("/img/ScreenshotIcon.png");
+    -fx-background-size: 60.0px 60.0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: TRANSPARENT;
+}
+#tbReset{
+    -fx-background-image: url("/img/ResetIcon.png");
+    -fx-background-size: 65.0px 65.0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: TRANSPARENT;
+}
+#tbRemove{
+    -fx-background-image: url("/img/remove.png");
+    -fx-background-size: 65.0px 65.0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: TRANSPARENT;
+}
 #tbEnregistrer{
     -fx-background-image: url("/img/saveicon2.png");
     -fx-background-size: 135.0px 135.0px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-color: TRANSPARENT;
-
+}
+.toggle-button{
+    -fx-background-size: 70.0px 70.0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: TRANSPARENT;
+    
+}
+.toggle-button:selected{
+    -fx-background-color: #232323;
+}
+#btnfil{
+    -fx-background-image: url("/img/Composante_fil.png");
+}
+#btnresistance{
+    -fx-background-image: url("/img/Composante_resistance.png");
+}
+#btnsource{
+    -fx-background-image: url("/img/source.png");
+}
+#btncondensateur{
+    -fx-background-image: url("/img/condensateur.png");
+}
+#btnbobine{
+    -fx-background-image: url("/img/bobine.png");
+}
+#btnampoule{
+    -fx-background-image: url("/img/ampoule.png");
 }
 
 .jfx-tool-bar {
     -fx-background-color: #00a1ff;
-
 }
 
 .jfx-tab-pane {
@@ -114,4 +158,7 @@
 .tab{
   -fx-background: #333333;
   -fx-text-fill: -text-blue;
-} */
+}
+.jfx-drawer-side-pane{
+  -fx-background-color: #282828;
+}
