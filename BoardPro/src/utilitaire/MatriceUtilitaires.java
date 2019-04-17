@@ -3,6 +3,8 @@ package utilitaire;
 import org.ejml.data.SingularMatrixException;
 import org.ejml.simple.SimpleMatrix;
 
+import map.MapParcourable;
+
 /**
  * Classe utilitaires pour la gestion des matrices carrées
  *  + Framework static permettant de resoudre des systemes d'equations avec n
@@ -275,5 +277,20 @@ public class MatriceUtilitaires {
 		return retour;
 	}
 
+	
+	/**
+	 * Prends une map parcouable et génére la matrice des résistances équations recherchées
+	 * @param map
+	 * @return
+	 */
+	
+	public static float[][] ecrireMarice (MapParcourable map) {
+		
+		
+		
+		
+		return null;
+		
+	}
 	
 }

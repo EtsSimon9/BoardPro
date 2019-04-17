@@ -65,4 +65,10 @@ import utilitaire.Images;
 		this.resistance = resistance;
 	}
 
+	@Override
+	public String toString() {
+		return "";
+	}
+
+	
 }

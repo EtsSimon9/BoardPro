@@ -498,12 +498,13 @@ public class ControleurBoardPro {
 
 				map.removeComposante(i);
 				vue.gridP.getChildren().remove(listeImage.get(i).getView());
-
+				
 				if (aEnlever == null) {
 					aEnlever = listeImage.get(i).getView();
 				}
 				vue.gridP.getChildren().remove(aEnlever);
 				listeImage.remove(i);
+
 			}
 		}
 
@@ -515,19 +516,22 @@ public class ControleurBoardPro {
 		// -----------------------Ajout dans composante Map--------------------
 		try {
 			ComposantMap compo = null;
-			if (image.getNom().equals(Composante.Ampoule) || image.getNom().equals(Composante.Résistance)) {
-				compo = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
+			if (image.getNom().equals(Composante.Ampoule)) {
+				// Ampoule n'existe pas encore..
 			} else if (image.getNom().equals(Composante.Bobine)) {
 				compo = new Bobine((short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else if (image.getNom().equals(Composante.Condensateur)) {
 				compo = new Condensateur((short) image.getPositionX(), (short) image.getPositionY(), image);
+			} else if (image.getNom().equals(Composante.Résistance)) {
+				compo = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else if (image.getNom().equals(Composante.Source)) {
 				compo = new SourceCourant((short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else {
 				compo = new Fil((short) image.getPositionX(), (short) image.getPositionY(), image);
 			}
+			if (compo != null) {
 				map.addComposant(compo);
-				
+			}
 		} catch (ComposantException e) {
 			e.printStackTrace();
 		}

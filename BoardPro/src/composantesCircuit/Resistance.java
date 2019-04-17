@@ -51,6 +51,11 @@ public class Resistance extends CE2Entrees {
 	 * 
 	 * @throws ComposantException
 	 */
+	public Resistance(short resistance,short x, short y,Images i) throws ComposantException {
+		super(resistance,x, y, i);
+
+	}
+	
 	public Resistance(short x, short y,Images i) throws ComposantException {
 		super(x, y, i);
 
@@ -119,4 +124,11 @@ public class Resistance extends CE2Entrees {
 		}
 		return retour;
 	}
+
+	@Override
+	public String toString() {
+		return " [Z" + this.getImpedence()+ "]";
+	}
+	
+	
 }
