@@ -47,8 +47,8 @@ public abstract class Map {
 	 * Enleve une composante de la liste des compsantes dans la map
 	 * @param compo compostante à enlever de la liste de compsatnes
 	 */
-	public void removeComposante(ComposantMap compo) {
-			composantsActuels.remove(compo);
+	public void removeComposante(byte index) {
+			composantsActuels.remove(index);
 	}
 	
 

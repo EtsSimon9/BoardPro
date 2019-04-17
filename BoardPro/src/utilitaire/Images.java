@@ -12,8 +12,8 @@ public class Images {
 		Bobine, Ampoule, Source
 	};
 
-	private int positionX;
-	private int positionY;
+	private byte positionX;
+	private byte positionY;
 	private ImageView view;
 	private Image image;
 	private Composante nom;
@@ -24,17 +24,13 @@ public class Images {
 	 * image, la 2e valeur de l'arraylist est 1, sinon 0. Droite:1er position,
 	 * Gauche 2e position, Haut 3e et Bas 4e dans l'array
 	 */
-	private ArrayList<Integer> dghb;
+	private byte[] dghb;
 
-	public Images(Composante nom, int px, int py) {
+	public Images(Composante nom, byte px, byte py) {
 		if (nom != null) {
 			this.setNom(nom);
 		}
-		dghb = new ArrayList<Integer>();
-		dghb.add(0);
-		dghb.add(0);
-		dghb.add(0);
-		dghb.add(0);
+		dghb = new byte[4];
 		this.setPositionX(px);
 		this.setPositionY(py);
 		creerImage(nom);
@@ -57,19 +53,19 @@ public class Images {
 		this.nom = nom;
 	}
 
-	public int getPositionX() {
+	public byte getPositionX() {
 		return positionX;
 	}
 
-	public void setPositionX(int positionX) {
+	public void setPositionX(byte positionX) {
 		this.positionX = positionX;
 	}
 
-	public int getPositionY() {
+	public byte getPositionY() {
 		return positionY;
 	}
 
-	public void setPositionY(int positionY) {
+	public void setPositionY(byte positionY) {
 		this.positionY = positionY;
 	}
 
@@ -149,11 +145,11 @@ public class Images {
 		this.setView(v);
 	}
 
-	public ArrayList<Integer> getDghb() {
+	public byte[] getDghb() {
 		return dghb;
 	}
 
-	public void setDghb(ArrayList<Integer> dghb) {
+	public void setDghb(byte[] dghb) {
 		this.dghb = dghb;
 	}
 
@@ -163,45 +159,45 @@ public class Images {
 	 * @return Retourne un tableau des index des composantes qui doivent être
 	 *         changer (on a ajouter qq chose près)
 	 */
-	public HashSet<Integer> composanteProche(ArrayList<Images> listeImage) {
-		HashSet<Integer> indexaModif = new HashSet<Integer>();
+	public HashSet<Byte> composanteProche(ArrayList<Images> listeImage) {
+		HashSet<Byte> indexaModif = new HashSet<Byte>();
 		// Vérification à Droite
 		for (int i = 0; i < listeImage.size(); i++) {
 			if (listeImage.get(i).getPositionX() == positionX + 1 && listeImage.get(i).getPositionY() == positionY) {
-				dghb.set(0, 1);
+				this.dghb[0] = 1;
 				// Puisque l'image à gauche doit aussi considérer l'image actuelle à sa droite
-				listeImage.get(i).getDghb().set(1, 1);
-				indexaModif.add(i);
+				listeImage.get(i).getDghb()[1] = 1;
+				indexaModif.add((byte) i);
 			}
 		}
 
 		// Vérification à Gauche
 		for (int i = 0; i < listeImage.size(); i++) {
 			if (listeImage.get(i).getPositionX() == positionX - 1 && listeImage.get(i).getPositionY() == positionY) {
-				dghb.set(1, 1);
+				this.dghb[1] = 1;
 				// Puisque l'image à gauche doit aussi considérer l'image actuelle à sa droite
-				listeImage.get(i).getDghb().set(0, 1);
-				indexaModif.add(i);
+				listeImage.get(i).getDghb()[0] = 1;
+				indexaModif.add((byte) i);
 			}
 		}
 
 		// Vérification Haut
 		for (int i = 0; i < listeImage.size(); i++) {
 			if (listeImage.get(i).getPositionX() == positionX && listeImage.get(i).getPositionY() == positionY - 1) {
-				dghb.set(2, 1);
+				this.dghb[2] = 1;
 				// Puisque l'image à gauche doit aussi considérer l'image actuelle à sa gauche
-				listeImage.get(i).getDghb().set(3, 1);
-				indexaModif.add(i);
+				listeImage.get(i).getDghb()[3] = 1;
+				indexaModif.add((byte) i);
 			}
 		}
 
 		// Vérification Bas
 		for (int i = 0; i < listeImage.size(); i++) {
 			if (listeImage.get(i).getPositionX() == positionX && listeImage.get(i).getPositionY() == positionY + 1) {
-				dghb.set(3, 1);
+				this.dghb[3] = 1;
 				// Puisque l'image à gauche doit aussi considérer l'image actuelle à sa gauche
-				listeImage.get(i).getDghb().set(2, 1);
-				indexaModif.add(i);
+				listeImage.get(i).getDghb()[2] = 1;
+				indexaModif.add((byte) i);
 			}
 		}
 		return indexaModif;
@@ -210,16 +206,16 @@ public class Images {
 	public Composante choisirImage(Images i) {
 		Composante retour = null;
 
-		if (i.dghb.get(2) == 1 || i.dghb.get(3) == 1) {
+		if (i.dghb[2] == 1 || i.dghb[3] == 1) {
 			i.setRotation(90);
 		}
-		if (i.dghb.get(0) == 1 || i.dghb.get(1) == 1) {
+		if (i.dghb[0] == 1 || i.dghb[1] == 1) {
 			i.setRotation(0);
 		}
-		if (i.dghb.get(2) == 1 && i.dghb.get(3) == 1) {
+		if (i.dghb[2] == 1 && i.dghb[3] == 1) {
 			i.setRotation(90);
 		}
-		if (i.dghb.get(0) == 1 && i.dghb.get(1) == 1) {
+		if (i.dghb[0] == 1 && i.dghb[1] == 1) {
 			i.setRotation(0);
 		}
 		if (i.getNom().toString().substring(0, 3).equals("Fil")) {
@@ -244,54 +240,54 @@ public class Images {
 	public Composante choisirImageFil(Images i) {
 		Composante retour = Composante.FilH;
 
-		if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1 && i.getDghb().get(3) == 1) {
+		if (i.getDghb()[0] == 1 && i.getDghb()[1] == 1 && i.getDghb()[2] == 1 && i.getDghb()[3] == 1) {
 			retour = Composante.FilAll;
 
-		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1
-				&& i.getDghb().get(3) == 0) {
+		} else if (i.getDghb()[0] == 1 && i.getDghb()[1] == 1 && i.getDghb()[2] == 1
+				&& i.getDghb()[3] == 0) {
 			retour = Composante.FilGHD;
 
-		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 0
-				&& i.getDghb().get(3) == 1) {
+		} else if (i.getDghb()[0] == 1 && i.getDghb()[1] == 1 && i.getDghb()[2] == 0
+				&& i.getDghb()[3] == 1) {
 			retour = Composante.FilGBD;
 
-		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1
-				&& i.getDghb().get(3) == 1) {
+		} else if (i.getDghb()[0] == 1 && i.getDghb()[1] == 0 && i.getDghb()[2] == 1
+				&& i.getDghb()[3] == 1) {
 			retour = Composante.FilBDH;
 
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1
-				&& i.getDghb().get(3) == 1) {
+		} else if (i.getDghb()[0] == 0 && i.getDghb()[1] == 1 && i.getDghb()[2] == 1
+				&& i.getDghb()[3] == 1) {
 			retour = Composante.FilBGH;
 
-		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 0
-				&& i.getDghb().get(3) == 1) {
+		} else if (i.getDghb()[0] == 1 && i.getDghb()[1] == 0 && i.getDghb()[2] == 0
+				&& i.getDghb()[3] == 1) {
 			retour = Composante.FilBD;
 
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 0
-				&& i.getDghb().get(3) == 1) {
+		} else if (i.getDghb()[0] == 0 && i.getDghb()[1] == 1 && i.getDghb()[2] == 0
+				&& i.getDghb()[3] == 1) {
 			retour = Composante.FilBG;
 
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 1
-				&& i.getDghb().get(3) == 0) {
+		} else if (i.getDghb()[0] == 0 && i.getDghb()[1] == 1 && i.getDghb()[2] == 1
+				&& i.getDghb()[3] == 0) {
 			retour = Composante.FilHG;
 
-		} else if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1
-				&& i.getDghb().get(3) == 0) {
+		} else if (i.getDghb()[0] == 1 && i.getDghb()[1] == 0 && i.getDghb()[2] == 1
+				&& i.getDghb()[3] == 0) {
 			retour = Composante.FilHD;
 
 		}
-		if (i.getDghb().get(0) == 1 && i.getDghb().get(1) == 1 && i.getDghb().get(2) == 0 && i.getDghb().get(3) == 0) {
+		if (i.getDghb()[0] == 1 && i.getDghb()[1] == 1 && i.getDghb()[2] == 0 && i.getDghb()[3] == 0) {
 			retour = Composante.FilH;
 
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1
-				&& i.getDghb().get(3) == 1) {
+		} else if (i.getDghb()[0] == 0 && i.getDghb()[1] == 0 && i.getDghb()[2] == 1
+				&& i.getDghb()[3] == 1) {
 			retour = Composante.FilV;
 
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 1
-				&& i.getDghb().get(3) == 0) {
+		} else if (i.getDghb()[0] == 0 && i.getDghb()[1] == 0 && i.getDghb()[2] == 1
+				&& i.getDghb()[3] == 0) {
 			retour = Composante.FilV;
-		} else if (i.getDghb().get(0) == 0 && i.getDghb().get(1) == 0 && i.getDghb().get(2) == 0
-				&& i.getDghb().get(3) == 1) {
+		} else if (i.getDghb()[0] == 0 && i.getDghb()[1] == 0 && i.getDghb()[2] == 0
+				&& i.getDghb()[3] == 1) {
 			retour = Composante.FilV;
 		}
 		return retour;

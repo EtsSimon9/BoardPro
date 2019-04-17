@@ -49,7 +49,7 @@ public class ControleurBoardPro {
 	double OgScale = 1;
 	private String composante = "Fil";
 	private ArrayList<Images> listeImage = new ArrayList<Images>();
-	public int numero = 1;
+
 	MapParcourable map = new MapParcourable();
 	Label nom = new Label();
 
@@ -210,10 +210,10 @@ public class ControleurBoardPro {
 
 				st = br.readLine();
 				if (st != null) {
-					int posX = Integer.parseInt(st);
+					byte posX = (byte) Integer.parseInt(st);
 					st = br.readLine();
 					if (st != null) {
-						int posY = Integer.parseInt(st);
+						byte posY = (byte) Integer.parseInt(st);
 						genererAutre(posX, posY, c);
 					}
 				}
@@ -307,8 +307,8 @@ public class ControleurBoardPro {
 					event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
 				}
 				event.consume();
-				int positionX = (int) (Math.floor(event.getX() / 75));
-				int positionY = (int) (Math.floor(event.getY() / 75));
+				byte positionX = (byte) (Math.floor(event.getX() / 75));
+				byte positionY = (byte) (Math.floor(event.getY() / 75));
 
 				if (composante.equals("'Fil'")) {
 					genererFil(positionX, positionY);
@@ -395,8 +395,8 @@ public class ControleurBoardPro {
 		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				int positionX = (int) (Math.floor(event.getX() / 75));
-				int positionY = (int) (Math.floor(event.getY() / 75));
+				byte positionX = (byte) (Math.floor(event.getX() / 75));
+				byte positionY = (byte) (Math.floor(event.getY() / 75));
 
 				if (event.getButton().equals(MouseButton.SECONDARY)) {
 					vue.paneGraph.getChildren().remove(nom);
@@ -436,9 +436,9 @@ public class ControleurBoardPro {
 		return retour;
 	}
 
-	private void genererAutre(int x, int y, Composante nom) {
+	private void genererAutre(byte x, byte y, Composante nom) {
 		Images i = new Images(nom, x, y);
-		HashSet<Integer> aChanger = i.composanteProche(listeImage);
+		HashSet<Byte> aChanger = i.composanteProche(listeImage);
 		changerImage(aChanger);
 		i.choisirImage(i);
 		Composante n = i.choisirImage(i);
@@ -448,7 +448,7 @@ public class ControleurBoardPro {
 		ajoutComposante(i, null);
 	}
 
-	private void genererFil(int x, int y) {
+	private void genererFil(byte x, byte y) {
 		Images image = new Images(Composante.FilH, x, y);
 
 		/*
@@ -456,7 +456,7 @@ public class ControleurBoardPro {
 		 * puisque ces images proches doivent peut-être changer, garde la liste des
 		 * images a changer
 		 */
-		HashSet<Integer> aChanger = image.composanteProche(listeImage);
+		HashSet<Byte> aChanger = image.composanteProche(listeImage);
 		changerImage(aChanger);
 
 		Composante nom = image.choisirImage(image);
@@ -467,10 +467,10 @@ public class ControleurBoardPro {
 
 	}
 
-	private void changerImage(HashSet<Integer> lesIndexs) {
+	private void changerImage(HashSet<Byte> lesIndexs) {
 		ArrayList<Images> liste = new ArrayList<Images>();
 
-		for (Integer i : lesIndexs) {
+		for (Byte i : lesIndexs) {
 			liste.add(listeImage.get(i));
 		}
 		for (int j = 0; j < liste.size(); j++) {
@@ -492,58 +492,46 @@ public class ControleurBoardPro {
 
 	private void ajoutComposante(Images image, ImageView aEnlever) {
 		// Remove si à la meme position
-		for (int i = 0; i < listeImage.size(); i++) {
+		for (byte i = 0; i < listeImage.size(); i++) {
 			if (listeImage.get(i) == image || (listeImage.get(i).getPositionX() == image.getPositionX()
 					&& listeImage.get(i).getPositionY() == image.getPositionY())) {
-				// Remove de la map
-				for (int j = 0; j < map.getComposantsActuels().size(); j++) {
-					if ((aEnlever != null && map.getComposantsActuels().get(j).getImage().getView().equals(aEnlever))
-							|| map.getComposantsActuels().get(j).getImage().getView()
-									.equals(listeImage.get(i).getView())) {
-						map.removeComposante(map.getComposantsActuels().get(j));
-					}
-				}
 
-				// Remove de la grille et de la liste d'image
-
-				// Premier pour clique par dessus
+				map.removeComposante(i);
 				vue.gridP.getChildren().remove(listeImage.get(i).getView());
-				// Lui pour les changements d'image
-				if (aEnlever != null) {
-					vue.gridP.getChildren().remove(aEnlever);
-				}
-				listeImage.remove(i);
 
+				if (aEnlever == null) {
+					aEnlever = listeImage.get(i).getView();
+				}
+				vue.gridP.getChildren().remove(aEnlever);
+				listeImage.remove(i);
 			}
 		}
+
 		listeImage.add(image);
 		ImageView v = image.getView();
 		v.setRotate(image.getRotation());
 		vue.gridP.add(v, image.getPositionX(), image.getPositionY());
-		numero++;
 
 		// -----------------------Ajout dans composante Map--------------------
 		try {
 			ComposantMap compo = null;
-			if (image.getNom().equals(Composante.Ampoule)) {
-				// Ampoule n'existe pas encore..
+			if (image.getNom().equals(Composante.Ampoule) || image.getNom().equals(Composante.Résistance)) {
+				compo = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else if (image.getNom().equals(Composante.Bobine)) {
 				compo = new Bobine((short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else if (image.getNom().equals(Composante.Condensateur)) {
 				compo = new Condensateur((short) image.getPositionX(), (short) image.getPositionY(), image);
-			} else if (image.getNom().equals(Composante.Résistance)) {
-				compo = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else if (image.getNom().equals(Composante.Source)) {
 				compo = new SourceCourant((short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else {
 				compo = new Fil((short) image.getPositionX(), (short) image.getPositionY(), image);
 			}
-			if (compo != null) {
 				map.addComposant(compo);
-			}
+				
 		} catch (ComposantException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	private void reset() {
