@@ -22,7 +22,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.DragEvent;
@@ -51,10 +53,10 @@ public class ControleurBoardPro {
 	public int numero = 1;
 	MapParcourable map = new MapParcourable();
 	Label nom = new Label();
-
+	boolean effacer = false;
 	public ControleurBoardPro() {
 		vue = new ControleurVue(this);
-		//vue2 = new ControleurDrawerVue(this);
+		// vue2 = new ControleurDrawerVue(this);
 	}
 
 	public ControleurVue getVue() {
@@ -74,16 +76,57 @@ public class ControleurBoardPro {
 		vue.gridP.setOnScroll(genererZoomHandler());
 		vue.gridP.setOnMouseClicked(genererOnMouseClicked());
 		vue.tbReset.setOnAction(resetHandler());
-		
+		vue.tbRemove.setOnAction(enleverHandler());
+
 		vue.gridP.setOnDragDropped(dragDropped());
 		vue.gridP.setOnDragOver(dragOver());
-		
+
 		vue.tbEnregistrer.setOnAction(enregistrerHandler());
 		vue.tbOuvrir.setOnAction(ouvrirHandler());
 		vue.tbReset.setOnAction(resetHandler());
 		vue.tbScreenShot.setOnAction(screenshotHandler());
 	}
 
+	private EventHandler<ActionEvent> enleverHandler() {
+		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				Button b = (Button) event.getSource();
+				b.setStyle("-fx-background-color:grey");
+				
+				if (!effacer) {
+					effacer = true;
+					// Activer handler enlève pour la grille
+					vue.gridP.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+						@Override
+						public void handle(MouseEvent event) {
+							byte positionX = (byte) (Math.floor(event.getX() / 75));
+							byte positionY = (byte) (Math.floor(event.getY() / 75));
+
+							for (byte i = 0; i < listeImage.size(); i++) {
+								if (listeImage.get(i).getPositionX() == positionX
+										&& listeImage.get(i).getPositionY() == positionY) {
+									enlever(listeImage.get(i));
+								} 
+							}
+
+						}
+
+					});
+				} else {
+					effacer = false;
+					vue.gridP.setOnMouseClicked(genererOnMouseClicked());
+					b.setStyle(null);
+				}
+				
+
+			}
+
+		};
+		return retour;
+	}
 
 	private EventHandler<ActionEvent> resetHandler() {
 		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
@@ -125,7 +168,7 @@ public class ControleurBoardPro {
 						}
 
 					} catch (IOException e) {
-						// TODO: handle exception here
+
 					}
 				}
 			}
@@ -242,7 +285,7 @@ public class ControleurBoardPro {
 					texte += listeImage.get(i).getPositionX() + "\n";
 					texte += listeImage.get(i).getPositionY() + "\n";
 				}
-				
+
 				FileChooser fichierSelecteur = new FileChooser();
 				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
 				fichierSelecteur.getExtensionFilters().add(extFilter);
@@ -283,7 +326,6 @@ public class ControleurBoardPro {
 		};
 		return retour;
 	}
-
 
 	private EventHandler<DragEvent> dragDropped() {
 		EventHandler<DragEvent> retour = new EventHandler<DragEvent>() {
@@ -365,7 +407,6 @@ public class ControleurBoardPro {
 		};
 		return retour;
 	}
-
 
 	private EventHandler<MouseEvent> genererOnMouseClicked() {
 		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
@@ -473,7 +514,7 @@ public class ControleurBoardPro {
 
 				map.removeComposante(i);
 				vue.gridP.getChildren().remove(listeImage.get(i).getView());
-				
+
 				if (aEnlever == null) {
 					aEnlever = listeImage.get(i).getView();
 				}
@@ -521,5 +562,13 @@ public class ControleurBoardPro {
 		Node n = vue.gridP.getChildren().get(0);
 		vue.gridP.getChildren().clear();
 		vue.gridP.add(n, 0, 0);
+	}
+
+	private void enlever(Images image) {
+		HashSet<Byte> aModif = image.modifierAutourRetrait(listeImage);
+		changerImage(aModif);
+		vue.gridP.getChildren().remove(image.getView());
+		map.getComposantsActuels().remove(listeImage.indexOf(image));
+		listeImage.remove(image);
 	}
 }

@@ -292,4 +292,43 @@ public class Images {
 		}
 		return retour;
 	}
+	
+	public HashSet<Byte> modifierAutourRetrait(ArrayList<Images> listeImage) {
+		HashSet<Byte> indexaModif = new HashSet<Byte>();
+		// Vérification à Droite
+				for (int i = 0; i < listeImage.size(); i++) {
+					if (listeImage.get(i).getPositionX() == positionX + 1 && listeImage.get(i).getPositionY() == positionY) {
+						listeImage.get(i).getDghb()[1] = 0;
+						indexaModif.add((byte) i);
+					}
+				}
+
+				// Vérification à Gauche
+				for (int i = 0; i < listeImage.size(); i++) {
+					if (listeImage.get(i).getPositionX() == positionX - 1 && listeImage.get(i).getPositionY() == positionY) {
+						// Puisque l'image à gauche doit aussi considérer l'image actuelle à sa droite
+						listeImage.get(i).getDghb()[0] = 0;
+						indexaModif.add((byte) i);
+					}
+				}
+
+				// Vérification Haut
+				for (int i = 0; i < listeImage.size(); i++) {
+					if (listeImage.get(i).getPositionX() == positionX && listeImage.get(i).getPositionY() == positionY - 1) {
+						// Puisque l'image à gauche doit aussi considérer l'image actuelle à sa gauche
+						listeImage.get(i).getDghb()[3] = 0;
+						indexaModif.add((byte) i);
+					}
+				}
+
+				// Vérification Bas
+				for (int i = 0; i < listeImage.size(); i++) {
+					if (listeImage.get(i).getPositionX() == positionX && listeImage.get(i).getPositionY() == positionY + 1) {
+						// Puisque l'image à gauche doit aussi considérer l'image actuelle à sa gauche
+						listeImage.get(i).getDghb()[2] = 0;
+						indexaModif.add((byte) i);
+					}
+				}
+				return indexaModif;
+	}
 }
