@@ -115,7 +115,7 @@ public class ControleurVue {
 	public AnchorPane root;
 	public ControleurBoardPro controleur;
 	Scene scene;
-	private GraphiqueTemps graphiqueTemps;
+	public GraphiqueTemps graphiqueTemps;
 	//private ControleurDrawerVue vue2;
 
 	
@@ -179,7 +179,6 @@ public class ControleurVue {
 		
 		Axes axes = new Axes(1300, 690, 1, 8);
 		graphiqueTemps = new GraphiqueTemps("sin(x)", axes,60);
-		graphiqueTemps.start();	
 		paneGraph.getChildren().add(graphiqueTemps.getGraphique());
 		
 		

@@ -35,6 +35,10 @@ public class GraphiqueTemps {
 	public void stop() {
 		temps.cancel();
 	}
+	
+	public void reset() {
+		temps.reset();
+	}
 
 	ScheduledService<Void> temps = new ScheduledService<Void>() {
 		@Override

@@ -54,6 +54,8 @@ public class ControleurBoardPro {
 	MapParcourable map = new MapParcourable();
 	Label nom = new Label();
 	boolean effacer = false;
+	boolean playing = false;
+	
 	public ControleurBoardPro() {
 		vue = new ControleurVue(this);
 		// vue2 = new ControleurDrawerVue(this);
@@ -77,7 +79,8 @@ public class ControleurBoardPro {
 		vue.gridP.setOnMouseClicked(genererOnMouseClicked());
 		vue.tbReset.setOnAction(resetHandler());
 		vue.tbRemove.setOnAction(enleverHandler());
-
+		vue.tbPlay.setOnAction(play());
+		
 		vue.gridP.setOnDragDropped(dragDropped());
 		vue.gridP.setOnDragOver(dragOver());
 
@@ -87,13 +90,35 @@ public class ControleurBoardPro {
 		vue.tbScreenShot.setOnAction(screenshotHandler());
 	}
 
+	private EventHandler<ActionEvent> play() {
+		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				
+				if (playing == false) {
+					if (map.getMaille().size() != 0) {
+						playing = true;
+						vue.tbPlay.setStyle("-fx-background-color:c4c297");
+						vue.graphiqueTemps.reset();
+						vue.graphiqueTemps.start();
+					}
+				} else {
+					playing = false;
+					vue.tbPlay.setStyle(null);
+					vue.graphiqueTemps.stop();
+				}
+			}
+			
+		};
+		return retour;
+	}
 	private EventHandler<ActionEvent> enleverHandler() {
 		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				Button b = (Button) event.getSource();
-				b.setStyle("-fx-background-color:grey");
+				vue.tbRemove.setStyle("-fx-background-color:c4c297");
 				
 				if (!effacer) {
 					effacer = true;
@@ -118,7 +143,7 @@ public class ControleurBoardPro {
 				} else {
 					effacer = false;
 					vue.gridP.setOnMouseClicked(genererOnMouseClicked());
-					b.setStyle(null);
+					vue.tbRemove.setStyle(null);
 				}
 				
 
@@ -533,7 +558,7 @@ public class ControleurBoardPro {
 		try {
 			ComposantMap compo = null;
 			if (image.getNom().equals(Composante.Ampoule)) {
-				// Ampoule n'existe pas encore..
+				compo = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else if (image.getNom().equals(Composante.Bobine)) {
 				compo = new Bobine((short) image.getPositionX(), (short) image.getPositionY(), image);
 			} else if (image.getNom().equals(Composante.Condensateur)) {
@@ -558,7 +583,6 @@ public class ControleurBoardPro {
 		listeImage.clear();
 		map.getComposantsActuels().clear();
 		nom.setText("");
-
 		Node n = vue.gridP.getChildren().get(0);
 		vue.gridP.getChildren().clear();
 		vue.gridP.add(n, 0, 0);
