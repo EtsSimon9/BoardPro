@@ -16,15 +16,15 @@ import composantesCircuit.Fil;
 import composantesCircuit.Resistance;
 import composantesCircuit.SourceCourant;
 import exceptions.ComposantException;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.DragEvent;
@@ -36,6 +36,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Scale;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 import map.ComposantMap;
 import map.MapParcourable;
 import utilitaire.Images;
@@ -55,6 +56,7 @@ public class ControleurBoardPro {
 	Label nom = new Label();
 	boolean effacer = false;
 	boolean playing = false;
+	ArrayList<FadeTransition> listeFade = new ArrayList<FadeTransition>();
 	
 	public ControleurBoardPro() {
 		vue = new ControleurVue(this);
@@ -102,11 +104,27 @@ public class ControleurBoardPro {
 						vue.tbPlay.setStyle("-fx-background-color:c4c297");
 						vue.graphiqueTemps.reset();
 						vue.graphiqueTemps.start();
+						for (int i = 1; i < vue.gridP.getChildren().size();i++) {
+							FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), vue.gridP.getChildren().get(i));
+					        fadeTransition.setFromValue(1.0);
+					        fadeTransition.setToValue(0.1);
+					        fadeTransition.setAutoReverse(true);
+					        fadeTransition.setCycleCount(Animation.INDEFINITE);
+					        listeFade.add(fadeTransition);
+					        fadeTransition.play();
+					        
+						}
+						
+						
 					}
 				} else {
 					playing = false;
 					vue.tbPlay.setStyle(null);
 					vue.graphiqueTemps.stop();
+					for (FadeTransition i : listeFade) {
+						i.pause();
+						i.jumpTo(Duration.ZERO);
+					}
 				}
 			}
 			
