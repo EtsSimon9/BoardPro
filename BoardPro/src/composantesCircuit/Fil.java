@@ -1,5 +1,6 @@
 package composantesCircuit;
 
+import composante.CE2Entrees;
 import composante.ComposanteElectrique;
 import exceptions.ComposantException;
 import utilitaire.Images;

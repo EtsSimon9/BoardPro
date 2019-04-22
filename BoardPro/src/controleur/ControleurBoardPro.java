@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+
+import composante.CE2Entrees;
 import composantesCircuit.Bobine;
 import composantesCircuit.Condensateur;
 import composantesCircuit.Fil;
@@ -57,7 +59,7 @@ public class ControleurBoardPro {
 	boolean effacer = false;
 	boolean playing = false;
 	ArrayList<FadeTransition> listeFade = new ArrayList<FadeTransition>();
-	
+
 	public ControleurBoardPro() {
 		vue = new ControleurVue(this);
 		// vue2 = new ControleurDrawerVue(this);
@@ -82,7 +84,7 @@ public class ControleurBoardPro {
 		vue.tbReset.setOnAction(resetHandler());
 		vue.tbRemove.setOnAction(enleverHandler());
 		vue.tbPlay.setOnAction(play());
-		
+
 		vue.gridP.setOnDragDropped(dragDropped());
 		vue.gridP.setOnDragOver(dragOver());
 
@@ -97,25 +99,25 @@ public class ControleurBoardPro {
 
 			@Override
 			public void handle(ActionEvent event) {
-				
+
 				if (playing == false) {
 					if (map.getMaille().size() != 0) {
 						playing = true;
 						vue.tbPlay.setStyle("-fx-background-color:c4c297");
 						vue.graphiqueTemps.reset();
 						vue.graphiqueTemps.start();
-						for (int i = 1; i < vue.gridP.getChildren().size();i++) {
-							FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), vue.gridP.getChildren().get(i));
-					        fadeTransition.setFromValue(1.0);
-					        fadeTransition.setToValue(0.1);
-					        fadeTransition.setAutoReverse(true);
-					        fadeTransition.setCycleCount(Animation.INDEFINITE);
-					        listeFade.add(fadeTransition);
-					        fadeTransition.play();
-					        
+						for (int i = 1; i < vue.gridP.getChildren().size(); i++) {
+							FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1),
+									vue.gridP.getChildren().get(i));
+							fadeTransition.setFromValue(1.0);
+							fadeTransition.setToValue(0.1);
+							fadeTransition.setAutoReverse(true);
+							fadeTransition.setCycleCount(Animation.INDEFINITE);
+							listeFade.add(fadeTransition);
+							fadeTransition.play();
+
 						}
-						
-						
+
 					}
 				} else {
 					playing = false;
@@ -127,17 +129,18 @@ public class ControleurBoardPro {
 					}
 				}
 			}
-			
+
 		};
 		return retour;
 	}
+
 	private EventHandler<ActionEvent> enleverHandler() {
 		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 				vue.tbRemove.setStyle("-fx-background-color:c4c297");
-				
+
 				if (!effacer) {
 					effacer = true;
 					// Activer handler enlève pour la grille
@@ -152,7 +155,7 @@ public class ControleurBoardPro {
 								if (listeImage.get(i).getPositionX() == positionX
 										&& listeImage.get(i).getPositionY() == positionY) {
 									enlever(listeImage.get(i));
-								} 
+								}
 							}
 
 						}
@@ -163,7 +166,6 @@ public class ControleurBoardPro {
 					vue.gridP.setOnMouseClicked(genererOnMouseClicked());
 					vue.tbRemove.setStyle(null);
 				}
-				
 
 			}
 
@@ -575,21 +577,41 @@ public class ControleurBoardPro {
 		// -----------------------Ajout dans composante Map--------------------
 		try {
 			ComposantMap compo = null;
+			CE2Entrees composante = null;
 			if (image.getNom().equals(Composante.Ampoule)) {
-				compo = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
+				composante = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
+				
+				if (composante.getImage().getRotation() == 90) {
+					composante.setSens(true);
+				}
 			} else if (image.getNom().equals(Composante.Bobine)) {
-				compo = new Bobine((short) image.getPositionX(), (short) image.getPositionY(), image);
+				composante = new Bobine((short) image.getPositionX(), (short) image.getPositionY(), image);
+				if (composante.getImage().getRotation() == 90) {
+					composante.setSens(true);
+				}
 			} else if (image.getNom().equals(Composante.Condensateur)) {
-				compo = new Condensateur((short) image.getPositionX(), (short) image.getPositionY(), image);
+				composante = new Condensateur((short) image.getPositionX(), (short) image.getPositionY(), image);
+				if (composante.getImage().getRotation() == 90) {
+					composante.setSens(true);
+				}
 			} else if (image.getNom().equals(Composante.Résistance)) {
-				compo = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
+				composante = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
+				if (composante.getImage().getRotation() == 90) {
+					composante.setSens(true);
+				}
 			} else if (image.getNom().equals(Composante.Source)) {
-				compo = new SourceCourant((short) image.getPositionX(), (short) image.getPositionY(), image);
+				composante = new SourceCourant((short) image.getPositionX(), (short) image.getPositionY(), image);
+				if (composante.getImage().getRotation() == 90) {
+					composante.setSens(true);
+				}
 			} else {
 				compo = new Fil((short) image.getPositionX(), (short) image.getPositionY(), image);
 			}
 			if (compo != null) {
 				map.addComposant(compo);
+			}
+			if (composante != null) {
+				map.addComposant(composante);
 			}
 		} catch (ComposantException e) {
 			e.printStackTrace();

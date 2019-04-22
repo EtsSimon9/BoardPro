@@ -99,6 +99,7 @@ public class Images {
 		} else if (nom.equals(Composante.FilH)) {
 			i = new Image("/img/Composante_fil.png");
 			this.setRotation(0);
+			
 		} else if (nom.equals(Composante.FilV)) {
 			i = new Image("/img/Composante_fil.png");
 			this.setRotation(90);

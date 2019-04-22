@@ -60,10 +60,10 @@ public class MapParcourable extends Map {
 					nbComposantesEnContact++;
 				}
 			}
-			if((nbComposantesEnContact>=3) ) {
+			if ((nbComposantesEnContact >= 3)) {
 				noeudsCircuit.add(composante);
 			}
-			nbComposantesEnContact=0;
+			nbComposantesEnContact = 0;
 		}
 
 	}
@@ -74,7 +74,7 @@ public class MapParcourable extends Map {
 	public void genererMailles() {
 		maillesCircuitsFermes = new ArrayList<ArrayList<ComposantMap>>();
 		ComposantMap[] composantEnContatc = new ComposantMap[4];
-		SimpleDirectedGraph<ComposantMap, DefaultEdge> graphCirucit = new SimpleDirectedGraph<>(DefaultEdge.class);	
+		SimpleDirectedGraph<ComposantMap, DefaultEdge> graphCirucit = new SimpleDirectedGraph<>(DefaultEdge.class);
 		for (ComposantMap composante : this.composantsActuels) {
 			composantEnContatc = trouverComposantesEnContact(composante);
 			graphCirucit.addVertex(composante);
@@ -100,8 +100,8 @@ public class MapParcourable extends Map {
 		Iterator<List<ComposantMap>> itlistMailles = list.iterator();
 		while (itlistMailles.hasNext()) {
 			List<ComposantMap> listMailles = itlistMailles.next();
-			if(listMailles.size()> 2)
-			maillesCircuitsFermes.add(new ArrayList<ComposantMap>(listMailles));
+			if (listMailles.size() > 2)
+				maillesCircuitsFermes.add(new ArrayList<ComposantMap>(listMailles));
 		}
 	}
 
@@ -146,7 +146,9 @@ public class MapParcourable extends Map {
 	 */
 	private void trouverObjetContactAvecCEDeuxLiens(ComposantMap[] retour, ComposantMap autre, ComposantMap comp,
 			short coordx, short coordy, short coordxa, short coordya) {
+
 		if (comp instanceof CE2Entrees) {
+
 			CE2Entrees composante = (CE2Entrees) comp;
 			if (composante.isVertical()) {
 				if (verifierComposanteContactHaut(coordx, coordy, coordxa, coordya))
@@ -154,10 +156,12 @@ public class MapParcourable extends Map {
 				if (verifierComposanteContactBas(coordx, coordy, coordxa, coordya))
 					retour[1] = autre;
 			} else {
-				if (verifierComposanteContactDroite(coordx, coordy, coordxa, coordya))
+				if (verifierComposanteContactDroite(coordx, coordy, coordxa, coordya)) {
 					retour[2] = autre;
-				if (verifierComposanteContactGauche(coordx, coordy, coordxa, coordya))
+				}
+				if (verifierComposanteContactGauche(coordx, coordy, coordxa, coordya)) {
 					retour[3] = autre;
+				}
 			}
 		}
 	}
