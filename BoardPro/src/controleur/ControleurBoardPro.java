@@ -104,6 +104,7 @@ public class ControleurBoardPro {
 
 			@Override
 			public void handle(MouseEvent event) {
+				reset();
 				File f = new File("./res/circuitPrefait/RLC.txt");
 				ouvrirTexte(f);
 				vue.tabView.getSelectionModel().select(0);
@@ -663,6 +664,7 @@ public class ControleurBoardPro {
 
 			@Override
 			public void handle(MouseEvent event) {
+				reset();
 				File f = new File("./res/circuitPrefait/RL.txt");
 				ouvrirTexte(f);
 				vue.tabView.getSelectionModel().select(0);
@@ -676,6 +678,7 @@ public class ControleurBoardPro {
 
 			@Override
 			public void handle(MouseEvent event) {
+				reset();
 				File f = new File("./res/circuitPrefait/RC.txt");
 				ouvrirTexte(f);
 				vue.tabView.getSelectionModel().select(0);
@@ -689,6 +692,7 @@ public class ControleurBoardPro {
 
 			@Override
 			public void handle(MouseEvent event) {
+				reset();
 				File f = new File("./res/circuitPrefait/R.txt");
 				ouvrirTexte(f);
 				vue.tabView.getSelectionModel().select(0);
@@ -702,6 +706,7 @@ public class ControleurBoardPro {
 
 			@Override
 			public void handle(MouseEvent event) {
+				reset();
 				File f = new File("./res/circuitPrefait/C.txt");
 				ouvrirTexte(f);
 				vue.tabView.getSelectionModel().select(0);
@@ -715,6 +720,7 @@ public class ControleurBoardPro {
 
 			@Override
 			public void handle(MouseEvent event) {
+				reset();
 				File f = new File("./res/circuitPrefait/L.txt");
 				ouvrirTexte(f);
 				vue.tabView.getSelectionModel().select(0);
