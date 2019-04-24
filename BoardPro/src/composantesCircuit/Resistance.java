@@ -12,7 +12,7 @@ import exceptions.MathException;
  * dans la zone texte (R�sistance) ou bien une r�sistance custom r�sultante de
  * sa longueur rayon et r�sistivit�, l'utilisateur devrait donc pouvoir cocher
  * sont choix puisque c'est l'un ou l'autre.
- * 
+ *
  * @author Simon Beaulieu
  *
  */
@@ -36,7 +36,7 @@ public class Resistance extends CE2Entrees {
 	 * Noter bien que cette temp�rature est en degr� celcius lorsque l'utilisateur
 	 * nous la donne (cot� pratique). Par contre, dans nos calcul nous devons la
 	 * transferer.
-	 * 
+	 *
 	 */
 	private float temperature;
 
@@ -48,14 +48,14 @@ public class Resistance extends CE2Entrees {
 	/**
 	 * Constructeur par d�faut des resistors, appele le constructeur d�faut de
 	 * composante �lectrique
-	 * 
+	 *
 	 * @throws ComposantException
 	 */
-	public Resistance(short resistance,short x, short y,Images i) throws ComposantException {
+	public Resistance(float resistance,short x, short y,Images i) throws ComposantException {
 		super(resistance,x, y, i);
 
 	}
-	
+
 	public Resistance(short x, short y,Images i) throws ComposantException {
 		super(x, y, i);
 
@@ -129,6 +129,6 @@ public class Resistance extends CE2Entrees {
 	public String toString() {
 		return " [Z" + this.getImpedence()+ "]";
 	}
-	
-	
+
+
 }
