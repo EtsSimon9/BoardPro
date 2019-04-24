@@ -278,19 +278,6 @@ public class MatriceUtilitaires {
 	}
 
 	
-	/**
-	 * Prends une map parcouable et génére la matrice des résistances équations recherchées
-	 * @param map
-	 * @return
-	 */
-	
-	public static float[][] ecrireMarice (MapParcourable map) {
-		
-		
-		
-		
-		return null;
-		
-	}
+
 	
 }
