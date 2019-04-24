@@ -28,11 +28,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class ControleurVue {
-
+	
 	@FXML
 	private AnchorPane paneControl;
 	@FXML
@@ -43,6 +44,7 @@ public class ControleurVue {
 
 	@FXML
 	private Tab tabGraph;
+	
 	@FXML
 	public AnchorPane paneGraph;
 
@@ -53,7 +55,6 @@ public class ControleurVue {
 
 	@FXML
 	private Tab tabBoard;
-	
 	
 	@FXML
 	private AnchorPane PaneBoard;
@@ -111,6 +112,24 @@ public class ControleurVue {
 	@FXML
 	private Tab tab2;
 	
+	@FXML
+    public StackPane rlc;
+
+    @FXML
+    public StackPane rl;
+
+    @FXML
+    public StackPane rc;
+
+    @FXML
+    public StackPane r;
+
+    @FXML
+    public StackPane l;
+
+    @FXML
+    public StackPane c;
+    
 	ToggleGroup cGroup;
 	public AnchorPane root;
 	public ControleurBoardPro controleur;

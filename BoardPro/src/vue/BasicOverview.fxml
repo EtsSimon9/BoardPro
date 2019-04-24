@@ -11,21 +11,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <JFXTabPane fx:id="tabView" layoutX="786.0" layoutY="-1.0" prefHeight="720.0" prefWidth="1280.0" rotateGraphic="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
-            <Tab fx:id="tabBoard" text="Board">
+            <Tab id="Board" fx:id="tabBoard" text="Board">
               <content>
                 <AnchorPane fx:id="paneBoard" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -152,6 +156,78 @@
                            </children>
                         </HBox>
                         <JFXScrollPane layoutX="682.0" layoutY="196.0" prefHeight="188.0" prefWidth="262.0" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Preset">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="422.0" layoutY="14.0" prefHeight="46.0" prefWidth="436.0" style="-fx-font-weight: bold; -fx-font-size: 30; -fx-font-style: italic;" text="Sélectionner un circuit préfait" />
+                        <FlowPane hgap="10.0" layoutX="40.0" layoutY="92.0" prefHeight="620.0" prefWidth="1221.0" vgap="10.0">
+                           <children>
+                              <StackPane fx:id="rlc" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="250.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../res/imagePrefait/RLC.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label style="-fx-font-style: italic; -fx-font-weight: bold;" text="Circuit RLC" />
+                                 </children>
+                              </StackPane>
+                              <StackPane fx:id="rl" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="221.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../res/imagePrefait/RL.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label prefHeight="17.0" prefWidth="55.0" style="-fx-font-style: italic; -fx-font-weight: bold;" text="Circuit RL" />
+                                 </children>
+                              </StackPane>
+                              <StackPane fx:id="rc" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="250.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../res/imagePrefait/RC.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label prefHeight="17.0" prefWidth="62.0" style="-fx-font-style: italic; -fx-font-weight: bold;" text="Circuit RC" />
+                                 </children>
+                              </StackPane>
+                              <StackPane fx:id="r" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="250.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../res/imagePrefait/R.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label prefHeight="17.0" prefWidth="103.0" style="-fx-font-style: italic; -fx-font-weight: bold;" text="Circuit résistance" />
+                                 </children>
+                              </StackPane>
+                              <StackPane fx:id="l" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="250.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../res/imagePrefait/L.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label prefHeight="17.0" prefWidth="85.0" style="-fx-font-style: italic; -fx-font-weight: bold;" text="Circuit bobine" />
+                                 </children>
+                              </StackPane>
+                              <StackPane fx:id="c" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="250.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../res/imagePrefait/C.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label prefHeight="17.0" prefWidth="121.0" style="-fx-font-style: italic; -fx-font-weight: bold;" text="Circuit condensateur" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </FlowPane>
                      </children></AnchorPane>
               </content>
             </Tab>

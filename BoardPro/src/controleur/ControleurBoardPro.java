@@ -62,7 +62,6 @@ public class ControleurBoardPro {
 
 	public ControleurBoardPro() {
 		vue = new ControleurVue(this);
-		// vue2 = new ControleurDrawerVue(this);
 	}
 
 	public ControleurVue getVue() {
@@ -76,7 +75,8 @@ public class ControleurBoardPro {
 	public void masterHandler() {
 		vue.exitBtn.setOnMouseClicked(genererExitButton());
 		nom.setFont(new Font(50));
-		nom.setTranslateX(250);
+		nom.setTranslateX(150);
+		vue.paneGraph.getChildren().add(nom);
 		vue.scrollP.setHvalue(0.5);
 		vue.scrollP.setVvalue(0.5);
 		vue.gridP.setOnScroll(genererZoomHandler());
@@ -84,7 +84,12 @@ public class ControleurBoardPro {
 		vue.tbReset.setOnAction(resetHandler());
 		vue.tbRemove.setOnAction(enleverHandler());
 		vue.tbPlay.setOnAction(play());
-
+		vue.rlc.setOnMouseClicked(rlcHandler());
+		vue.rl.setOnMouseClicked(rlHandler());
+		vue.rc.setOnMouseClicked(rcHandler());
+		vue.r.setOnMouseClicked(rHandler());
+		vue.c.setOnMouseClicked(cHandler());
+		vue.l.setOnMouseClicked(lHandler());
 		vue.gridP.setOnDragDropped(dragDropped());
 		vue.gridP.setOnDragOver(dragOver());
 
@@ -93,7 +98,20 @@ public class ControleurBoardPro {
 		vue.tbReset.setOnAction(resetHandler());
 		vue.tbScreenShot.setOnAction(screenshotHandler());
 	}
+	
+	private EventHandler<MouseEvent> rlcHandler() {
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 
+			@Override
+			public void handle(MouseEvent event) {
+				File f = new File("./res/circuitPrefait/RLC.txt");
+				ouvrirTexte(f);
+				vue.tabView.getSelectionModel().select(0);
+			}
+			
+		}; 
+		return retour;
+	}
 	private EventHandler<ActionEvent> play() {
 		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
 
@@ -107,17 +125,15 @@ public class ControleurBoardPro {
 						vue.graphiqueTemps.reset();
 						vue.graphiqueTemps.start();
 						for (int i = 1; i < vue.gridP.getChildren().size(); i++) {
-							FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1),
+							FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.8),
 									vue.gridP.getChildren().get(i));
 							fadeTransition.setFromValue(1.0);
-							fadeTransition.setToValue(0.1);
+							fadeTransition.setToValue(0.3);
 							fadeTransition.setAutoReverse(true);
 							fadeTransition.setCycleCount(Animation.INDEFINITE);
 							listeFade.add(fadeTransition);
 							fadeTransition.play();
-
 						}
-
 					}
 				} else {
 					playing = false;
@@ -460,7 +476,7 @@ public class ControleurBoardPro {
 				byte positionX = (byte) (Math.floor(event.getX() / 75));
 				byte positionY = (byte) (Math.floor(event.getY() / 75));
 				if (event.getButton().equals(MouseButton.SECONDARY)) {
-					vue.paneGraph.getChildren().remove(nom);
+					nom.setText("");
 					for (int i = 0; i < listeImage.size(); i++) {
 						if (listeImage.get(i).getPositionX() == positionX
 								&& listeImage.get(i).getPositionY() == positionY) {
@@ -471,10 +487,16 @@ public class ControleurBoardPro {
 							text += " à la position (X, Y): (" + listeImage.get(i).getPositionX() + ", "
 									+ listeImage.get(i).getPositionY() + ")";
 							nom.setText(text);
+							vue.tabView.getSelectionModel().select(1);
+							FadeTransition fadeTransition = new FadeTransition(Duration.seconds(5),
+									nom);
+							fadeTransition.setFromValue(1.0);
+							fadeTransition.setToValue(0.0);
+							fadeTransition.play();
 
 						}
 					}
-					vue.paneGraph.getChildren().add(nom);
+					
 
 				} else {
 
@@ -634,5 +656,71 @@ public class ControleurBoardPro {
 		vue.gridP.getChildren().remove(image.getView());
 		map.getComposantsActuels().remove(listeImage.indexOf(image));
 		listeImage.remove(image);
+	}
+	
+	private EventHandler<MouseEvent> rlHandler() {
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				File f = new File("./res/circuitPrefait/RL.txt");
+				ouvrirTexte(f);
+				vue.tabView.getSelectionModel().select(0);
+			}
+			
+		}; 
+		return retour;
+	}
+	private EventHandler<MouseEvent> rcHandler() {
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				File f = new File("./res/circuitPrefait/RC.txt");
+				ouvrirTexte(f);
+				vue.tabView.getSelectionModel().select(0);
+			}
+			
+		}; 
+		return retour;
+	}
+	private EventHandler<MouseEvent> rHandler() {
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				File f = new File("./res/circuitPrefait/R.txt");
+				ouvrirTexte(f);
+				vue.tabView.getSelectionModel().select(0);
+			}
+			
+		}; 
+		return retour;
+	}
+	private EventHandler<MouseEvent> cHandler() {
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				File f = new File("./res/circuitPrefait/C.txt");
+				ouvrirTexte(f);
+				vue.tabView.getSelectionModel().select(0);
+			}
+			
+		}; 
+		return retour;
+	}
+	private EventHandler<MouseEvent> lHandler() {
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				File f = new File("./res/circuitPrefait/L.txt");
+				ouvrirTexte(f);
+				vue.tabView.getSelectionModel().select(0);
+			}
+			
+		}; 
+		return retour;
 	}
 }
