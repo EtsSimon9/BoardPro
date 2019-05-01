@@ -6,7 +6,9 @@ public abstract class CE2Entrees extends ComposanteElectrique {
 	/**
 	 *  sens de la composante, true vertical,  et false horizontal
 	 */
+
 	private static final boolean SENS_VERTICAL_DEFAUT = false;
+
 
 	boolean sens;
 

@@ -98,21 +98,7 @@ public class ControleurBoardPro {
 		vue.tbReset.setOnAction(resetHandler());
 		vue.tbScreenShot.setOnAction(screenshotHandler());
 	}
-	
-	private EventHandler<MouseEvent> rlcHandler() {
-		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 
-			@Override
-			public void handle(MouseEvent event) {
-				reset();
-				File f = new File("./res/circuitPrefait/RLC.txt");
-				ouvrirTexte(f);
-				vue.tabView.getSelectionModel().select(0);
-			}
-			
-		}; 
-		return retour;
-	}
 	private EventHandler<ActionEvent> play() {
 		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
 
@@ -476,6 +462,7 @@ public class ControleurBoardPro {
 			public void handle(MouseEvent event) {
 				byte positionX = (byte) (Math.floor(event.getX() / 75));
 				byte positionY = (byte) (Math.floor(event.getY() / 75));
+				// Clique droit
 				if (event.getButton().equals(MouseButton.SECONDARY)) {
 					nom.setText("");
 					for (int i = 0; i < listeImage.size(); i++) {
@@ -489,17 +476,23 @@ public class ControleurBoardPro {
 									+ listeImage.get(i).getPositionY() + ")";
 							nom.setText(text);
 							vue.tabView.getSelectionModel().select(1);
-							FadeTransition fadeTransition = new FadeTransition(Duration.seconds(5),
-									nom);
+							FadeTransition fadeTransition = new FadeTransition(Duration.seconds(5), nom);
 							fadeTransition.setFromValue(1.0);
 							fadeTransition.setToValue(0.0);
 							fadeTransition.play();
-
+		
+							
+							if (!listeImage.get(i).getEquationDDP().equals("")) {
+								vue.graphiqueTemps.getGraphique().changerFonction(listeImage.get(i).getEquationDDP());
+							} else {
+								vue.graphiqueTemps.getGraphique().changerFonction("");
+							}
 						}
 					}
-					
 
-				} else {
+				}
+				// Clique gauche
+				else {
 
 					if (composante.equals("fil")) {
 						genererFil(positionX, positionY);
@@ -603,7 +596,7 @@ public class ControleurBoardPro {
 			CE2Entrees composante = null;
 			if (image.getNom().equals(Composante.Ampoule)) {
 				composante = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
-				
+
 				if (composante.getImage().getRotation() == 90) {
 					composante.setSens(true);
 				}
@@ -658,7 +651,29 @@ public class ControleurBoardPro {
 		map.getComposantsActuels().remove(listeImage.indexOf(image));
 		listeImage.remove(image);
 	}
-	
+
+	private EventHandler<MouseEvent> rlcHandler() {
+		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				reset();
+				File f = new File("./res/circuitPrefait/RLC.txt");
+				ouvrirTexte(f);
+				vue.tabView.getSelectionModel().select(0);
+
+				// Résistance 16
+				listeImage.get(16).setEquationDDP("");
+				// Bobine 17
+				listeImage.get(17).setEquationDDP("");
+				// Condensateur 19
+				listeImage.get(19).setEquationDDP("");
+			}
+
+		};
+		return retour;
+	}
+
 	private EventHandler<MouseEvent> rlHandler() {
 		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 
@@ -668,11 +683,17 @@ public class ControleurBoardPro {
 				File f = new File("./res/circuitPrefait/RL.txt");
 				ouvrirTexte(f);
 				vue.tabView.getSelectionModel().select(0);
+
+				// Résistance
+				listeImage.get(18).setEquationDDP("");
+				// Bobine
+				listeImage.get(19).setEquationDDP("");
 			}
-			
-		}; 
+
+		};
 		return retour;
 	}
+
 	private EventHandler<MouseEvent> rcHandler() {
 		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 
@@ -682,11 +703,17 @@ public class ControleurBoardPro {
 				File f = new File("./res/circuitPrefait/RC.txt");
 				ouvrirTexte(f);
 				vue.tabView.getSelectionModel().select(0);
+
+				// Résistance
+				listeImage.get(18).setEquationDDP("");
+				// Condensateur
+				listeImage.get(19).setEquationDDP("");
 			}
-			
-		}; 
+
+		};
 		return retour;
 	}
+
 	private EventHandler<MouseEvent> rHandler() {
 		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 
@@ -696,11 +723,13 @@ public class ControleurBoardPro {
 				File f = new File("./res/circuitPrefait/R.txt");
 				ouvrirTexte(f);
 				vue.tabView.getSelectionModel().select(0);
+				listeImage.get(19).setEquationDDP("");
 			}
-			
-		}; 
+
+		};
 		return retour;
 	}
+
 	private EventHandler<MouseEvent> cHandler() {
 		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 
@@ -710,11 +739,14 @@ public class ControleurBoardPro {
 				File f = new File("./res/circuitPrefait/C.txt");
 				ouvrirTexte(f);
 				vue.tabView.getSelectionModel().select(0);
+				listeImage.get(19).setEquationDDP("");
+
 			}
-			
-		}; 
+
+		};
 		return retour;
 	}
+
 	private EventHandler<MouseEvent> lHandler() {
 		EventHandler<MouseEvent> retour = new EventHandler<MouseEvent>() {
 
@@ -724,9 +756,10 @@ public class ControleurBoardPro {
 				File f = new File("./res/circuitPrefait/L.txt");
 				ouvrirTexte(f);
 				vue.tabView.getSelectionModel().select(0);
+				listeImage.get(19).setEquationDDP("");
 			}
-			
-		}; 
+
+		};
 		return retour;
 	}
 }
