@@ -196,7 +196,7 @@ public class ControleurVue {
  
 	public void initialize() {
 		
-		Axes axes = new Axes(1300, 690, 1, 8);
+		Axes axes = new Axes(1300, 690, 1, 25);
 		graphiqueTemps = new GraphiqueTemps("sin(x)", axes,60);
 		paneGraph.getChildren().add(graphiqueTemps.getGraphique());
 		

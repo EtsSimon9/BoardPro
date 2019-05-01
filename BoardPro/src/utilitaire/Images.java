@@ -19,6 +19,8 @@ public class Images {
 	private Composante nom;
 	private static final short DIMMENSIONS = 75;
 	private int rotation = 0;
+	private String equationDDP = "";
+	
 	/**
 	 * dghb :Droite Gauche Haut Bas, si une image est directement à gauche de cette
 	 * image, la 2e valeur de l'arraylist est 1, sinon 0. Droite:1er position,
@@ -36,6 +38,17 @@ public class Images {
 		creerImage(nom);
 		creerView();
 	}
+
+	
+	public String getEquationDDP() {
+		return equationDDP;
+	}
+
+
+	public void setEquationDDP(String equationDDP) {
+		this.equationDDP = equationDDP;
+	}
+
 
 	public int getRotation() {
 		return rotation;
