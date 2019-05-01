@@ -5,6 +5,13 @@
     -fx-background-position: center;
     -fx-background-color: TRANSPARENT;
 }
+#PopExit{
+    -fx-background-image: url("/img/exitbtn2.png");
+    -fx-background-size: 30.0px 30.0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: TRANSPARENT;
+}
 #tbPlay{
     -fx-background-image: url("/img/playicon2.0.png");
     -fx-background-size: 63.0px 63.0px;
@@ -104,6 +111,10 @@
     -fx-background-color:  #333333;  
 }  
 
+.jfx-tab-pane .tab-header-area .jfx-rippler {  
+    -jfx-rippler-fill: #00a1ff; 
+}  
+
 .jfx-tab-pane .tab{
   -fx-background-color: #333333;
 }
@@ -115,9 +126,7 @@
   -fx-font-weight: normal;
 }
 
-.jfx-button {
-  -fx-background-color: #00a1ff;
-}
+
 
 .jfx-list-view {
 	-fx-background-color: #00a1ff;

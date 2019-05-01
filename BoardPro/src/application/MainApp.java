@@ -4,6 +4,7 @@ import controleur.ControleurBoardPro;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 import vue.ControleurVue;
 
 public class MainApp extends Application {
@@ -25,6 +26,11 @@ public class MainApp extends Application {
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
 		primaryStage.setResizable(false);
+	}
+
+	public static Window getStage() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="240.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="300.0" spacing="20.0" translateY="-20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="300.0" text="Source">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="35.0" spacing="10.0" translateY="-2.0">
+               <children>
+                  <Label text="Voltage :" />
+                  <JFXTextField fx:id="PopSrcVol" focusColor="#00a1ff" unFocusColor="#333333" />
+               </children>
+               <VBox.margin>
+                  <Insets left="50.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="35.0" spacing="10.0">
+               <children>
+                  <Label text="Ampérage :" />
+                  <JFXTextField fx:id="PopSrcAmp" focusColor="#00a1ff" unFocusColor="#333333" />
+               </children>
+               <VBox.margin>
+                  <Insets left="36.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="35.0" spacing="10.0">
+               <children>
+                  <Label text="Fréquence :" />
+                  <JFXTextField fx:id="frequence" focusColor="#00a1ff" unFocusColor="#333333" />
+               </children>
+               <VBox.margin>
+                  <Insets left="35.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <top>
+      <JFXButton fx:id="PopExit" onAction="#exitBtn" prefHeight="30.0" prefWidth="30.0" BorderPane.alignment="TOP_RIGHT" />
+   </top>
+   <bottom>
+      <JFXButton fx:id="PopSave" buttonType="RAISED" onAction="#saveBtn" prefHeight="40.0" prefWidth="100.0" text="Enregistrer" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+      </JFXButton>
+   </bottom>
+</BorderPane>
