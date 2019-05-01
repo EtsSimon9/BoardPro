@@ -472,6 +472,9 @@ public class MapParcourableTest {
 		assertTrue(estDedant5);
 	}
 
+	
+	
+	
 	@Test
 	public void testEstDansMap() {
 		map1 = new MapParcourable();
@@ -540,6 +543,178 @@ public class MapParcourableTest {
 		assertTrue(map1.getComposantsActuels() == truc);
 
 	}
+	
+	
+	////////////////////////////////// test GetBranches
 
+	@Test 
+	public void testerGetBranches() {
+		try {
+			map3.addComposant(res1);
+			map3.addComposant(res2);
+			map3.addComposant(res3);
+			map3.addComposant(res4);
+			map3.addComposant(res5);
+		} catch (ComposantException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		map3.genererMailles();
+		assertTrue(map3.getMaillesCircuitsFermes().size() == 0);
+		Fil fil1, fil3, fil5, fil7;
+		Resistance res6, res8;
+		try {
+
+			// voici un circtuit de forme
+			//
+			// o-o
+			// | |
+			// o-o
+			// les {-,|} sont des resistances et {o} representent des composantes
+
+			fil1 = new Fil((short) 0, (short) 0,null);
+			res2 = new Resistance(0,(short) 0, (short) 1,null);
+			res2.setSens(true);
+			fil3 = new Fil((short) 0, (short) 2,null);
+			res4 = new Resistance(0,(short) 1, (short) 2,null);
+			fil5 = new Fil((short) 2, (short) 2,null);
+			res6 = new Resistance(0,(short) 2, (short) 1,null);
+			res6.setSens(true);
+			fil7 = new Fil((short) 2, (short) 0,null);
+			res8 = new Resistance(0,(short) 1, (short) 0,null);
+
+			map1.addComposant(fil1);
+			map1.addComposant(res2);
+			map1.addComposant(fil3);
+			map1.addComposant(res4);
+			map1.addComposant(fil5);
+			map1.addComposant(res6);
+			map1.addComposant(fil7);
+			map1.addComposant(res8);
+
+		} catch (ComposantException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		assertTrue(map1.getBranches().size()==0);
+
+		Fil fil10, fil12;
+		Resistance res9, res11, res13;
+		try {
+			// voici un circtuit de forme
+			//
+			// o-o-o
+			// | | |
+			// o-o-o
+			// les {-,|} sont des resistances et {o} representent des composantes
+
+			fil1 = new Fil((short) 0, (short) 0,null);
+			res2 = new Resistance(0,(short) 0, (short) 1,null);
+			res2.setSens(true);
+			fil3 = new Fil((short) 0, (short) 2,null);
+			res4 = new Resistance(0,(short) 1, (short) 2,null);
+			fil5 = new Fil((short) 2, (short) 2,null);
+			res6 = new Resistance(0,(short) 2, (short) 1,null);
+			res6.setSens(true);
+			fil7 = new Fil((short) 2, (short) 0,null);
+			res8 = new Resistance(0,(short) 1, (short) 0,null);
+			res9 = new Resistance(0,(short) 0, (short) 3,null);
+			res9.setSens(true);
+			fil10 = new Fil((short) 0, (short) 4,null);
+			res11 = new Resistance(0,(short) 1, (short) 4,null);
+			fil12 = new Fil((short) 2, (short) 4,null);
+			res13 = new Resistance(0,(short) 2, (short) 3,null);
+			res13.setSens(true);
+
+			map2.addComposant(fil1);
+			map2.addComposant(res2);
+			map2.addComposant(fil3);
+			map2.addComposant(res4);
+			map2.addComposant(fil5);
+			map2.addComposant(res6);
+			map2.addComposant(fil7);
+			map2.addComposant(res8);
+			map2.addComposant(res9);
+			map2.addComposant(fil10);
+			map2.addComposant(res11);
+			map2.addComposant(fil12);
+			map2.addComposant(res13);
+
+		} catch (ComposantException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		// vérifie qu'il y a bel et bien 12  branches différentes (2fois le nombre de branches présentes dans chaque maille(2))
+
+		assertTrue(map2.getBranches().size()==12);
+	
+
+
+		Fil fil15, fil17;
+		Resistance res14, res16, res18;
+		// voici un circtuit de forme
+		// o-o
+		// | |
+		// o-o-o
+		// | | | 
+		// o-o-o
+		// les {-,|} sont des resistances et {o} representent des composantes
+		try {
+			fil1 = new Fil((short) 0, (short) 0,null);
+			res2 = new Resistance(0,(short) 0, (short) 1,null);
+			res2.setSens(true);
+			fil3 = new Fil((short) 0, (short) 2,null);
+			res4 = new Resistance(0,(short) 1, (short) 2,null);
+			fil5 = new Fil((short) 2, (short) 2,null);
+			res6 = new Resistance(0,(short) 2, (short) 1,null);
+			res6.setSens(true);
+			fil7 = new Fil((short) 2, (short) 0,null);
+			res8 = new Resistance(0,(short) 1, (short) 0,null);
+			res9 = new Resistance(0,(short) 0, (short) 3,null);
+			res9.setSens(true);
+			fil10 = new Fil((short) 0, (short) 4,null);
+			res11 = new Resistance(0,(short) 1, (short) 4,null);
+			fil12 = new Fil((short) 2, (short) 4,null);
+			res13 = new Resistance(0,(short) 2, (short) 3,null);
+			res13.setSens(true);
+			
+			res14 = new Resistance(0,(short) 3, (short) 0,null);
+			fil15 = new Fil((short) 4, (short) 0,null);
+			res16 = new Resistance(0,(short) 4, (short) 1,null);
+			res16.setSens(true);
+
+			fil17 = new Fil((short) 4, (short) 2,null);
+			res18 = new Resistance(0,(short) 3, (short) 2,null);
+
+			map4.addComposant(fil1);
+			map4.addComposant(res2);
+			map4.addComposant(fil3);
+			map4.addComposant(res4);
+			map4.addComposant(fil5);
+			map4.addComposant(res6);
+			map4.addComposant(fil7);
+			map4.addComposant(res8);
+			map4.addComposant(res9);
+			map4.addComposant(fil10);
+			map4.addComposant(res11);
+			map4.addComposant(fil12);
+			map4.addComposant(res13);
+			map4.addComposant(res14);
+			map4.addComposant(fil15);
+			map4.addComposant(res16);
+			map4.addComposant(fil17);
+			map4.addComposant(res18);
+
+		} catch (ComposantException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+//vériife que le nombre de branches produites est de 12 (2 fois le nombre de mailles)
+		assertTrue(map2.getBranches().size()==12);
+	
+	}
+	
+	
 }
 //--------

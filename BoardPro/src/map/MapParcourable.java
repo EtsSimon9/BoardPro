@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.jgrapht.alg.cycle.HawickJamesSimpleCycles;
 import org.jgrapht.alg.cycle.JohnsonSimpleCycles;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleDirectedGraph;
@@ -52,6 +53,32 @@ public class MapParcourable extends Map {
 	public MapParcourable() {
 		super();
 	}
+	
+	
+	public  ArrayList<ArrayList<ComposantMap>> getBranches(){
+		genererMailles();
+		genrerNoeuds();
+		 ArrayList<ArrayList<ComposantMap>> branchesCircuits = new ArrayList<ArrayList<ComposantMap>>();
+		 ArrayList<ComposantMap> branche = new ArrayList<ComposantMap>();
+		 boolean newBranche = true;
+			for (ArrayList<ComposantMap> array : maillesCircuitsFermes) {
+				if(newBranche) {
+					branche = new ArrayList<ComposantMap>();
+					newBranche = false;
+				}
+				for(int i = 0;i<array.size();i++) {
+					if(!noeudsCircuit.contains(array.get(i))) {
+						branche.add(array.get(i));
+					}else {
+						branchesCircuits.add(new ArrayList<>(branche));
+						newBranche = true;
+					}
+				}
+				
+			}		
+		return branchesCircuits;
+	}
+	
 
 	public void genrerNoeuds() {
 
@@ -90,7 +117,6 @@ public class MapParcourable extends Map {
 				}
 			}
 		}
-
 		JohnsonSimpleCycles<ComposantMap, DefaultEdge> cycles = new JohnsonSimpleCycles<>(graphCirucit);
 		convertirAArrayList(cycles.findSimpleCycles());
 	}

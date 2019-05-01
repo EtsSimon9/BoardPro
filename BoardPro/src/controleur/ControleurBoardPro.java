@@ -20,12 +20,15 @@ import composantesCircuit.SourceCourant;
 import exceptions.ComposantException;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -59,7 +62,7 @@ public class ControleurBoardPro {
 	boolean effacer = false;
 	boolean playing = false;
 	ArrayList<FadeTransition> listeFade = new ArrayList<FadeTransition>();
-
+	 
 	public ControleurBoardPro() {
 		vue = new ControleurVue(this);
 	}
