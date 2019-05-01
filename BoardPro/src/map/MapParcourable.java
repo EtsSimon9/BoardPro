@@ -1,5 +1,7 @@
 package map;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,6 +11,9 @@ import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleDirectedGraph;
 
 import composante.CE2Entrees;
+import composantesCircuit.Fil;
+import composantesCircuit.Resistance;
+import exceptions.ComposantException;
 
 /**
  *
