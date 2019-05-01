@@ -480,8 +480,8 @@ public class ControleurBoardPro {
 							fadeTransition.setFromValue(1.0);
 							fadeTransition.setToValue(0.0);
 							fadeTransition.play();
+		
 							
-						
 							if (!listeImage.get(i).getEquationDDP().equals("")) {
 								vue.graphiqueTemps.getGraphique().changerFonction(listeImage.get(i).getEquationDDP());
 							} else {
