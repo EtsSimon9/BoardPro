@@ -46,7 +46,13 @@ import map.ComposantMap;
 import map.MapParcourable;
 import utilitaire.Images;
 import utilitaire.Images.Composante;
+import utilitaire.Materiaux;
 import vue.ControleurDrawerVue;
+import vue.ControleurPopAmp;
+import vue.ControleurPopBob;
+import vue.ControleurPopCon;
+import vue.ControleurPopRes;
+import vue.ControleurPopSrc;
 import vue.ControleurVue;
 
 public class ControleurBoardPro {
@@ -475,6 +481,25 @@ public class ControleurBoardPro {
 							if (text.substring(0, 3).equals("Fil")) {
 								text = "Fil";
 							}
+							if (event.isControlDown() == true) {
+								if (text.equals("Résistance")) {
+									ControleurPopRes popup = new ControleurPopRes();
+									popup.show();
+								} else if (text.equals("Condensateur")) {
+									ControleurPopCon popup = new ControleurPopCon();
+									popup.show();
+
+								} else if (text.equals("Bobine")) {
+									ControleurPopBob popup = new ControleurPopBob();
+									popup.show();
+								} else if (text.equals("Source")) {
+									ControleurPopSrc popup = new ControleurPopSrc();
+									popup.show();
+								} else if (text.equals("Ampoule")) {
+									ControleurPopAmp popup = new ControleurPopAmp();
+									popup.show();
+								}
+							}
 							text += " à la position (X, Y): (" + listeImage.get(i).getPositionX() + ", "
 									+ listeImage.get(i).getPositionY() + ")";
 							nom.setText(text);
@@ -483,16 +508,16 @@ public class ControleurBoardPro {
 							fadeTransition.setFromValue(1.0);
 							fadeTransition.setToValue(0.0);
 							fadeTransition.play();
-		
-							
+
 							if (!listeImage.get(i).getEquationDDP().equals("")) {
 								vue.graphiqueTemps.getGraphique().changerFonction(listeImage.get(i).getEquationDDP());
 							} else {
 								vue.graphiqueTemps.getGraphique().changerFonction("");
 							}
-						}
-					}
 
+						}
+
+					}
 				}
 				// Clique gauche
 				else {
