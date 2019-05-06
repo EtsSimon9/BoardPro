@@ -597,7 +597,7 @@ public class MapParcourableTest {
 			e1.printStackTrace();
 		}
 
-		assertTrue(map1.getBranches().size()==0);
+		assertTrue(map1.getBranches().size()==1);
 
 		Fil fil10, fil12;
 		Resistance res9, res11, res13;
@@ -647,7 +647,8 @@ public class MapParcourableTest {
 		}
 		// vérifie qu'il y a bel et bien 12  branches différentes (2fois le nombre de branches présentes dans chaque maille(2))
 
-		assertTrue(map2.getBranches().size()==12);
+
+		assertTrue(map2.getBranches().size()==3);
 	
 
 
@@ -711,7 +712,10 @@ public class MapParcourableTest {
 			e1.printStackTrace();
 		}
 //vériife que le nombre de branches produites est de 12 (2 fois le nombre de mailles)
-		assertTrue(map2.getBranches().size()==12);
+		assertTrue(map4.getBranches().size()==5);
+		map4.genererMailles();
+		map4.genrerNoeuds();
+		System.out.println(map4.toString());
 	
 	}
 	

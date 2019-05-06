@@ -127,7 +127,7 @@ public class Resistance extends CE2Entrees {
 
 	@Override
 	public String toString() {
-		return " [Z" + this.getImpedence()+ "]";
+		return "Z)" + this.getImpedence()+ " ";
 	}
 
 

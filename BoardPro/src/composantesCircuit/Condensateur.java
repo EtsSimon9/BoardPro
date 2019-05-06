@@ -32,7 +32,7 @@ public class Condensateur extends CE2Entrees {
 
 	@Override
 	public String toString() {
-		return " [C" + capacite + "]";
+		return " [C " + capacite + "]";
 	}
 	
 }
