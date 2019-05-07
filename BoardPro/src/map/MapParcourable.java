@@ -1,10 +1,11 @@
 package map;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jgrapht.alg.connectivity.ConnectivityInspector;
 import org.jgrapht.alg.cycle.JohnsonSimpleCycles;
@@ -250,16 +251,69 @@ public class MapParcourable extends Map {
 		return composante != null;
 	}
 
+	// cette partie du code permet de mettre les informations inconnues du circuit
+	// dans une string
+
 	@Override
 	public String toString() {
 		String retour = "";
 		for (int i = 0; i < maillesCircuitsFermes.size(); i++) {
 			for (int j = 0; j < maillesCircuitsFermes.get(i).size(); j++) {
-				if(maillesCircuitsFermes.get(i).get(j) instanceof CE2Entrees) {
-				retour +="("+trouverPositionBranche(maillesCircuitsFermes.get(i).get(j)) +maillesCircuitsFermes.get(i).get(j).toString() ;
+				if (maillesCircuitsFermes.get(i).get(j) instanceof CE2Entrees) {
+					retour += "<" + trouverPositionBranche(maillesCircuitsFermes.get(i).get(j))
+							+ maillesCircuitsFermes.get(i).get(j).toString();
 				}
 			}
 			retour += "\n";
+		}
+		return retour;
+	}
+
+	// cette partie du code permet de mettre les informations inconnues , les memes
+	// mises dans des string , mais cette fois dans des matrices d'inconnues
+	// ordonnées dont les rangées sont de formes (I0,I1,I2,I3,...,In)
+
+	/**
+	 * Met les informations du circuit donné en string dans un vecteur d'inconnues
+	 * 
+	 * @param str
+	 * @param vecteurInconnues
+	 * @return
+	 */
+	private static float[] getVecteurInconnusString(final String str, int vecteurInconnues) {
+		Pattern patterneCourants = Pattern.compile("<(.+?)I>", Pattern.DOTALL);
+		Pattern patterneResistances = Pattern.compile(">(.+?) ", Pattern.DOTALL);
+		float[] retour = new float[vecteurInconnues];
+
+		List<String> valeurString = new ArrayList<String>();
+		Matcher matcherCourant = patterneCourants.matcher(str);
+		Matcher matcherResistance = patterneResistances.matcher(str);
+
+		while (matcherCourant.find()) {
+			matcherResistance.find();
+			retour[Integer.parseInt(matcherCourant.group(1))] += Float.parseFloat(matcherResistance.group(1));
+			valeurString.add(Integer.parseInt(matcherCourant.group(1)) + "");
+		}
+		return retour;
+	}
+/**
+ * Permet de générer la matrice qui doit etre résolue pour avoir accès aux différents courants
+ * @return
+ */
+	public float[][] toMatrice() {
+		float[][] retour = new float[maillesCircuitsFermes.size()][branchesCircuit.size()];
+		// longeur du vecteur de courants inconnus
+		int longeurVecteurCourantCircuit = branchesCircuit.size();
+		String vecteurDesordonne = "";
+		for (int i = 0; i < maillesCircuitsFermes.size(); i++) {
+			for (int j = 0; j < maillesCircuitsFermes.get(i).size(); j++) {
+				if (maillesCircuitsFermes.get(i).get(j) instanceof CE2Entrees) {
+					vecteurDesordonne += "<" + trouverPositionBranche(maillesCircuitsFermes.get(i).get(j))
+							+ maillesCircuitsFermes.get(i).get(j).toString();
+				}
+			}
+			retour[i] = getVecteurInconnusString(vecteurDesordonne, longeurVecteurCourantCircuit);
+			vecteurDesordonne = "";
 		}
 		return retour;
 	}

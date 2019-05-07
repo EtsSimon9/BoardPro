@@ -716,8 +716,18 @@ public class MapParcourableTest {
 		map4.genererMailles();
 		map4.genrerNoeuds();
 		System.out.println(map4.toString());
-	
+		float[][] matrice = map4.toMatrice();
+	       
+		String s ="";
+		for(int i = 0; i < matrice.length; i++){
+			for(int j = 0; j < matrice[i].length; j++){
+				s+=matrice[i][j]+ " ";
+			}
+			s += "\n";
+		}
+		System.out.println(s);
 	}
+	
 	
 	
 }
