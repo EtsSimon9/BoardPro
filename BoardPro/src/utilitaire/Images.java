@@ -143,7 +143,7 @@ public class Images {
 		} else if (nom.equals(Composante.Source)) {
 			i = new Image("/img/source.png");
 		} else if (nom.equals(Composante.Ampoule)) {
-			i = new Image("/img/ampoule.png");
+			i = new Image("/img/ampouleEteinte.png");
 		}
 		this.setImage(i);
 	}

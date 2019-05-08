@@ -23,11 +23,11 @@
             </Label>
             <HBox prefHeight="35.0" spacing="10.0" translateY="-2.0">
                <children>
-                  <Label text="Capacité :" />
+                  <Label text="Capacité (µF) :" />
                   <JFXTextField fx:id="PopConCap" focusColor="#00a1ff" unFocusColor="#333333" />
                </children>
                <VBox.margin>
-                  <Insets left="50.0" />
+                  <Insets left="28.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="35.0" spacing="10.0">

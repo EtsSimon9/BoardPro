@@ -1,8 +1,8 @@
 package utilitaire;
 
 /**
- * La résistivité est exposant 10^-8 et le coefficient thermique exposant 10^-3
- * Les méthodes get s'occupent de ces multiplications. Faite donc attention en vous servant
+ * La rï¿½sistivitï¿½ est exposant 10^-8 et le coefficient thermique exposant 10^-3
+ * Les mï¿½thodes get s'occupent de ces multiplications. Faite donc attention en vous servant
  * de ces chiffres, DE SI PETIT NOMBRE PEUVENT SEULEMENT AVOIR DES DOUBLES COMME TYPE.
  * 
  * @author Simon Beaulieu
@@ -11,7 +11,7 @@ public enum Materiaux {
 
 	ALUMINIUM(2.65, 3.9, "Aluminium"), ARGENT(1.59, 3.8, "Argent"), CUIVRE(1.68, 3.9, "Cuivre"), FER(8.57, 5, "Fer"),
 	LAITON(6.08, 2, "Laiton"), NICHROME(108, 0.4, "Nichrome"), NICKEL(6.93, 5.9, "Nickel"), OR(2.21, 3.4, "Or"),
-	PLATINE(10.5, 3.92, "Platine"), PLOMB(19.2, 4.3, "Plomb"), TUNGSTENE(5.28, 4.5, "Tungstène");
+	PLATINE(10.5, 3.92, "Platine"), PLOMB(19.2, 4.3, "Plomb"), TUNGSTENE(5.28, 4.5, "TungstÃ¨ne");
 
 	private double resistivite;
 	private double coefThermique;
@@ -19,9 +19,9 @@ public enum Materiaux {
 
 	/**
 	 *
-	 * @param p   résitivité du matériaux
-	 * @param a   coefficient thermique du matériaux
-	 * @param nom nom du matériaux
+	 * @param p   rï¿½sitivitï¿½ du matï¿½riaux
+	 * @param a   coefficient thermique du matï¿½riaux
+	 * @param nom nom du matï¿½riaux
 	 */
 	private Materiaux(double p, double a, String nom) {
 		this.setResistivite(p);
@@ -59,7 +59,7 @@ public enum Materiaux {
 	@Override
 	public String toString() {
 		String s = "";
-		s += "Le matériaux est " + this.getNom() + ", sa résistivité est de " + this.getResistivite()
+		s += "Le matï¿½riaux est " + this.getNom() + ", sa rï¿½sistivitï¿½ est de " + this.getResistivite()
 				+ " et son coefficient thermique est de " + this.getCoefThermique() + ".";
 
 		return s;

@@ -80,7 +80,7 @@
     -fx-background-image: url("/img/bobine.png");
 }
 #btnampoule{
-    -fx-background-image: url("/img/ampoule.png");
+    -fx-background-image: url("/img/ampouleAlumer.png");
 }
 
 .jfx-tool-bar {

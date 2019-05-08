@@ -17,13 +17,13 @@ import javafx.stage.StageStyle;
 public class ControleurPopCon {
 
 	@FXML
-	private JFXTextField PopConCap;
+	public JFXTextField PopConCap;
 	@FXML
-	private JFXTextField PopConDi;
+	public JFXTextField PopConDi;
 	@FXML
-	private JFXButton PopExit;
+	public JFXButton PopExit;
 	@FXML
-	private JFXButton PopSave;
+	public JFXButton PopSave;
     
     @FXML
     void exitBtn(ActionEvent event) {

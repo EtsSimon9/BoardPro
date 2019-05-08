@@ -1,6 +1,5 @@
 package vue;
 
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import application.MainApp;
@@ -18,8 +17,11 @@ import javafx.stage.StageStyle;
 
 public class ControleurPopRes {
 	@FXML
+	public JFXTextField PopResLongueur;
+	@FXML
 	public JFXTextField PopResTemperature;
-
+	@FXML
+	public JFXTextField PopResRayon;
 	@FXML
 	public ChoiceBox<String> choixMateriaux;
 	@FXML
@@ -83,7 +85,6 @@ public class ControleurPopRes {
 			@Override
 			public void handle(KeyEvent event) {
 				String c = event.getCharacter();
-				System.out.print(c);
 				for (int i = 0; i < 10; i++) {
 					if ((c.equals(String.valueOf(0))) || (c.equals(String.valueOf(1))) || (c.equals(String.valueOf(2)))
 							|| (c.equals(String.valueOf(3))) || (c.equals(String.valueOf(4)))

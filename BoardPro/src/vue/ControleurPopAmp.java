@@ -17,11 +17,11 @@ import javafx.stage.StageStyle;
 public class ControleurPopAmp {
 
     @FXML
-    private JFXTextField PopAmpOhm;
+    public JFXTextField PopAmpOhm;
     @FXML
-    private JFXButton PopExit;
+    public JFXButton PopExit;
     @FXML
-    private JFXButton PopResSave;
+    public JFXButton PopResSave;
     
     @FXML
     void exitBtn(ActionEvent event) {

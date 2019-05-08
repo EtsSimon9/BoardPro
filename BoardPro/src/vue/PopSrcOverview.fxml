@@ -23,7 +23,7 @@
             </Label>
             <HBox prefHeight="35.0" spacing="10.0" translateY="-2.0">
                <children>
-                  <Label text="Voltage :" />
+                  <Label text="Voltage (V) :" />
                   <JFXTextField fx:id="PopSrcVol" focusColor="#00a1ff" unFocusColor="#333333" />
                </children>
                <VBox.margin>
@@ -32,7 +32,7 @@
             </HBox>
             <HBox prefHeight="35.0" spacing="10.0">
                <children>
-                  <Label text="Ampérage :" />
+                  <Label text="Ampérage (A) :" />
                   <JFXTextField fx:id="PopSrcAmp" focusColor="#00a1ff" unFocusColor="#333333" />
                </children>
                <VBox.margin>
@@ -41,7 +41,7 @@
             </HBox>
             <HBox prefHeight="35.0" spacing="10.0">
                <children>
-                  <Label text="Fréquence :" />
+                  <Label text="Fréquence (Hz) :" />
                   <JFXTextField fx:id="frequence" focusColor="#00a1ff" unFocusColor="#333333" />
                </children>
                <VBox.margin>

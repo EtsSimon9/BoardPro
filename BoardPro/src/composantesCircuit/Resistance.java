@@ -106,6 +106,15 @@ public class Resistance extends CE2Entrees {
 
 	public void setMateriau(Materiaux materiau) {
 		this.materiau = materiau;
+	
+		double p = ((float) (Calcul.resistiviteEtTemperature(materiau.getResistivite(), 20, this.getTemperature(), materiau.getCoefThermique())));
+		try {
+			System.out.println(materiau.getResistivite());
+			this.setImpedence(Calcul.calculResistance(p, longueur, (rayon)));
+		} catch (MathException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public float getTemperature() {

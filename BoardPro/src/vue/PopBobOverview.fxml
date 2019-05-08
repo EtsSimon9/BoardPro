@@ -23,11 +23,11 @@
             </Label>
             <HBox prefHeight="35.0" spacing="10.0" translateY="-2.0">
                <children>
-                  <Label text="Inductance :" />
+                  <Label text="Inductance (H) :" />
                   <JFXTextField fx:id="PopBobInd" focusColor="#00a1ff" unFocusColor="#333333" />
                </children>
                <VBox.margin>
-                  <Insets left="30.0" />
+                  <Insets left="10.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="35.0" spacing="10.0">
@@ -41,20 +41,20 @@
             </HBox>
             <HBox prefHeight="35.0" spacing="10.0">
                <children>
-                  <Label text="Air :" />
+                  <Label text="Air (m2):" />
                   <JFXTextField fx:id="PopBobAir" focusColor="#00a1ff" unFocusColor="#333333" />
                </children>
                <VBox.margin>
-                  <Insets left="73.0" />
+                  <Insets left="47.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="35.0" spacing="10.0">
                <children>
-                  <Label text="Longueur :" />
+                  <Label text="Longueur  (m):" />
                   <JFXTextField fx:id="PopBobLon" focusColor="#00a1ff" unFocusColor="#333333" />
                </children>
                <VBox.margin>
-                  <Insets left="36.0" />
+                  <Insets left="16.0" />
                </VBox.margin>
             </HBox>
          </children>

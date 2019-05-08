@@ -17,17 +17,17 @@ import javafx.stage.StageStyle;
 public class ControleurPopBob {
 
 	@FXML
-    private JFXTextField PopBobInd;
+    public JFXTextField PopBobInd;
     @FXML
-    private JFXTextField PopBobNsp;
+    public JFXTextField PopBobNsp;
     @FXML
-    private JFXTextField PopBobAir;
+    public JFXTextField PopBobAir;
     @FXML
-    private JFXTextField PopBobLon;
+    public JFXTextField PopBobLon;
     @FXML
-    private JFXButton PopExit;
+    public JFXButton PopExit;
     @FXML
-    private JFXButton PopSave;
+    public JFXButton PopSave;
     
     @FXML
     void exitBtn(ActionEvent event) {

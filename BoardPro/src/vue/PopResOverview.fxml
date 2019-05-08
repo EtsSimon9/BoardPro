@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="291.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="357.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox prefHeight="197.0" prefWidth="300.0" spacing="25.0" translateY="-20.0" BorderPane.alignment="CENTER">
          <children>
@@ -24,12 +24,24 @@
             </Label>
             <HBox prefHeight="35.0" spacing="10.0" translateY="-2.0">
                <children>
-                  <Label text="Ohm :" />
+                  <Label text="Résistance (Ohm) :" />
                   <JFXTextField fx:id="PopResOhmTF" focusColor="#00a1ff" unFocusColor="#333333" />
                </children>
                <VBox.margin>
-                  <Insets left="65.0" />
+                  <Insets />
                </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="17.0" prefWidth="276.0" spacing="10.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="228.0" text="ou bien une résistance personnalisé :">
+                     <HBox.margin>
+                        <Insets right="60.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="55.0" />
+               </padding>
             </HBox>
             <HBox prefHeight="35.0" spacing="10.0">
                <children>
@@ -47,6 +59,24 @@
                </children>
                <VBox.margin>
                   <Insets left="25.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="35.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="62.0" text="Rayon (m) :" />
+                  <JFXTextField fx:id="PopResRayon" focusColor="#00a1ff" unFocusColor="#333333" />
+               </children>
+               <padding>
+                  <Insets left="38.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="35.0" spacing="10.0">
+               <children>
+                  <Label text="Longueur (m) :" />
+                  <JFXTextField fx:id="PopResLongueur" focusColor="#00a1ff" unFocusColor="#333333" />
+               </children>
+               <VBox.margin>
+                  <Insets left="23.0" />
                </VBox.margin>
             </HBox>
          </children>

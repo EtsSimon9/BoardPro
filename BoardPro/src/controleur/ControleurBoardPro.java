@@ -24,12 +24,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.DragEvent;
@@ -68,7 +70,8 @@ public class ControleurBoardPro {
 	boolean effacer = false;
 	boolean playing = false;
 	ArrayList<FadeTransition> listeFade = new ArrayList<FadeTransition>();
-	 
+	ComposantMap enModif;
+
 	public ControleurBoardPro() {
 		vue = new ControleurVue(this);
 	}
@@ -120,18 +123,31 @@ public class ControleurBoardPro {
 						vue.tbPlay.setStyle("-fx-background-color:c4c297");
 						vue.graphiqueTemps.reset();
 						vue.graphiqueTemps.start();
-						for (int i = 1; i < vue.gridP.getChildren().size(); i++) {
+						
+						for (int i = 0; i < map.getMaille().get(0).size(); i++) {
+							ImageView v = map.getMaille().get(0).get(i).getImage().getView();
+							if (v.getId() != null && v.getId().equals("Ampoule")) {
+								v.setImage(new Image("/img/ampouleAlumer.png"));
+							}
+
 							FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.8),
-									vue.gridP.getChildren().get(i));
+							v);
 							fadeTransition.setFromValue(1.0);
 							fadeTransition.setToValue(0.3);
 							fadeTransition.setAutoReverse(true);
 							fadeTransition.setCycleCount(Animation.INDEFINITE);
 							listeFade.add(fadeTransition);
 							fadeTransition.play();
+
 						}
 					}
 				} else {
+					for (int i = 1; i < vue.gridP.getChildren().size(); i++) {
+						ImageView v = (ImageView) vue.gridP.getChildren().get(i);
+						if (v.getId() != null && v.getId().equals("Ampoule")) {
+							v.setImage(new Image("/img/ampouleEteinte.png"));
+						}
+					}
 					playing = false;
 					vue.tbPlay.setStyle(null);
 					vue.graphiqueTemps.stop();
@@ -482,32 +498,37 @@ public class ControleurBoardPro {
 								text = "Fil";
 							}
 							if (event.isControlDown() == true) {
+								enModif = map.getComposantsActuels().get(i);
 								if (text.equals("Résistance")) {
 									ControleurPopRes popup = new ControleurPopRes();
+
+									popup.PopResSave.setOnAction(modifierResistance((Resistance) enModif, popup));
 									popup.show();
 								} else if (text.equals("Condensateur")) {
 									ControleurPopCon popup = new ControleurPopCon();
-									popup.show();
 
+									popup.PopSave.setOnAction(modifierCondensateur((Condensateur) enModif, popup));
+									popup.show();
 								} else if (text.equals("Bobine")) {
 									ControleurPopBob popup = new ControleurPopBob();
+
+									popup.PopSave.setOnAction(modifierBobine((Bobine) enModif, popup));
 									popup.show();
 								} else if (text.equals("Source")) {
 									ControleurPopSrc popup = new ControleurPopSrc();
+
+									popup.PopSave.setOnAction(modifierSource((SourceCourant) enModif, popup));
 									popup.show();
 								} else if (text.equals("Ampoule")) {
 									ControleurPopAmp popup = new ControleurPopAmp();
 									popup.show();
 								}
+							} else {
+								text += " à la position (X, Y): (" + listeImage.get(i).getPositionX() + ", "
+										+ listeImage.get(i).getPositionY() + ")";
+								nom.setText(text);
+								vue.tabView.getSelectionModel().select(1);
 							}
-							text += " à la position (X, Y): (" + listeImage.get(i).getPositionX() + ", "
-									+ listeImage.get(i).getPositionY() + ")";
-							nom.setText(text);
-							vue.tabView.getSelectionModel().select(1);
-							FadeTransition fadeTransition = new FadeTransition(Duration.seconds(5), nom);
-							fadeTransition.setFromValue(1.0);
-							fadeTransition.setToValue(0.0);
-							fadeTransition.play();
 
 							if (!listeImage.get(i).getEquationDDP().equals("")) {
 								vue.graphiqueTemps.getGraphique().changerFonction(listeImage.get(i).getEquationDDP());
@@ -624,7 +645,7 @@ public class ControleurBoardPro {
 			CE2Entrees composante = null;
 			if (image.getNom().equals(Composante.Ampoule)) {
 				composante = new Resistance((short) image.getPositionX(), (short) image.getPositionY(), image);
-
+				composante.getImage().getView().setId("Ampoule");
 				if (composante.getImage().getRotation() == 90) {
 					composante.setSens(true);
 				}
@@ -787,6 +808,118 @@ public class ControleurBoardPro {
 				listeImage.get(19).setEquationDDP("");
 			}
 
+		};
+		return retour;
+	}
+
+	private EventHandler<ActionEvent> modifierCondensateur(Condensateur s, ControleurPopCon p) {
+		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					s.setCapacite(Float.parseFloat(p.PopConCap.getText()));
+				} catch (Exception e) {
+					s.setCapacite(100);
+				}
+
+			}
+
+		};
+		return retour;
+	}
+
+	private EventHandler<ActionEvent> modifierBobine(Bobine s, ControleurPopBob p) {
+		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					s.setInductence(Float.parseFloat(p.PopBobInd.getText()));
+				} catch (Exception e) {
+					s.setInductence(20);
+				}
+
+			}
+
+		};
+		return retour;
+	}
+
+	private EventHandler<ActionEvent> modifierSource(SourceCourant s, ControleurPopSrc p) {
+		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					s.setCourant(Float.parseFloat(p.PopSrcAmp.getText()));
+					s.setDdp(Float.parseFloat(p.PopSrcVol.getText()));
+					s.setFrequence(Float.parseFloat(p.frequence.getText()));
+				} catch (Exception e) {
+					s.setCourant(0);
+					s.setDdp(0);
+					s.setFrequence(0);
+				}
+
+			}
+
+		};
+		return retour;
+	}
+
+	private EventHandler<ActionEvent> modifierResistance(Resistance r, ControleurPopRes p) {
+
+		EventHandler<ActionEvent> retour = new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				if (p.PopResLongueur.getText().equals("") || p.PopResTemperature.getText().equals("")
+						|| (p.PopResRayon.getText().equals(""))) {
+					try {
+						float res = Float.parseFloat(p.PopResOhmTF.getText());
+						r.setImpedence(res);
+					} catch (Exception e) {
+						r.setImpedence(20);
+					}
+
+				} else {
+					try {
+						r.setTemperature(273 + Float.parseFloat(p.PopResTemperature.getText()));
+						r.setRayon(Float.parseFloat(p.PopResRayon.getText()));
+						r.setLongueur(Float.parseFloat(p.PopResLongueur.getText()));
+
+						String materiaux = p.choixMateriaux.getValue();
+
+						if (materiaux.equals("Argent")) {
+							r.setMateriau(Materiaux.ARGENT);
+						} else if (materiaux.equals("Aluminium")) {
+							r.setMateriau(Materiaux.ALUMINIUM);
+						} else if (materiaux.equals("Cuivre")) {
+							r.setMateriau(Materiaux.CUIVRE);
+						} else if (materiaux.equals("Fer")) {
+							r.setMateriau(Materiaux.FER);
+						} else if (materiaux.equals("Laiton")) {
+							r.setMateriau(Materiaux.LAITON);
+						} else if (materiaux.equals("Nichrome")) {
+							r.setMateriau(Materiaux.NICHROME);
+						} else if (materiaux.equals("Nickel")) {
+							r.setMateriau(Materiaux.NICKEL);
+						} else if (materiaux.equals("Or")) {
+							r.setMateriau(Materiaux.OR);
+						} else if (materiaux.equals("Platine")) {
+							r.setMateriau(Materiaux.PLATINE);
+						} else if (materiaux.equals("Plomb")) {
+							r.setMateriau(Materiaux.PLOMB);
+						} else if (materiaux.equals("Tungstène")) {
+							r.setMateriau(Materiaux.TUNGSTENE);
+						}
+
+					} catch (Exception e) {
+						r.setImpedence(20);
+					}
+				}
+
+			}
 		};
 		return retour;
 	}

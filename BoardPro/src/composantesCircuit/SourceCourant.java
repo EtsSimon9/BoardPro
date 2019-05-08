@@ -5,7 +5,8 @@ import utilitaire.Images;
 
 public class SourceCourant extends CE2Entrees {
 	private static final float DDP_DEFAUT = 20;
-
+	private float frequence;
+	
 	public SourceCourant(float ddp, short coordonnex, short coordonney, Images i) {
 		super(coordonnex, coordonney, i);
 		if (ddp > 0) {
@@ -14,6 +15,17 @@ public class SourceCourant extends CE2Entrees {
 			this.setDdp(DDP_DEFAUT);
 		}
 	}
+
+	
+	public float getFrequence() {
+		return frequence;
+	}
+
+
+	public void setFrequence(float frequence) {
+		this.frequence = frequence;
+	}
+
 
 	public SourceCourant(short coordonnex, short coordonney, Images i) {
 		super(coordonnex, coordonney, i);

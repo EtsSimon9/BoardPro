@@ -17,14 +17,16 @@ import javafx.stage.StageStyle;
 public class ControleurPopSrc {
 
 	@FXML
-    private JFXTextField PopSrcVol;
+    public JFXTextField PopSrcVol;
     @FXML
-    private JFXTextField PopSrcAmp;
+    public JFXTextField PopSrcAmp;
     @FXML
-    private JFXButton PopExit;
+    public JFXButton PopExit;
     @FXML
-    private JFXButton PopSave;
-    
+    public JFXButton PopSave;
+    @FXML
+    public JFXTextField frequence;
+
     @FXML
     void exitBtn(ActionEvent event) {
     	stage.close();
