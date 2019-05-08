@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 import org.jgrapht.alg.connectivity.ConnectivityInspector;
 import org.jgrapht.alg.cycle.JohnsonSimpleCycles;
 import org.jgrapht.graph.DefaultEdge;
@@ -273,6 +274,28 @@ public class MapParcourable extends Map {
 	// mises dans des string , mais cette fois dans des matrices d'inconnues
 	// ordonnées dont les rangées sont de formes (I0,I1,I2,I3,...,In)
 
+	
+	/**
+	 * Met les informations du circuit presentes dans les noeuds donné en string
+	 * 
+	 * @param str
+	 * @param vecteurInconnues
+	 * @return
+	 */
+	private  String toStringNoeuds() {
+		String retour ="";
+		ArrayList maille = new ArrayList<>();
+		for (int i =0;i<maillesCircuitsFermes.size();i++) {
+			maille = new ArrayList<>(maillesCircuitsFermes.get(i));
+			if (branchesCircuit.contains(maille.get(0))) {
+				maille.add(0, maille.remove(maille.get(maille.size()-1)));
+			}
+			
+		}
+		
+		return retour;
+	}
+	
 	/**
 	 * Met les informations du circuit donné en string dans un vecteur d'inconnues
 	 * 
@@ -301,6 +324,7 @@ public class MapParcourable extends Map {
  * @return
  */
 	public float[][] toMatrice() {
+
 		float[][] retour = new float[maillesCircuitsFermes.size()][branchesCircuit.size()];
 		// longeur du vecteur de courants inconnus
 		int longeurVecteurCourantCircuit = branchesCircuit.size();
