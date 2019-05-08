@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
+import org.ejml.simple.SimpleMatrix;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,6 +16,7 @@ import composantesCircuit.Resistance;
 import exceptions.ComposantException;
 import map.ComposantMap;
 import map.MapParcourable;
+import utilitaire.MatriceUtilitaires;
 
 public class MapParcourableTest {
 	MapParcourable map1, map2, map3,map4;
@@ -649,9 +651,22 @@ public class MapParcourableTest {
 
 
 		assertTrue(map2.getBranches().size()==3);
-	
-
-
+		
+		map2.genererMailles();
+		map2.genrerNoeuds();
+		System.out.println(map2.toString());
+		float[][] matrice = map2.toMatrice();
+		float[][] reponse = new float[map2.getBranches().size()][1];
+	       
+		String s ="";
+		for(int i = 0; i < matrice.length; i++){
+			for(int j = 0; j < matrice[i].length; j++){
+				s+=matrice[i][j]+ " ";
+			}
+			s += "\n";
+		}
+		System.out.println(s);
+//System.out.println(MatriceUtilitaires.resolveEquation(matrice, reponse));
 		Fil fil15, fil17;
 		Resistance res14, res16, res18;
 		// voici un circtuit de forme
@@ -713,19 +728,7 @@ public class MapParcourableTest {
 		}
 //vériife que le nombre de branches produites est de 12 (2 fois le nombre de mailles)
 		assertTrue(map4.getBranches().size()==5);
-		map4.genererMailles();
-		map4.genrerNoeuds();
-		System.out.println(map4.toString());
-		float[][] matrice = map4.toMatrice();
-	       
-		String s ="";
-		for(int i = 0; i < matrice.length; i++){
-			for(int j = 0; j < matrice[i].length; j++){
-				s+=matrice[i][j]+ " ";
-			}
-			s += "\n";
-		}
-		System.out.println(s);
+		
 	}
 	
 	
