@@ -118,28 +118,36 @@ public class ControleurBoardPro {
 			public void handle(ActionEvent event) {
 
 				if (playing == false) {
+					map.genererMailles();
 					if (map.getMaille().size() != 0) {
+						
 						playing = true;
 						vue.tbPlay.setStyle("-fx-background-color:c4c297");
 						vue.graphiqueTemps.reset();
 						vue.graphiqueTemps.start();
-						
-						for (int i = 0; i < map.getMaille().get(0).size(); i++) {
-							ImageView v = map.getMaille().get(0).get(i).getImage().getView();
-							if (v.getId() != null && v.getId().equals("Ampoule")) {
-								v.setImage(new Image("/img/ampouleAlumer.png"));
+						byte compteur = 0;
+						for (int a = 0; a < listeImage.size(); a++) {
+							for (int b = 0; b < map.getMaille().size(); b++) {
+								if (map.getMaille().get(b).contains(listeImage.get(a).getC())) {
+									if (listeImage.get(a).getView().getId() != null && listeImage.get(a).getView().getId().equals("/img/ampouleEteinte.png")) {
+										listeImage.get(a).setImage(new Image("/img/ampouleAlumer.png"));
+									}
+									if (compteur >= listeImage.size()) {
+										break;
+									}
+									
+									FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.8),
+											listeImage.get(a).getView());
+									fadeTransition.setFromValue(1.0);
+									fadeTransition.setToValue(0.3);
+									fadeTransition.setAutoReverse(true);
+									fadeTransition.setCycleCount(Animation.INDEFINITE);
+									listeFade.add(fadeTransition);
+									fadeTransition.play();
+								}
 							}
-
-							FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.8),
-							v);
-							fadeTransition.setFromValue(1.0);
-							fadeTransition.setToValue(0.3);
-							fadeTransition.setAutoReverse(true);
-							fadeTransition.setCycleCount(Animation.INDEFINITE);
-							listeFade.add(fadeTransition);
-							fadeTransition.play();
-
 						}
+
 					}
 				} else {
 					for (int i = 1; i < vue.gridP.getChildren().size(); i++) {
@@ -674,6 +682,8 @@ public class ControleurBoardPro {
 			}
 			if (compo != null) {
 				map.addComposant(compo);
+				image.setC(compo);
+
 			}
 			if (composante != null) {
 				map.addComposant(composante);

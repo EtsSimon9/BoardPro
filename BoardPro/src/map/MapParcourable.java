@@ -42,7 +42,6 @@ public class MapParcourable extends Map {
 	}
 
 	public ArrayList<ArrayList<ComposantMap>> getMaille() {
-		genererMailles();
 		return maillesCircuitsFermes;
 	}
 

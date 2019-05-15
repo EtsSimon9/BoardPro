@@ -4,23 +4,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-cdense-0.38.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-cdense-0.38-sources.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-core-0.38.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-core-0.38-sources.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-ddense-0.38.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-ddense-0.38-sources.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-dsparse-0.38.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-dsparse-0.38-sources.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-experimental-0.38.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-experimental-0.38-sources.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-fdense-0.38.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-fdense-0.38-sources.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-simple-0.38.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-simple-0.38-sources.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-zdense-0.38.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/ejml-zdense-0.38-sources.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/jfoenix-8.0.8.jar"/>
-	<classpathentry kind="lib" path="U:/Session4/projet sim/HDTRAVAUX/Mes Ws/ws/jgrapht-core-1.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Simon Beaulieu/Desktop/École/Cégep/Programmation/jfoenix-8.0.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Simon Beaulieu/Desktop/École/Cégep/Programmation/jgrapht-core-1.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
