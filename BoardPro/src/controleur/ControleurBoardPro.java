@@ -120,7 +120,7 @@ public class ControleurBoardPro {
 				if (playing == false) {
 					map.genererMailles();
 					if (map.getMaille().size() != 0) {
-						
+
 						playing = true;
 						vue.tbPlay.setStyle("-fx-background-color:c4c297");
 						vue.graphiqueTemps.reset();
@@ -128,14 +128,16 @@ public class ControleurBoardPro {
 						byte compteur = 0;
 						for (int a = 0; a < listeImage.size(); a++) {
 							for (int b = 0; b < map.getMaille().size(); b++) {
-								if (map.getMaille().get(b).contains(listeImage.get(a).getC())) {
-									if (listeImage.get(a).getView().getId() != null && listeImage.get(a).getView().getId().equals("/img/ampouleEteinte.png")) {
+								if (map.getMaille().get(b).contains(listeImage.get(a).getC())
+										|| !listeImage.get(a).getNom().toString().substring(0, 3).equals("Fil")) {
+									if (listeImage.get(a).getView().getId() != null
+											&& listeImage.get(a).getView().getId().equals("/img/ampouleEteinte.png")) {
 										listeImage.get(a).setImage(new Image("/img/ampouleAlumer.png"));
 									}
 									if (compteur >= listeImage.size()) {
 										break;
 									}
-									
+
 									FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.8),
 											listeImage.get(a).getView());
 									fadeTransition.setFromValue(1.0);
@@ -536,13 +538,10 @@ public class ControleurBoardPro {
 										+ listeImage.get(i).getPositionY() + ")";
 								nom.setText(text);
 								vue.tabView.getSelectionModel().select(1);
-							}
 
-							if (!listeImage.get(i).getEquationDDP().equals("")) {
-								vue.graphiqueTemps.getGraphique().changerFonction(listeImage.get(i).getEquationDDP());
-							} else {
-								vue.graphiqueTemps.getGraphique().changerFonction("");
 							}
+							vue.graphiqueTemps.getGraphique().changerFonction("");
+							vue.graphiqueTemps.getGraphique().changerFonction("5sin(30x)");
 
 						}
 
